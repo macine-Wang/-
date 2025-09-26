@@ -1,5 +1,5 @@
 /**
- * MARC 页脚组件
+ * ISMT 页脚组件
  */
 
 import React from 'react';
@@ -11,7 +11,7 @@ export const Footer: React.FC = () => {
         <div className="text-center space-y-4">
           
           <div className="text-sm text-dsp-gray">
-          AI智能薪酬管理系统 Copyright© 2025 保留所有权利.
+          AI智能薪酬管理工具 Copyright© 2025 保留所有权利.
           </div>
           
           <div className="text-xs text-dsp-gray">

@@ -1,5 +1,5 @@
 /**
- * MARC 导航栏组件
+ * ISMT 导航栏组件
  */
 
 import React from 'react';
@@ -51,31 +51,46 @@ export const Navbar: React.FC = () => {
             
             {/* 求职者模块 */}
             <div className="flex items-center space-x-1">
-              <span className="text-xs text-dsp-gray">👤</span>
+              <span className="text-xs text-blue-600">👤</span>
               <Link
-                to="/query"
+                to="/jobseeker"
                 className={`text-sm font-medium transition-colors ${
-                  isActive('/query') 
-                    ? 'text-dsp-dark' 
-                    : 'text-dsp-gray hover:text-dsp-dark'
+                  location.pathname.startsWith('/jobseeker') || location.pathname === '/query' || location.pathname === '/results'
+                    ? 'text-blue-600 font-semibold' 
+                    : 'text-dsp-gray hover:text-blue-600'
                 }`}
               >
-                求职者
+                求职者中心
               </Link>
             </div>
 
             {/* HR模块 */}
             <div className="flex items-center space-x-1">
-              <span className="text-xs text-dsp-gray">🏢</span>
+              <span className="text-xs text-dsp-red">🏢</span>
               <Link
                 to="/hr"
                 className={`text-sm font-medium transition-colors ${
                   location.pathname.startsWith('/hr')
-                    ? 'text-dsp-dark' 
-                    : 'text-dsp-gray hover:text-dsp-dark'
+                    ? 'text-dsp-red font-semibold' 
+                    : 'text-dsp-gray hover:text-dsp-red'
                 }`}
               >
                 HR中心
+              </Link>
+            </div>
+
+            {/* API演示 */}
+            <div className="flex items-center space-x-1">
+              <span className="text-xs text-purple-600">🤖</span>
+              <Link
+                to="/api-demo"
+                className={`text-sm font-medium transition-colors ${
+                  location.pathname === '/api-demo'
+                    ? 'text-purple-600 font-semibold' 
+                    : 'text-dsp-gray hover:text-purple-600'
+                }`}
+              >
+                API演示
               </Link>
             </div>
           </div>

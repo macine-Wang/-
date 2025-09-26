@@ -227,14 +227,14 @@ export const RecruitmentPage: React.FC = () => {
                       </span>
                     ))}
                   </div>
-                  <input
-                    type="text"
-                    placeholder="输入技能后按回车添加"
-                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-dsp-red/20 focus:border-dsp-red"
+                  <textarea
+                    placeholder="请描述工作所需的技能及要求"
+                    rows={4}
+                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-dsp-red/20 focus:border-dsp-red resize-none"
                     onKeyPress={(e) => {
                       if (e.key === 'Enter') {
-                        handleSkillAdd((e.target as HTMLInputElement).value);
-                        (e.target as HTMLInputElement).value = '';
+                        handleSkillAdd((e.target as HTMLTextAreaElement).value);
+                        (e.target as HTMLTextAreaElement).value = '';
                       }
                     }}
                   />
