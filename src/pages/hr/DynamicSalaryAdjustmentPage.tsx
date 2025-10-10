@@ -8,15 +8,9 @@ import { deepseekApi } from '@/services/deepseekApi';
 import { 
   CurrencyDollarIcon,
   SparklesIcon,
-  UserGroupIcon,
   ChartBarIcon,
-  ArrowTrendingUpIcon,
   CheckCircleIcon,
-  ExclamationTriangleIcon,
   InformationCircleIcon,
-  PlayIcon,
-  DocumentArrowDownIcon,
-  EyeIcon,
   AdjustmentsHorizontalIcon
 } from '@heroicons/react/24/outline';
 
@@ -84,7 +78,7 @@ export const DynamicSalaryAdjustmentPage: React.FC = () => {
   });
   const [adjustmentPlans, setAdjustmentPlans] = useState<AdjustmentPlan[]>([]);
   const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
-  const [isGenerating, setIsGenerating] = useState(false);
+  const [, setIsGenerating] = useState(false);
 
   // 模拟员工数据
   const employees: Employee[] = [
@@ -321,8 +315,6 @@ export const DynamicSalaryAdjustmentPage: React.FC = () => {
     ];
   };
 
-  const getEmployeeById = (id: string) => employees.find(emp => emp.id === id);
-
   return (
     <div className="bg-white min-h-screen">
       <div className="container max-w-7xl py-12">
@@ -332,8 +324,8 @@ export const DynamicSalaryAdjustmentPage: React.FC = () => {
             <CurrencyDollarIcon className="w-8 h-8 text-green-600" />
           </div>
           <div>
-            <h1 className="text-3xl font-semibold text-dsp-dark">动态调薪决策引擎</h1>
-            <p className="text-dsp-gray mt-1">AI智能分配调薪预算，实现最优激励效果</p>
+            <h1 className="text-3xl font-semibold text-gray-900">动态调薪决策引擎</h1>
+            <p className="text-gray-600 mt-1">AI智能分配调薪预算，实现最优激励效果</p>
           </div>
         </div>
 
@@ -417,22 +409,22 @@ const BudgetInputForm: React.FC<{
   return (
     <div className="max-w-4xl mx-auto">
       <div className="bg-white border border-gray-200 rounded-2xl p-8">
-        <h2 className="text-xl font-semibold text-dsp-dark mb-6">设置调薪预算和条件</h2>
+        <h2 className="text-xl font-semibold text-gray-900 mb-6">设置调薪预算和条件</h2>
         
         <div className="space-y-6">
           {/* 总预算 */}
           <div>
-            <label className="block text-sm font-medium text-dsp-dark mb-2">
+            <label className="block text-sm font-medium text-gray-900 mb-2">
               总调薪预算 (元) *
             </label>
             <input
               type="number"
               value={budgetInput.total_budget}
               onChange={(e) => setBudgetInput(prev => ({ ...prev, total_budget: parseInt(e.target.value) || 0 }))}
-              className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500/20 focus:border-green-500"
+              className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500/20 focus:border-green-500 text-gray-900 bg-white"
               placeholder="如：500000"
             />
-            <div className="text-xs text-dsp-gray mt-1">
+            <div className="text-xs text-gray-600 mt-1">
               建议预算为月薪总额的5-15%
             </div>
           </div>
@@ -440,13 +432,13 @@ const BudgetInputForm: React.FC<{
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* 部门筛选 */}
             <div>
-              <label className="block text-sm font-medium text-dsp-dark mb-2">
+              <label className="block text-sm font-medium text-gray-900 mb-2">
                 目标部门
               </label>
               <select
                 value={budgetInput.department_filter}
                 onChange={(e) => setBudgetInput(prev => ({ ...prev, department_filter: e.target.value }))}
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500/20 focus:border-green-500"
+                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500/20 focus:border-green-500 text-gray-900 bg-white"
               >
                 <option value="">全部部门</option>
                 {departments.map(dept => (
@@ -457,13 +449,13 @@ const BudgetInputForm: React.FC<{
 
             {/* 最低绩效要求 */}
             <div>
-              <label className="block text-sm font-medium text-dsp-dark mb-2">
+              <label className="block text-sm font-medium text-gray-900 mb-2">
                 最低绩效要求
               </label>
               <select
                 value={budgetInput.min_performance}
                 onChange={(e) => setBudgetInput(prev => ({ ...prev, min_performance: parseFloat(e.target.value) }))}
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500/20 focus:border-green-500"
+                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500/20 focus:border-green-500 text-gray-900 bg-white"
               >
                 <option value={2.5}>2.5分及以上</option>
                 <option value={3.0}>3.0分及以上</option>
@@ -476,7 +468,7 @@ const BudgetInputForm: React.FC<{
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* 单人最大调薪幅度 */}
             <div>
-              <label className="block text-sm font-medium text-dsp-dark mb-2">
+              <label className="block text-sm font-medium text-gray-900 mb-2">
                 单人最大调薪幅度 (%)
               </label>
               <input
@@ -485,14 +477,14 @@ const BudgetInputForm: React.FC<{
                 max="50"
                 value={budgetInput.max_individual_increase}
                 onChange={(e) => setBudgetInput(prev => ({ ...prev, max_individual_increase: parseInt(e.target.value) || 30 }))}
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500/20 focus:border-green-500"
+                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500/20 focus:border-green-500 text-gray-900 bg-white"
               />
             </div>
           </div>
 
           {/* 调薪策略偏好 */}
           <div className="space-y-4">
-            <h3 className="text-lg font-medium text-dsp-dark">调薪策略偏好</h3>
+            <h3 className="text-lg font-medium text-gray-900">调薪策略偏好</h3>
             
             <div className="space-y-3">
               <label className="flex items-center">
@@ -502,7 +494,7 @@ const BudgetInputForm: React.FC<{
                   onChange={(e) => setBudgetInput(prev => ({ ...prev, include_recent_hires: e.target.checked }))}
                   className="mr-3 h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
                 />
-                <span className="text-dsp-dark">包含入职不满1年的新员工</span>
+                <span className="text-gray-900">包含入职不满1年的新员工</span>
               </label>
               
               <label className="flex items-center">
@@ -512,7 +504,7 @@ const BudgetInputForm: React.FC<{
                   onChange={(e) => setBudgetInput(prev => ({ ...prev, focus_key_talents: e.target.checked }))}
                   className="mr-3 h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
                 />
-                <span className="text-dsp-dark">重点关注核心人才</span>
+                <span className="text-gray-900">重点关注核心人才</span>
               </label>
             </div>
           </div>
@@ -564,8 +556,8 @@ const GeneratingProgress: React.FC = () => {
           </div>
           
           <div>
-            <h3 className="text-xl font-semibold text-dsp-dark mb-2">AI正在生成调薪方案</h3>
-            <p className="text-dsp-gray">
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">AI正在生成调薪方案</h3>
+            <p className="text-gray-600">
               正在分析员工绩效、市场价值和内部公平性...
             </p>
           </div>
@@ -579,7 +571,7 @@ const GeneratingProgress: React.FC = () => {
               <CheckCircleIcon className="w-4 h-4" />
               <span>市场对标分析完成</span>
             </div>
-            <div className="flex items-center justify-center space-x-2 text-sm text-dsp-gray">
+            <div className="flex items-center justify-center space-x-2 text-sm text-gray-600">
               <div className="animate-spin rounded-full h-4 w-4 border-2 border-green-600 border-t-transparent"></div>
               <span>生成多种调薪方案...</span>
             </div>
@@ -604,11 +596,11 @@ const AdjustmentResults: React.FC<{
     <div className="space-y-8">
       {/* 操作栏 */}
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-semibold text-dsp-dark">AI调薪方案对比</h2>
+        <h2 className="text-xl font-semibold text-gray-900">AI调薪方案对比</h2>
         <div className="flex space-x-3">
           <button
             onClick={onRestart}
-            className="px-4 py-2 text-dsp-gray hover:text-dsp-dark transition-colors rounded-lg hover:bg-gray-50"
+            className="px-4 py-2 text-gray-600 hover:text-gray-900 transition-colors rounded-lg hover:bg-gray-50"
           >
             重新设置
           </button>
@@ -634,51 +626,51 @@ const AdjustmentResults: React.FC<{
               {/* 方案头部 */}
               <div className="flex items-start justify-between">
                 <div>
-                  <h3 className="font-semibold text-dsp-dark mb-1">{plan.name}</h3>
-                  <p className="text-sm text-dsp-gray">{plan.description}</p>
+                  <h3 className="font-semibold text-gray-900 mb-1">{plan.name}</h3>
+                  <p className="text-sm text-gray-600">{plan.description}</p>
                 </div>
                 <div className="text-right">
                   <div className="text-lg font-bold text-green-600">
                     {((plan.used_budget / plan.total_budget) * 100).toFixed(1)}%
                   </div>
-                  <div className="text-xs text-dsp-gray">预算使用率</div>
+                  <div className="text-xs text-gray-600">预算使用率</div>
                 </div>
               </div>
 
               {/* 关键指标 */}
               <div className="grid grid-cols-2 gap-4">
                 <div className="text-center p-3 bg-gray-50 rounded-lg">
-                  <div className="text-lg font-bold text-dsp-dark">
+                  <div className="text-lg font-bold text-gray-900">
                     ¥{plan.used_budget.toLocaleString()}
                   </div>
-                  <div className="text-xs text-dsp-gray">使用预算</div>
+                  <div className="text-xs text-gray-600">使用预算</div>
                 </div>
                 <div className="text-center p-3 bg-gray-50 rounded-lg">
-                  <div className="text-lg font-bold text-dsp-dark">
+                  <div className="text-lg font-bold text-gray-900">
                     {plan.employees_affected}人
                   </div>
-                  <div className="text-xs text-dsp-gray">受益员工</div>
+                  <div className="text-xs text-gray-600">受益员工</div>
                 </div>
               </div>
 
               {/* 影响预测 */}
               <div className="space-y-2">
-                <div className="text-sm font-medium text-dsp-dark">预期影响</div>
+                <div className="text-sm font-medium text-gray-900">预期影响</div>
                 <div className="grid grid-cols-2 gap-2 text-xs">
                   <div className="flex justify-between">
-                    <span className="text-dsp-gray">满意度提升</span>
+                    <span className="text-gray-600">满意度提升</span>
                     <span className="font-semibold text-green-600">+{plan.predicted_impact.satisfaction_improvement}%</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-dsp-gray">留存率改善</span>
+                    <span className="text-gray-600">留存率改善</span>
                     <span className="font-semibold text-green-600">+{plan.predicted_impact.retention_improvement}%</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-dsp-gray">生产力提升</span>
+                    <span className="text-gray-600">生产力提升</span>
                     <span className="font-semibold text-green-600">+{plan.predicted_impact.productivity_boost}%</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-dsp-gray">成本效益</span>
+                    <span className="text-gray-600">成本效益</span>
                     <span className="font-semibold text-green-600">{plan.predicted_impact.cost_effectiveness}分</span>
                   </div>
                 </div>
@@ -687,21 +679,21 @@ const AdjustmentResults: React.FC<{
               {/* 展开详情 */}
               {selectedPlan === plan.id && (
                 <div className="pt-4 border-t border-green-200">
-                  <h4 className="font-medium text-dsp-dark mb-3">详细调薪明细</h4>
+                  <h4 className="font-medium text-gray-900 mb-3">详细调薪明细</h4>
                   <div className="space-y-2 max-h-60 overflow-y-auto">
                     {plan.adjustments.map((adj) => {
                       const employee = getEmployeeById(adj.employee_id);
                       return (
-                        <div key={adj.employee_id} className="flex items-center justify-between p-2 bg-white rounded border">
+                        <div key={adj.employee_id} className="flex items-center justify-between p-2 bg-gray-50 rounded border border-gray-200">
                           <div className="flex-1">
-                            <div className="font-medium text-sm text-dsp-dark">{employee?.name}</div>
-                            <div className="text-xs text-dsp-gray">{employee?.position}</div>
+                            <div className="font-medium text-sm text-gray-900">{employee?.name}</div>
+                            <div className="text-xs text-gray-600">{employee?.position}</div>
                           </div>
                           <div className="text-right">
                             <div className="text-sm font-semibold text-green-600">
                               +¥{adj.increase_amount.toLocaleString()}
                             </div>
-                            <div className="text-xs text-dsp-gray">
+                            <div className="text-xs text-gray-600">
                               {adj.increase_percent}%
                             </div>
                           </div>
@@ -719,7 +711,7 @@ const AdjustmentResults: React.FC<{
       {/* 选中方案的详细分析 */}
       {selectedPlan && (
         <div className="bg-white border border-gray-200 rounded-2xl p-8">
-          <h3 className="text-xl font-semibold text-dsp-dark mb-6">方案详细分析</h3>
+          <h3 className="text-xl font-semibold text-gray-900 mb-6">方案详细分析</h3>
           
           {(() => {
             const plan = plans.find(p => p.id === selectedPlan);
@@ -730,11 +722,11 @@ const AdjustmentResults: React.FC<{
                 {/* 调薪分布 */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div className="space-y-2">
-                    <h4 className="font-medium text-dsp-dark">高优先级调薪</h4>
+                    <h4 className="font-medium text-gray-900">高优先级调薪</h4>
                     <div className="text-2xl font-bold text-red-600">
                       {plan.adjustments.filter(adj => adj.priority === 'high').length}人
                     </div>
-                    <div className="text-sm text-dsp-gray">
+                    <div className="text-sm text-gray-600">
                       平均涨幅 {plan.adjustments.filter(adj => adj.priority === 'high').length > 0 
                         ? (plan.adjustments.filter(adj => adj.priority === 'high').reduce((sum, adj) => sum + adj.increase_percent, 0) / plan.adjustments.filter(adj => adj.priority === 'high').length).toFixed(1)
                         : 0}%
@@ -742,11 +734,11 @@ const AdjustmentResults: React.FC<{
                   </div>
                   
                   <div className="space-y-2">
-                    <h4 className="font-medium text-dsp-dark">中优先级调薪</h4>
+                    <h4 className="font-medium text-gray-900">中优先级调薪</h4>
                     <div className="text-2xl font-bold text-orange-600">
                       {plan.adjustments.filter(adj => adj.priority === 'medium').length}人
                     </div>
-                    <div className="text-sm text-dsp-gray">
+                    <div className="text-sm text-gray-600">
                       平均涨幅 {plan.adjustments.filter(adj => adj.priority === 'medium').length > 0 
                         ? (plan.adjustments.filter(adj => adj.priority === 'medium').reduce((sum, adj) => sum + adj.increase_percent, 0) / plan.adjustments.filter(adj => adj.priority === 'medium').length).toFixed(1)
                         : 0}%
@@ -754,11 +746,11 @@ const AdjustmentResults: React.FC<{
                   </div>
                   
                   <div className="space-y-2">
-                    <h4 className="font-medium text-dsp-dark">低优先级调薪</h4>
+                    <h4 className="font-medium text-gray-900">低优先级调薪</h4>
                     <div className="text-2xl font-bold text-gray-600">
                       {plan.adjustments.filter(adj => adj.priority === 'low').length}人
                     </div>
-                    <div className="text-sm text-dsp-gray">
+                    <div className="text-sm text-gray-600">
                       平均涨幅 {plan.adjustments.filter(adj => adj.priority === 'low').length > 0 
                         ? (plan.adjustments.filter(adj => adj.priority === 'low').reduce((sum, adj) => sum + adj.increase_percent, 0) / plan.adjustments.filter(adj => adj.priority === 'low').length).toFixed(1)
                         : 0}%

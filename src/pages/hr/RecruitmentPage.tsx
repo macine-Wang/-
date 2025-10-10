@@ -10,6 +10,7 @@ import {
   CheckCircleIcon,
   ChartBarIcon
 } from '@heroicons/react/24/outline';
+import { popularCities } from '@/data/cities';
 
 interface JobRequirements {
   title: string;
@@ -125,60 +126,57 @@ export const RecruitmentPage: React.FC = () => {
         {/* Header */}
         <div className="flex items-center space-x-3 mb-8">
           <BriefcaseIcon className="w-8 h-8 text-dsp-red" />
-          <h1 className="text-3xl font-semibold text-dsp-dark">智能招聘助手</h1>
+          <h1 className="text-3xl font-semibold text-gray-900">智能招聘助手</h1>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* 左侧：岗位需求表单 */}
           <div className="space-y-8">
             <div className="bg-white border border-gray-200 rounded-2xl p-8">
-              <h2 className="text-xl font-semibold text-dsp-dark mb-6">岗位需求信息</h2>
+              <h2 className="text-xl font-semibold text-gray-900 mb-6">岗位需求信息</h2>
               
               <div className="space-y-6">
                 {/* 基础信息 */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-dsp-dark mb-2">
+                    <label className="block text-sm font-medium text-gray-900 mb-2">
                       职位名称 *
                     </label>
                     <input
                       type="text"
                       value={jobData.title}
                       onChange={(e) => setJobData(prev => ({ ...prev, title: e.target.value }))}
-                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-dsp-red/20 focus:border-dsp-red"
+                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 text-gray-900 bg-white"
                       placeholder="如：前端开发工程师"
                     />
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-medium text-dsp-dark mb-2">
+                    <label className="block text-sm font-medium text-gray-900 mb-2">
                       工作地点 *
                     </label>
                     <select
                       value={jobData.location}
                       onChange={(e) => setJobData(prev => ({ ...prev, location: e.target.value }))}
-                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-dsp-red/20 focus:border-dsp-red"
+                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 text-gray-900 bg-white"
                     >
                       <option value="">请选择城市</option>
-                      <option value="北京">北京</option>
-                      <option value="上海">上海</option>
-                      <option value="深圳">深圳</option>
-                      <option value="杭州">杭州</option>
-                      <option value="广州">广州</option>
-                      <option value="成都">成都</option>
+                      {popularCities.map(city => (
+                        <option key={city} value={city}>{city}</option>
+                      ))}
                     </select>
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-dsp-dark mb-2">
+                    <label className="block text-sm font-medium text-gray-900 mb-2">
                       学历要求
                     </label>
                     <select
                       value={jobData.education}
                       onChange={(e) => setJobData(prev => ({ ...prev, education: e.target.value }))}
-                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-dsp-red/20 focus:border-dsp-red"
+                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 text-gray-900 bg-white"
                     >
                       <option value="">请选择学历</option>
                       <option value="大专">大专</option>
@@ -189,13 +187,13 @@ export const RecruitmentPage: React.FC = () => {
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-medium text-dsp-dark mb-2">
+                    <label className="block text-sm font-medium text-gray-900 mb-2">
                       工作经验
                     </label>
                     <select
                       value={jobData.experience}
                       onChange={(e) => setJobData(prev => ({ ...prev, experience: e.target.value }))}
-                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-dsp-red/20 focus:border-dsp-red"
+                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 text-gray-900 bg-white"
                     >
                       <option value="">请选择经验</option>
                       <option value="应届生">应届生</option>
@@ -208,7 +206,7 @@ export const RecruitmentPage: React.FC = () => {
 
                 {/* 技能要求 */}
                 <div>
-                  <label className="block text-sm font-medium text-dsp-dark mb-2">
+                  <label className="block text-sm font-medium text-gray-900 mb-2">
                     技能要求
                   </label>
                   <div className="flex flex-wrap gap-2 mb-3">
@@ -230,7 +228,7 @@ export const RecruitmentPage: React.FC = () => {
                   <textarea
                     placeholder="请描述工作所需的技能及要求"
                     rows={4}
-                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-dsp-red/20 focus:border-dsp-red resize-none"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 text-gray-900 bg-white resize-none"
                     onKeyPress={(e) => {
                       if (e.key === 'Enter') {
                         handleSkillAdd((e.target as HTMLTextAreaElement).value);
@@ -242,14 +240,14 @@ export const RecruitmentPage: React.FC = () => {
 
                 {/* 职位描述 */}
                 <div>
-                  <label className="block text-sm font-medium text-dsp-dark mb-2">
+                  <label className="block text-sm font-medium text-gray-900 mb-2">
                     职位描述
                   </label>
                   <textarea
                     value={jobData.description}
                     onChange={(e) => setJobData(prev => ({ ...prev, description: e.target.value }))}
                     rows={4}
-                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-dsp-red/20 focus:border-dsp-red"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 text-gray-900 bg-white"
                     placeholder="详细描述工作职责和要求..."
                   />
                 </div>
@@ -282,17 +280,17 @@ export const RecruitmentPage: React.FC = () => {
               <>
                 {/* 薪酬推荐 */}
                 <div className="bg-white border border-gray-200 rounded-2xl p-8">
-                  <h3 className="text-xl font-semibold text-dsp-dark mb-6 flex items-center">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-6 flex items-center">
                     <CurrencyDollarIcon className="w-6 h-6 text-dsp-red mr-2" />
                     薪酬推荐方案
                   </h3>
                   
                   <div className="grid grid-cols-3 gap-4 mb-6">
                     <div className="text-center p-4 bg-gray-50 rounded-lg">
-                      <div className="text-2xl font-bold text-dsp-dark">
+                      <div className="text-2xl font-bold text-gray-900">
                         {recommendation.minSalary.toLocaleString()}
                       </div>
-                      <div className="text-sm text-dsp-gray">最低薪酬</div>
+                      <div className="text-sm text-gray-600">最低薪酬</div>
                     </div>
                     <div className="text-center p-4 bg-dsp-red/5 rounded-lg border-2 border-dsp-red/20">
                       <div className="text-2xl font-bold text-dsp-red">
@@ -301,16 +299,16 @@ export const RecruitmentPage: React.FC = () => {
                       <div className="text-sm text-dsp-red">推荐薪酬</div>
                     </div>
                     <div className="text-center p-4 bg-gray-50 rounded-lg">
-                      <div className="text-2xl font-bold text-dsp-dark">
+                      <div className="text-2xl font-bold text-gray-900">
                         {recommendation.maxSalary.toLocaleString()}
                       </div>
-                      <div className="text-sm text-dsp-gray">最高薪酬</div>
+                      <div className="text-sm text-gray-600">最高薪酬</div>
                     </div>
                   </div>
 
                   <div className="space-y-4">
                     <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                      <span className="text-dsp-gray">市场竞争力</span>
+                      <span className="text-gray-600">市场竞争力</span>
                       <span className={`px-3 py-1 rounded-full text-sm font-medium ${
                         recommendation.competitiveness === 'high' 
                           ? 'bg-green-100 text-green-600'
@@ -327,34 +325,34 @@ export const RecruitmentPage: React.FC = () => {
 
                 {/* 市场分析 */}
                 <div className="bg-white border border-gray-200 rounded-2xl p-8">
-                  <h3 className="text-xl font-semibold text-dsp-dark mb-6 flex items-center">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-6 flex items-center">
                     <ChartBarIcon className="w-6 h-6 text-dsp-red mr-2" />
                     市场分析报告
                   </h3>
                   
                   <div className="grid grid-cols-2 gap-4">
                     <div className="p-4 bg-gray-50 rounded-lg">
-                      <div className="text-sm text-dsp-gray mb-1">市场需求</div>
-                      <div className="font-semibold text-dsp-dark">{recommendation.marketAnalysis.demandLevel}</div>
+                      <div className="text-sm text-gray-600 mb-1">市场需求</div>
+                      <div className="font-semibold text-gray-900">{recommendation.marketAnalysis.demandLevel}</div>
                     </div>
                     <div className="p-4 bg-gray-50 rounded-lg">
-                      <div className="text-sm text-dsp-gray mb-1">竞争程度</div>
-                      <div className="font-semibold text-dsp-dark">{recommendation.marketAnalysis.competitionLevel}</div>
+                      <div className="text-sm text-gray-600 mb-1">竞争程度</div>
+                      <div className="font-semibold text-gray-900">{recommendation.marketAnalysis.competitionLevel}</div>
                     </div>
                     <div className="p-4 bg-gray-50 rounded-lg">
-                      <div className="text-sm text-dsp-gray mb-1">招聘难度</div>
-                      <div className="font-semibold text-dsp-dark">{recommendation.marketAnalysis.recruitmentDifficulty}</div>
+                      <div className="text-sm text-gray-600 mb-1">招聘难度</div>
+                      <div className="font-semibold text-gray-900">{recommendation.marketAnalysis.recruitmentDifficulty}</div>
                     </div>
                     <div className="p-4 bg-gray-50 rounded-lg">
-                      <div className="text-sm text-dsp-gray mb-1">预计周期</div>
-                      <div className="font-semibold text-dsp-dark">{recommendation.marketAnalysis.estimatedDays} 天</div>
+                      <div className="text-sm text-gray-600 mb-1">预计周期</div>
+                      <div className="font-semibold text-gray-900">{recommendation.marketAnalysis.estimatedDays} 天</div>
                     </div>
                   </div>
                 </div>
 
                 {/* 一键发布 */}
                 <div className="bg-white border border-gray-200 rounded-2xl p-8">
-                  <h3 className="text-xl font-semibold text-dsp-dark mb-6 flex items-center">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-6 flex items-center">
                     <RocketLaunchIcon className="w-6 h-6 text-dsp-red mr-2" />
                     一键发布到招聘平台
                   </h3>
@@ -364,7 +362,7 @@ export const RecruitmentPage: React.FC = () => {
                       <div key={platform.name} className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
                         <div className="flex items-center space-x-3">
                           <span className="text-2xl">{platform.logo}</span>
-                          <span className="font-medium text-dsp-dark">{platform.name}</span>
+                          <span className="font-medium text-gray-900">{platform.name}</span>
                         </div>
                         <CheckCircleIcon className="w-5 h-5 text-green-500" />
                       </div>
@@ -398,8 +396,8 @@ export const RecruitmentPage: React.FC = () => {
           <div className="bg-white rounded-2xl p-8 max-w-md w-full mx-4">
             <div className="text-center">
               <CheckCircleIcon className="w-16 h-16 text-green-500 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-dsp-dark mb-2">发布成功！</h3>
-              <p className="text-dsp-gray mb-6">
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">发布成功！</h3>
+              <p className="text-gray-600 mb-6">
                 职位已成功发布到 {platforms.length} 个招聘平台
               </p>
               <button

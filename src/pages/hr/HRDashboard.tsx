@@ -13,7 +13,8 @@ import {
   ScaleIcon,
   ChatBubbleLeftRightIcon,
   AdjustmentsHorizontalIcon,
-  PencilSquareIcon
+  PencilSquareIcon,
+  ShieldExclamationIcon
 } from '@heroicons/react/24/outline';
 
 export const HRDashboard: React.FC = () => {
@@ -92,98 +93,161 @@ export const HRDashboard: React.FC = () => {
       link: '/hr/audit',
       color: 'bg-teal-50 text-teal-600',
       highlights: ['数据对标', '诊断报告', '优化方案', '本地处理']
+    },
+    {
+      id: 'retention_risk',
+      title: '员工离职风险预警',
+      description: '基于多维度数据分析，智能预测员工离职风险，提供个性化保留策略',
+      icon: ShieldExclamationIcon,
+      link: '/hr/retention-risk',
+      color: 'bg-red-50 text-red-600',
+      highlights: ['风险预测', '保留策略', '人才预警', '主动管理']
     }
   ];
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-gradient-to-br from-red-50 via-orange-50/30 to-white min-h-screen">
       {/* Header */}
-      <section className="py-16 bg-gradient-to-r from-dsp-red/5 to-transparent">
-        <div className="container max-w-6xl">
-          <div className="text-center space-y-6">
-            <div className="flex items-center justify-center space-x-3 mb-4">
-              <div className="p-3 bg-dsp-red/10 rounded-2xl">
-                <BriefcaseIcon className="w-8 h-8 text-dsp-red" />
+      <section className="relative py-20 overflow-hidden">
+        {/* 背景装饰 */}
+        <div className="absolute inset-0 bg-gradient-to-br from-red-600/10 via-orange-500/5 to-transparent"></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-red-400/20 to-transparent rounded-full blur-3xl transform translate-x-32 -translate-y-32"></div>
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-orange-400/15 to-transparent rounded-full blur-3xl transform -translate-x-24 translate-y-24"></div>
+        
+        <div className="container max-w-6xl relative z-10">
+          <div className="text-center space-y-8">
+            <div className="flex items-center justify-center space-x-4 mb-6">
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-orange-500 rounded-3xl blur-xl opacity-30"></div>
+                <div className="relative p-4 bg-gradient-to-r from-red-600 to-orange-500 rounded-3xl">
+                  <BriefcaseIcon className="w-10 h-10 text-white" />
+                </div>
               </div>
-              <h1 className="text-4xl font-semibold text-dsp-dark">
-                HR中心
-              </h1>
+              <div className="text-left">
+                <h1 className="text-5xl font-bold bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">
+                  HR中心
+                </h1>
+                <p className="text-red-600 font-semibold text-lg mt-1">企业薪酬管理专家</p>
+              </div>
             </div>
             
-            <p className="text-lg text-dsp-gray max-w-3xl mx-auto leading-relaxed">
-              智能化HR工具套件，助力企业薪酬管理和人才招聘
+            <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
+              智能化HR工具套件，为企业提供全流程薪酬管理和人才招聘解决方案，
+              <span className="text-red-600 font-semibold">提升HR工作效率</span>
             </p>
             
-            <div className="flex items-center justify-center space-x-2 text-sm text-dsp-gray">
-              <DocumentArrowUpIcon className="w-4 h-4" />
-              <span>所有数据本地处理，确保企业信息安全</span>
+            <div className="flex items-center justify-center space-x-3 bg-white/70 backdrop-blur-sm rounded-full px-6 py-3 border border-red-100 shadow-lg">
+              <DocumentArrowUpIcon className="w-5 h-5 text-red-600" />
+              <span className="text-slate-700 font-medium">所有数据本地处理，确保企业信息安全</span>
             </div>
           </div>
         </div>
       </section>
 
       {/* Features */}
-      <section className="py-16">
-        <div className="container max-w-6xl">
+      <section className="py-20 relative">
+        <div className="container max-w-7xl">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-red-50 to-orange-50 text-red-700 px-4 py-2 rounded-full text-sm font-semibold mb-6 border border-red-200">
+              <BriefcaseIcon className="w-4 h-4" />
+              <span>核心功能</span>
+            </div>
+            <h2 className="text-4xl font-bold text-slate-800 mb-6">
+              AI驱动的企业薪酬管理
+            </h2>
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+              专业化薪酬管理工具，从诊断分析到优化决策，全方位提升HR工作效率
+            </p>
+          </div>
           {/* 特色功能 */}
-          <div className="mb-12 space-y-6">
+          <div className="mb-16 space-y-8">
             {features.filter(f => f.featured).map((feature) => {
               const Icon = feature.icon;
+              const getGradientColors = (id: string) => {
+                switch(id) {
+                  case 'diagnosis': return {
+                    bg: 'from-purple-50/80 via-white to-blue-50/80',
+                    border: 'border-purple-200 group-hover:border-purple-300',
+                    icon: 'from-purple-600 to-blue-500',
+                    badge: 'from-purple-600 to-blue-500',
+                    hover: 'group-hover:text-purple-600'
+                  };
+                  case 'dynamic_adjustment': return {
+                    bg: 'from-green-50/80 via-white to-emerald-50/80',
+                    border: 'border-green-200 group-hover:border-green-300',
+                    icon: 'from-green-600 to-emerald-500',
+                    badge: 'from-green-600 to-emerald-500',
+                    hover: 'group-hover:text-green-600'
+                  };
+                  default: return {
+                    bg: 'from-red-50/80 via-white to-orange-50/80',
+                    border: 'border-red-200 group-hover:border-red-300',
+                    icon: 'from-red-600 to-orange-500',
+                    badge: 'from-red-600 to-orange-500',
+                    hover: 'group-hover:text-red-600'
+                  };
+                }
+              };
+              const colors = getGradientColors(feature.id);
+              
               return (
                 <Link
                   key={feature.id}
                   to={feature.link}
-                  className={`group block p-8 border-2 rounded-3xl hover:shadow-xl transition-all duration-300 max-w-4xl mx-auto ${
-                    feature.id === 'diagnosis' 
-                      ? 'bg-gradient-to-r from-purple-50 to-blue-50 border-purple-200 hover:border-purple-300'
-                      : feature.id === 'dynamic_adjustment'
-                      ? 'bg-gradient-to-r from-green-50 to-emerald-50 border-green-200 hover:border-green-300'
-                      : 'bg-gradient-to-r from-indigo-50 to-purple-50 border-indigo-200 hover:border-indigo-300'
-                  }`}
+                  className="group relative block overflow-hidden max-w-5xl mx-auto"
                 >
-                  <div className="flex items-center space-x-6">
-                    <div className="flex-shrink-0">
-                      <div className={`p-4 rounded-2xl ${feature.color}`}>
-                        <Icon className="w-10 h-10" />
-                      </div>
-                    </div>
-                    
-                    <div className="flex-1 space-y-4">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <div className="flex items-center space-x-2 mb-2">
-                            <h3 className="text-2xl font-semibold text-dsp-dark">
-                              {feature.title}
-                            </h3>
-                            <span className={`px-3 py-1 text-white text-xs rounded-full font-medium ${
-                              feature.id === 'diagnosis' ? 'bg-purple-600' : 
-                              feature.id === 'dynamic_adjustment' ? 'bg-green-600' : 'bg-indigo-600'
-                            }`}>
-                              ⭐ 核心功能
-                            </span>
+                  {/* 背景装饰 */}
+                  <div className={`absolute inset-0 bg-gradient-to-r ${colors.bg} rounded-3xl border-2 ${colors.border} transition-all duration-500 group-hover:shadow-2xl`}></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-slate-50/30 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-red-400/20 to-transparent rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  
+                  <div className="relative p-10">
+                    <div className="flex items-center space-x-8">
+                      <div className="flex-shrink-0">
+                        <div className="relative">
+                          <div className={`absolute inset-0 bg-gradient-to-r ${colors.icon} rounded-3xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500`}></div>
+                          <div className={`relative p-5 bg-gradient-to-r ${colors.icon} rounded-3xl group-hover:scale-110 transition-transform duration-500`}>
+                            <Icon className="w-12 h-12 text-white" />
                           </div>
-                          <p className="text-dsp-gray leading-relaxed text-lg">
-                            {feature.description}
-                          </p>
                         </div>
-                        <ArrowRightIcon className={`w-6 h-6 text-dsp-gray group-hover:translate-x-2 transition-all flex-shrink-0 ${
-                          feature.id === 'diagnosis' ? 'group-hover:text-purple-600' : 
-                          feature.id === 'dynamic_adjustment' ? 'group-hover:text-green-600' : 'group-hover:text-indigo-600'
-                        }`} />
                       </div>
                       
-                      <div className="flex flex-wrap gap-2">
-                        {feature.highlights.map((highlight) => (
-                          <span
-                            key={highlight}
-                            className={`px-3 py-1 bg-white/80 text-sm rounded-full font-medium ${
-                              feature.id === 'diagnosis' ? 'text-purple-700' : 
-                              feature.id === 'dynamic_adjustment' ? 'text-green-700' : 'text-indigo-700'
-                            }`}
-                          >
-                            {highlight}
-                          </span>
-                        ))}
+                      <div className="flex-1 space-y-6">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <div className="flex items-center space-x-3 mb-3">
+                              <h3 className={`text-3xl font-bold text-slate-800 transition-colors duration-300 ${colors.hover}`}>
+                                {feature.title}
+                              </h3>
+                              <div className="relative">
+                                <div className={`absolute inset-0 bg-gradient-to-r ${colors.badge} rounded-full blur-lg opacity-20`}></div>
+                                <span className={`relative px-4 py-2 bg-gradient-to-r ${colors.badge} text-white text-sm font-bold rounded-full shadow-lg`}>
+                                  ⭐ 核心功能
+                                </span>
+                              </div>
+                            </div>
+                            <p className="text-slate-600 leading-relaxed text-xl">
+                              {feature.description}
+                            </p>
+                          </div>
+                          <ArrowRightIcon className={`w-8 h-8 text-slate-400 group-hover:translate-x-3 transition-all duration-300 flex-shrink-0 ${colors.hover}`} />
+                        </div>
+                        
+                        <div className="flex flex-wrap gap-3">
+                          {feature.highlights.map((highlight, index) => (
+                            <span
+                              key={highlight}
+                              className={`px-4 py-2 bg-white/80 text-sm font-semibold rounded-xl border transition-all duration-300 shadow-sm ${
+                                feature.id === 'diagnosis' ? 'text-purple-700 border-purple-200 group-hover:bg-purple-50 group-hover:border-purple-300' : 
+                                feature.id === 'dynamic_adjustment' ? 'text-green-700 border-green-200 group-hover:bg-green-50 group-hover:border-green-300' : 
+                                'text-red-700 border-red-200 group-hover:bg-red-50 group-hover:border-red-300'
+                              }`}
+                              style={{ animationDelay: `${index * 100}ms` }}
+                            >
+                              {highlight}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -193,44 +257,58 @@ export const HRDashboard: React.FC = () => {
           </div>
 
           {/* 其他功能 */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.filter(f => !f.featured).map((feature) => {
               const Icon = feature.icon;
               return (
                 <Link
                   key={feature.id}
                   to={feature.link}
-                  className="group block p-8 bg-white border border-gray-200 rounded-2xl hover:border-dsp-red/20 hover:shadow-lg transition-all duration-300"
+                  className="group relative block overflow-hidden"
                 >
-                  <div className="space-y-6">
-                    {/* Icon */}
-                    <div className={`inline-flex p-3 rounded-xl ${feature.color}`}>
-                      <Icon className="w-6 h-6" />
-                    </div>
-                    
-                    {/* Content */}
-                    <div className="space-y-3">
-                      <div className="flex items-center justify-between">
-                        <h3 className="text-xl font-semibold text-dsp-dark">
-                          {feature.title}
-                        </h3>
-                        <ArrowRightIcon className="w-5 h-5 text-dsp-gray group-hover:text-dsp-red group-hover:translate-x-1 transition-all" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-white to-slate-50 rounded-3xl border-2 border-slate-200 group-hover:border-red-200 transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-red-500/10"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-red-50/30 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  
+                  <div className="relative p-8 h-full">
+                    <div className="space-y-6">
+                      {/* Icon */}
+                      <div className="relative">
+                        <div className={`absolute inset-0 ${feature.color.replace('bg-', 'bg-').replace('text-', 'bg-').replace('50', '100')} rounded-2xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500`}></div>
+                        <div className={`relative inline-flex p-4 rounded-2xl ${feature.color} group-hover:scale-110 transition-transform duration-500`}>
+                          <Icon className="w-7 h-7" />
+                        </div>
                       </div>
                       
-                      <p className="text-dsp-gray leading-relaxed">
-                        {feature.description}
-                      </p>
-                      
-                      {/* Highlights */}
-                      <div className="flex flex-wrap gap-2">
-                        {feature.highlights.map((highlight) => (
-                          <span
-                            key={highlight}
-                            className="px-2 py-1 bg-gray-100 text-dsp-gray text-xs rounded-full"
-                          >
-                            {highlight}
-                          </span>
-                        ))}
+                      {/* Content */}
+                      <div className="space-y-4">
+                        <div className="flex items-center justify-between">
+                          <h3 className="text-xl font-bold text-slate-800 group-hover:text-red-600 transition-colors duration-300">
+                            {feature.title}
+                          </h3>
+                          <ArrowRightIcon className="w-5 h-5 text-slate-400 group-hover:text-red-600 group-hover:translate-x-2 transition-all duration-300" />
+                        </div>
+                        
+                        <p className="text-slate-600 leading-relaxed">
+                          {feature.description}
+                        </p>
+                        
+                        {/* Highlights */}
+                        <div className="flex flex-wrap gap-2">
+                          {feature.highlights.map((highlight, index) => (
+                            <span
+                              key={highlight}
+                              className="px-3 py-1 bg-slate-100 text-slate-700 text-sm font-medium rounded-lg group-hover:bg-red-50 group-hover:text-red-700 transition-colors duration-300"
+                              style={{ animationDelay: `${index * 100}ms` }}
+                            >
+                              {highlight}
+                            </span>
+                          ))}
+                        </div>
+                        
+                        <div className="flex items-center text-red-600 font-semibold group-hover:translate-x-2 transition-all duration-300 pt-2">
+                          <span>了解更多</span>
+                          <ArrowRightIcon className="w-4 h-4 ml-2 group-hover:scale-110 transition-transform duration-300" />
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -245,10 +323,10 @@ export const HRDashboard: React.FC = () => {
       <section className="py-16 bg-gray-50">
         <div className="container max-w-6xl">
           <div className="text-center mb-12">
-            <h2 className="text-2xl font-semibold text-dsp-dark mb-4">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">
               为什么选择ISMT HR中心？
             </h2>
-            <p className="text-dsp-gray">
+            <p className="text-gray-600">
               基于海量真实招聘数据，提供专业的HR决策支持
             </p>
           </div>
@@ -256,15 +334,15 @@ export const HRDashboard: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center space-y-3">
               <div className="text-3xl font-bold text-dsp-red">7亿+</div>
-              <div className="text-dsp-gray">真实招聘职位数据</div>
+              <div className="text-gray-600">真实招聘职位数据</div>
             </div>
             <div className="text-center space-y-3">
               <div className="text-3xl font-bold text-dsp-red">7000+</div>
-              <div className="text-dsp-gray">覆盖职业类别</div>
+              <div className="text-gray-600">覆盖职业类别</div>
             </div>
             <div className="text-center space-y-3">
               <div className="text-3xl font-bold text-dsp-red">100%</div>
-              <div className="text-dsp-gray">本地数据处理</div>
+              <div className="text-gray-600">本地数据处理</div>
             </div>
           </div>
         </div>

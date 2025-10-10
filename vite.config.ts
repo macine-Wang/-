@@ -4,11 +4,19 @@ import { resolve } from 'path'
 
 export default defineConfig({
   plugins: [react()],
-  base: process.env.NODE_ENV === 'production' ? '/marc.github.io/' : '/', // 生产环境使用GitHub Pages路径，开发环境使用根路径
+  base: '/', // Vercel部署使用根路径
   resolve: {
     alias: {
       '@': resolve(__dirname, './src'),
     },
+  },
+  optimizeDeps: {
+    include: ['pdfjs-dist'],
+    exclude: ['pdfjs-dist/build/pdf.worker.min.js']
+  },
+  assetsInclude: ['**/*.worker.js', '**/*.worker.min.js'],
+  worker: {
+    format: 'es'
   },
   server: {
     port: 3000,
@@ -27,6 +35,7 @@ export default defineConfig({
           utils: ['date-fns', 'zustand']
         }
       }
-    }
+    },
+    copyPublicDir: true
   }
 })

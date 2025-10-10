@@ -17,6 +17,7 @@ import {
   MapPinIcon,
   BriefcaseIcon
 } from '@heroicons/react/24/outline';
+import { popularCities } from '@/data/cities';
 
 interface MonitoringRule {
   id: string;
@@ -953,11 +954,9 @@ const CreateRuleModal: React.FC<{
                 className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
               >
                 <option value="">请选择</option>
-                <option value="北京">北京</option>
-                <option value="上海">上海</option>
-                <option value="深圳">深圳</option>
-                <option value="杭州">杭州</option>
-                <option value="广州">广州</option>
+                {popularCities.map(city => (
+                  <option key={city} value={city}>{city}</option>
+                ))}
               </select>
             </div>
             

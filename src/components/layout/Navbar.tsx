@@ -79,20 +79,20 @@ export const Navbar: React.FC = () => {
               </Link>
             </div>
 
-            {/* API演示 */}
-            <div className="flex items-center space-x-1">
-              <span className="text-xs text-purple-600">🤖</span>
-              <Link
-                to="/api-demo"
-                className={`text-sm font-medium transition-colors ${
-                  location.pathname === '/api-demo'
-                    ? 'text-purple-600 font-semibold' 
-                    : 'text-dsp-gray hover:text-purple-600'
-                }`}
-              >
-                API演示
-              </Link>
-            </div>
+                    {/* 技术架构 */}
+                    <div className="flex items-center space-x-1">
+                      <span className="text-xs text-purple-600">🏗️</span>
+                      <Link
+                        to="/tech-architecture"
+                        className={`text-sm font-medium transition-colors ${
+                          location.pathname === '/tech-architecture'
+                            ? 'text-purple-600 font-semibold' 
+                            : 'text-dsp-gray hover:text-purple-600'
+                        }`}
+                      >
+                        技术架构
+                      </Link>
+                    </div>
           </div>
         </div>
       </div>

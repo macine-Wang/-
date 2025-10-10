@@ -194,7 +194,7 @@ export const SalaryAuditPage: React.FC = () => {
         {/* Header */}
         <div className="flex items-center space-x-3 mb-8">
           <ChartBarIcon className="w-8 h-8 text-dsp-red" />
-          <h1 className="text-3xl font-semibold text-dsp-dark">薪酬体系评估</h1>
+          <h1 className="text-3xl font-semibold text-gray-900">薪酬体系评估</h1>
         </div>
 
         {!showReport ? (
@@ -204,8 +204,8 @@ export const SalaryAuditPage: React.FC = () => {
               {/* 上传区域 */}
               <div className="bg-white border-2 border-dashed border-gray-300 rounded-2xl p-8 text-center hover:border-dsp-red/50 transition-colors">
                 <DocumentArrowUpIcon className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-xl font-semibold text-dsp-dark mb-2">上传工资单数据</h3>
-                <p className="text-dsp-gray mb-6">
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">上传工资单数据</h3>
+                <p className="text-gray-600 mb-6">
                   支持CSV格式，包含：姓名、职位、部门、薪酬、经验、学历、地点
                 </p>
                 
@@ -224,7 +224,7 @@ export const SalaryAuditPage: React.FC = () => {
                   选择文件
                 </label>
                 
-                <div className="mt-4 text-sm text-dsp-gray">
+                <div className="mt-4 text-sm text-gray-600">
                   <div className="flex items-center justify-center space-x-2 mb-2">
                     <CheckCircleIcon className="w-4 h-4 text-green-500" />
                     <span>100% 本地处理，数据不会上传到服务器</span>
@@ -234,8 +234,8 @@ export const SalaryAuditPage: React.FC = () => {
 
               {/* CSV格式说明 */}
               <div className="bg-gray-50 rounded-2xl p-6">
-                <h4 className="font-semibold text-dsp-dark mb-4">CSV格式要求</h4>
-                <div className="space-y-2 text-sm text-dsp-gray">
+                <h4 className="font-semibold text-gray-900 mb-4">CSV格式要求</h4>
+                <div className="space-y-2 text-sm text-gray-600">
                   <div className="font-mono bg-white p-3 rounded border text-xs">
                     姓名,职位,部门,薪酬,经验,学历,地点<br />
                     张三,前端开发,技术部,18000,3-5年,本科,北京<br />
@@ -257,24 +257,24 @@ export const SalaryAuditPage: React.FC = () => {
                 <>
                   {/* 数据统计 */}
                   <div className="bg-white border border-gray-200 rounded-2xl p-8">
-                    <h3 className="text-xl font-semibold text-dsp-dark mb-6">数据概览</h3>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-6">数据概览</h3>
                     
                     <div className="grid grid-cols-2 gap-6">
                       <div className="text-center p-4 bg-gray-50 rounded-lg">
                         <div className="text-2xl font-bold text-dsp-red">{uploadedData.length}</div>
-                        <div className="text-sm text-dsp-gray">员工总数</div>
+                        <div className="text-sm text-gray-600">员工总数</div>
                       </div>
                       <div className="text-center p-4 bg-gray-50 rounded-lg">
                         <div className="text-2xl font-bold text-dsp-red">
                           {Math.round(uploadedData.reduce((sum, emp) => sum + emp.salary, 0) / uploadedData.length).toLocaleString()}
                         </div>
-                        <div className="text-sm text-dsp-gray">平均薪酬</div>
+                        <div className="text-sm text-gray-600">平均薪酬</div>
                       </div>
                     </div>
 
                     {/* 部门分布 */}
                     <div className="mt-6">
-                      <h4 className="font-medium text-dsp-dark mb-3">部门分布</h4>
+                      <h4 className="font-medium text-gray-900 mb-3">部门分布</h4>
                       <div className="space-y-2">
                         {Object.entries(
                           uploadedData.reduce((acc, emp) => {
@@ -283,8 +283,8 @@ export const SalaryAuditPage: React.FC = () => {
                           }, {} as Record<string, number>)
                         ).map(([dept, count]) => (
                           <div key={dept} className="flex justify-between items-center py-2">
-                            <span className="text-dsp-gray">{dept}</span>
-                            <span className="font-semibold text-dsp-dark">{count}人</span>
+                            <span className="text-gray-600">{dept}</span>
+                            <span className="font-semibold text-gray-900">{count}人</span>
                           </div>
                         ))}
                       </div>
@@ -325,10 +325,10 @@ export const SalaryAuditPage: React.FC = () => {
             {/* 报告头部 */}
             <div className="bg-white border border-gray-200 rounded-2xl p-8">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-semibold text-dsp-dark">薪酬审计报告</h2>
+                <h2 className="text-2xl font-semibold text-gray-900">薪酬审计报告</h2>
                 <button
                   onClick={() => setShowReport(false)}
-                  className="text-dsp-gray hover:text-dsp-dark"
+                  className="text-gray-600 hover:text-gray-900"
                 >
                   重新分析
                 </button>
@@ -337,12 +337,12 @@ export const SalaryAuditPage: React.FC = () => {
               {auditReport && (
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                   <div className="text-center p-4 bg-gray-50 rounded-lg">
-                    <div className="text-2xl font-bold text-dsp-dark">{auditReport.totalEmployees}</div>
-                    <div className="text-sm text-dsp-gray">分析员工数</div>
+                    <div className="text-2xl font-bold text-gray-900">{auditReport.totalEmployees}</div>
+                    <div className="text-sm text-gray-600">分析员工数</div>
                   </div>
                   <div className="text-center p-4 bg-gray-50 rounded-lg">
-                    <div className="text-2xl font-bold text-dsp-dark">{auditReport.averageSalary.toLocaleString()}</div>
-                    <div className="text-sm text-dsp-gray">平均薪酬</div>
+                    <div className="text-2xl font-bold text-gray-900">{auditReport.averageSalary.toLocaleString()}</div>
+                    <div className="text-sm text-gray-600">平均薪酬</div>
                   </div>
                   <div className="text-center p-4 bg-green-50 rounded-lg">
                     <div className="text-2xl font-bold text-green-600">{auditReport.marketComparison.atMarket}</div>
@@ -358,18 +358,18 @@ export const SalaryAuditPage: React.FC = () => {
 
             {/* 员工薪酬对标 */}
             <div className="bg-white border border-gray-200 rounded-2xl p-8">
-              <h3 className="text-xl font-semibold text-dsp-dark mb-6">员工薪酬市场对标</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-6">员工薪酬市场对标</h3>
               
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead className="bg-gray-50">
                     <tr>
-                      <th className="px-4 py-3 text-left text-sm font-medium text-dsp-gray">姓名</th>
-                      <th className="px-4 py-3 text-left text-sm font-medium text-dsp-gray">职位</th>
-                      <th className="px-4 py-3 text-left text-sm font-medium text-dsp-gray">部门</th>
-                      <th className="px-4 py-3 text-left text-sm font-medium text-dsp-gray">当前薪酬</th>
-                      <th className="px-4 py-3 text-left text-sm font-medium text-dsp-gray">市场中位数</th>
-                      <th className="px-4 py-3 text-left text-sm font-medium text-dsp-gray">竞争力</th>
+                      <th className="px-4 py-3 text-left text-sm font-medium text-gray-600">姓名</th>
+                      <th className="px-4 py-3 text-left text-sm font-medium text-gray-600">职位</th>
+                      <th className="px-4 py-3 text-left text-sm font-medium text-gray-600">部门</th>
+                      <th className="px-4 py-3 text-left text-sm font-medium text-gray-600">当前薪酬</th>
+                      <th className="px-4 py-3 text-left text-sm font-medium text-gray-600">市场中位数</th>
+                      <th className="px-4 py-3 text-left text-sm font-medium text-gray-600">竞争力</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200">
@@ -377,13 +377,13 @@ export const SalaryAuditPage: React.FC = () => {
                       const benchmark = benchmarks[index];
                       return (
                         <tr key={index} className="hover:bg-gray-50">
-                          <td className="px-4 py-3 text-sm text-dsp-dark">{emp.name}</td>
-                          <td className="px-4 py-3 text-sm text-dsp-gray">{emp.position}</td>
-                          <td className="px-4 py-3 text-sm text-dsp-gray">{emp.department}</td>
-                          <td className="px-4 py-3 text-sm font-medium text-dsp-dark">
+                          <td className="px-4 py-3 text-sm text-gray-900">{emp.name}</td>
+                          <td className="px-4 py-3 text-sm text-gray-600">{emp.position}</td>
+                          <td className="px-4 py-3 text-sm text-gray-600">{emp.department}</td>
+                          <td className="px-4 py-3 text-sm font-medium text-gray-900">
                             ¥{emp.salary.toLocaleString()}
                           </td>
-                          <td className="px-4 py-3 text-sm text-dsp-gray">
+                          <td className="px-4 py-3 text-sm text-gray-600">
                             ¥{benchmark.marketMedian.toLocaleString()}
                           </td>
                           <td className="px-4 py-3">
@@ -399,7 +399,7 @@ export const SalaryAuditPage: React.FC = () => {
                 </table>
                 
                 {uploadedData.length > 10 && (
-                  <div className="mt-4 text-center text-sm text-dsp-gray">
+                  <div className="mt-4 text-center text-sm text-gray-600">
                     显示前10条记录，共{uploadedData.length}条
                   </div>
                 )}
@@ -409,23 +409,23 @@ export const SalaryAuditPage: React.FC = () => {
             {/* 部门分析 */}
             {auditReport && (
               <div className="bg-white border border-gray-200 rounded-2xl p-8">
-                <h3 className="text-xl font-semibold text-dsp-dark mb-6">部门薪酬分析</h3>
+                <h3 className="text-xl font-semibold text-gray-900 mb-6">部门薪酬分析</h3>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {Object.entries(auditReport.departmentAnalysis).map(([dept, analysis]) => (
                     <div key={dept} className="p-6 border border-gray-200 rounded-lg">
-                      <h4 className="font-semibold text-dsp-dark mb-4">{dept}</h4>
+                      <h4 className="font-semibold text-gray-900 mb-4">{dept}</h4>
                       <div className="space-y-3">
                         <div className="flex justify-between">
-                          <span className="text-dsp-gray">员工数量</span>
+                          <span className="text-gray-600">员工数量</span>
                           <span className="font-medium">{analysis.count}人</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-dsp-gray">平均薪酬</span>
+                          <span className="text-gray-600">平均薪酬</span>
                           <span className="font-medium">¥{analysis.avgSalary.toLocaleString()}</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-dsp-gray">市场差距</span>
+                          <span className="text-gray-600">市场差距</span>
                           <span className={`font-medium ${analysis.marketGap > 0 ? 'text-green-600' : 'text-red-600'}`}>
                             {analysis.marketGap > 0 ? '+' : ''}{analysis.marketGap}%
                           </span>
@@ -440,7 +440,7 @@ export const SalaryAuditPage: React.FC = () => {
             {/* 优化建议 */}
             {auditReport && (
               <div className="bg-white border border-gray-200 rounded-2xl p-8">
-                <h3 className="text-xl font-semibold text-dsp-dark mb-6">优化建议</h3>
+                <h3 className="text-xl font-semibold text-gray-900 mb-6">优化建议</h3>
                 
                 <div className="space-y-4 mb-8">
                   {auditReport.recommendations.map((rec, index) => (
@@ -456,8 +456,8 @@ export const SalaryAuditPage: React.FC = () => {
                   <div className="bg-gradient-to-r from-dsp-red/5 to-transparent rounded-xl p-6">
                     <div className="flex items-center justify-between">
                       <div>
-                        <h4 className="font-semibold text-dsp-dark mb-2">基于审计结果生成个性化优化方案</h4>
-                        <p className="text-sm text-dsp-gray">
+                        <h4 className="font-semibold text-gray-900 mb-2">基于审计结果生成个性化优化方案</h4>
+                        <p className="text-sm text-gray-600">
                           根据您的实际薪酬数据和市场对标结果，AI将为您生成针对性的薪酬优化方案
                         </p>
                       </div>

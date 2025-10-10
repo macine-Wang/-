@@ -308,8 +308,8 @@ export const SalaryCompetitivenessRadarPage: React.FC = () => {
               <ChartBarIcon className="w-8 h-8 text-blue-600" />
             </div>
             <div>
-              <h1 className="text-3xl font-semibold text-dsp-dark">薪酬竞争力雷达</h1>
-              <p className="text-dsp-gray mt-1">实时监控市场动态，精准把握竞争地位</p>
+              <h1 className="text-3xl font-semibold text-gray-900">薪酬竞争力雷达</h1>
+              <p className="text-gray-600 mt-1">实时监控市场动态，精准把握竞争地位</p>
             </div>
           </div>
 
@@ -322,7 +322,7 @@ export const SalaryCompetitivenessRadarPage: React.FC = () => {
                 className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${
                   selectedTimeRange === range
                     ? 'bg-white text-blue-600 shadow-sm'
-                    : 'text-dsp-gray hover:text-dsp-dark'
+                    : 'text-gray-600 hover:text-gray-900'
                 }`}
               >
                 {range === '1M' ? '1个月' : range === '3M' ? '3个月' : range === '6M' ? '6个月' : '1年'}
@@ -342,7 +342,7 @@ export const SalaryCompetitivenessRadarPage: React.FC = () => {
                 className={`flex items-center space-x-2 px-4 py-3 rounded-md font-medium transition-colors ${
                   activeTab === tab.id
                     ? 'bg-white text-blue-600 shadow-sm'
-                    : 'text-dsp-gray hover:text-dsp-dark'
+                    : 'text-gray-600 hover:text-gray-900'
                 }`}
               >
                 <Icon className="w-4 h-4" />
@@ -392,7 +392,7 @@ const OverviewSection: React.FC<{ data: CompetitivenessData[] }> = ({ data }) =>
           <div className="text-3xl font-bold text-blue-600 mb-2">
             {avgCompetitiveness.toFixed(0)}
           </div>
-          <div className="text-sm text-dsp-gray">平均竞争力评分</div>
+          <div className="text-sm text-gray-600">平均竞争力评分</div>
           <div className="mt-2">
             <span className={`px-2 py-1 text-xs rounded-full ${
               avgCompetitiveness >= 80 ? 'bg-green-100 text-green-700' : 
@@ -408,7 +408,7 @@ const OverviewSection: React.FC<{ data: CompetitivenessData[] }> = ({ data }) =>
           <div className="text-3xl font-bold text-red-600 mb-2">
             {highRiskPositions}
           </div>
-          <div className="text-sm text-dsp-gray">高风险岗位数</div>
+          <div className="text-sm text-gray-600">高风险岗位数</div>
           <div className="mt-2">
             <span className="px-2 py-1 bg-red-100 text-red-700 text-xs rounded-full">
               需重点关注
@@ -417,10 +417,10 @@ const OverviewSection: React.FC<{ data: CompetitivenessData[] }> = ({ data }) =>
         </div>
 
         <div className="bg-white border border-gray-200 rounded-2xl p-6 text-center">
-          <div className="text-3xl font-bold text-dsp-dark mb-2">
+          <div className="text-3xl font-bold text-gray-900 mb-2">
             {totalEmployees}
           </div>
-          <div className="text-sm text-dsp-gray">覆盖员工总数</div>
+          <div className="text-sm text-gray-600">覆盖员工总数</div>
           <div className="mt-2">
             <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded-full">
               全员覆盖
@@ -432,7 +432,7 @@ const OverviewSection: React.FC<{ data: CompetitivenessData[] }> = ({ data }) =>
           <div className="text-3xl font-bold text-green-600 mb-2">
             {data.filter(item => item.trend === 'up').length}
           </div>
-          <div className="text-sm text-dsp-gray">上升趋势岗位</div>
+          <div className="text-sm text-gray-600">上升趋势岗位</div>
           <div className="mt-2">
             <span className="px-2 py-1 bg-green-100 text-green-700 text-xs rounded-full">
               积极信号
@@ -443,16 +443,16 @@ const OverviewSection: React.FC<{ data: CompetitivenessData[] }> = ({ data }) =>
 
       {/* 竞争力雷达图 */}
       <div className="bg-white border border-gray-200 rounded-2xl p-8">
-        <h3 className="text-xl font-semibold text-dsp-dark mb-6">薪酬竞争力分布</h3>
+        <h3 className="text-xl font-semibold text-gray-900 mb-6">薪酬竞争力分布</h3>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* 左侧：竞争力评分分布 */}
           <div className="space-y-4">
-            <h4 className="font-medium text-dsp-dark">各岗位竞争力评分</h4>
+            <h4 className="font-medium text-gray-900">各岗位竞争力评分</h4>
             {data.map((item) => (
               <div key={item.position} className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium text-dsp-dark">{item.position}</span>
+                  <span className="text-sm font-medium text-gray-900">{item.position}</span>
                   <span className="text-sm font-semibold text-blue-600">{item.competitiveness_score}分</span>
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-2">
@@ -470,7 +470,7 @@ const OverviewSection: React.FC<{ data: CompetitivenessData[] }> = ({ data }) =>
 
           {/* 右侧：风险等级分布 */}
           <div className="space-y-4">
-            <h4 className="font-medium text-dsp-dark">人才流失风险分布</h4>
+            <h4 className="font-medium text-gray-900">人才流失风险分布</h4>
             <div className="grid grid-cols-2 gap-4">
               {['critical', 'high', 'medium', 'low'].map((risk) => {
                 const count = data.filter(item => item.risk_level === risk).length;
@@ -484,7 +484,7 @@ const OverviewSection: React.FC<{ data: CompetitivenessData[] }> = ({ data }) =>
                     }`}>
                       {count}
                     </div>
-                    <div className="text-sm text-dsp-gray">{riskLabels[risk as keyof typeof riskLabels]}风险</div>
+                    <div className="text-sm text-gray-600">{riskLabels[risk as keyof typeof riskLabels]}风险</div>
                   </div>
                 );
               })}
@@ -495,7 +495,7 @@ const OverviewSection: React.FC<{ data: CompetitivenessData[] }> = ({ data }) =>
 
       {/* 趋势分析 */}
       <div className="bg-white border border-gray-200 rounded-2xl p-8">
-        <h3 className="text-xl font-semibold text-dsp-dark mb-6">市场趋势分析</h3>
+        <h3 className="text-xl font-semibold text-gray-900 mb-6">市场趋势分析</h3>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="text-center p-6 bg-green-50 rounded-xl">
@@ -532,8 +532,8 @@ const PositionsSection: React.FC<{ data: CompetitivenessData[] }> = ({ data }) =
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-xl font-semibold text-dsp-dark mb-2">岗位薪酬竞争力分析</h2>
-        <p className="text-dsp-gray">详细分析各岗位在市场中的薪酬定位</p>
+        <h2 className="text-xl font-semibold text-gray-900 mb-2">岗位薪酬竞争力分析</h2>
+        <p className="text-gray-600">详细分析各岗位在市场中的薪酬定位</p>
       </div>
 
       <div className="grid grid-cols-1 gap-6">
@@ -544,8 +544,8 @@ const PositionsSection: React.FC<{ data: CompetitivenessData[] }> = ({ data }) =
               <div className="flex items-start justify-between">
                 <div className="flex-1">
                   <div className="flex items-center space-x-3 mb-2">
-                    <h3 className="text-lg font-semibold text-dsp-dark">{position.position}</h3>
-                    <span className="px-2 py-1 bg-gray-100 text-dsp-gray text-sm rounded-full">
+                    <h3 className="text-lg font-semibold text-gray-900">{position.position}</h3>
+                    <span className="px-2 py-1 bg-gray-100 text-gray-600 text-sm rounded-full">
                       {position.department}
                     </span>
                     <span className="px-2 py-1 bg-blue-100 text-blue-700 text-sm rounded-full">
@@ -553,7 +553,7 @@ const PositionsSection: React.FC<{ data: CompetitivenessData[] }> = ({ data }) =
                     </span>
                   </div>
                   
-                  <div className="flex items-center space-x-4 text-sm text-dsp-gray">
+                  <div className="flex items-center space-x-4 text-sm text-gray-600">
                     <div className="flex items-center space-x-1">
                       <CurrencyDollarIcon className="w-4 h-4" />
                       <span>当前薪酬: ¥{position.current_salary.toLocaleString()}</span>
@@ -577,7 +577,7 @@ const PositionsSection: React.FC<{ data: CompetitivenessData[] }> = ({ data }) =
                   <div className="text-2xl font-bold text-blue-600 mb-1">
                     {position.competitiveness_score}
                   </div>
-                  <div className="text-sm text-dsp-gray">竞争力评分</div>
+                  <div className="text-sm text-gray-600">竞争力评分</div>
                   <div className="mt-2">
                     <span className={`px-2 py-1 text-xs rounded-full ${getRiskLevelColor(position.risk_level)}`}>
                       {position.risk_level === 'critical' ? '极高风险' :
@@ -590,13 +590,13 @@ const PositionsSection: React.FC<{ data: CompetitivenessData[] }> = ({ data }) =
 
               {/* 市场对标 */}
               <div className="space-y-3">
-                <h4 className="font-medium text-dsp-dark">市场薪酬对标</h4>
+                <h4 className="font-medium text-gray-900">市场薪酬对标</h4>
                 <div className="grid grid-cols-5 gap-4 text-center">
                   <div className="p-3 bg-gray-50 rounded-lg">
-                    <div className="text-lg font-semibold text-dsp-dark">
+                    <div className="text-lg font-semibold text-gray-900">
                       ¥{(position.market_p25 / 1000).toFixed(0)}K
                     </div>
-                    <div className="text-xs text-dsp-gray">25分位</div>
+                    <div className="text-xs text-gray-600">25分位</div>
                   </div>
                   <div className="p-3 bg-blue-50 rounded-lg">
                     <div className="text-lg font-semibold text-blue-600">
@@ -638,7 +638,7 @@ const PositionsSection: React.FC<{ data: CompetitivenessData[] }> = ({ data }) =
 
               {/* 竞争力分析 */}
               <div className="flex items-center justify-between pt-4 border-t border-gray-200">
-                <div className="text-sm text-dsp-gray">
+                <div className="text-sm text-gray-600">
                   市场定位: 
                   {position.current_salary >= position.market_p75 ? '高于市场' :
                    position.current_salary >= position.market_p50 ? '接近市场' : '低于市场'}
@@ -667,8 +667,8 @@ const CompetitorsSection: React.FC<{ data: CompetitorAnalysis[] }> = ({ data }) 
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-xl font-semibold text-dsp-dark mb-2">竞争对手分析</h2>
-        <p className="text-dsp-gray">对比同行业企业的薪酬策略和竞争优势</p>
+        <h2 className="text-xl font-semibold text-gray-900 mb-2">竞争对手分析</h2>
+        <p className="text-gray-600">对比同行业企业的薪酬策略和竞争优势</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -678,8 +678,8 @@ const CompetitorsSection: React.FC<{ data: CompetitorAnalysis[] }> = ({ data }) 
               {/* 公司头部信息 */}
               <div className="flex items-start justify-between">
                 <div>
-                  <h3 className="text-lg font-semibold text-dsp-dark mb-1">{competitor.company_name}</h3>
-                  <div className="flex items-center space-x-2 text-sm text-dsp-gray">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-1">{competitor.company_name}</h3>
+                  <div className="flex items-center space-x-2 text-sm text-gray-600">
                     <span>{competitor.industry}</span>
                     <span>•</span>
                     <span>{competitor.size}</span>
@@ -690,17 +690,17 @@ const CompetitorsSection: React.FC<{ data: CompetitorAnalysis[] }> = ({ data }) 
                   <div className="text-xl font-bold text-dsp-red">
                     {competitor.overall_competitiveness}
                   </div>
-                  <div className="text-xs text-dsp-gray">综合竞争力</div>
+                  <div className="text-xs text-gray-600">综合竞争力</div>
                 </div>
               </div>
 
               {/* 关键指标 */}
               <div className="grid grid-cols-3 gap-4">
                 <div className="text-center p-3 bg-gray-50 rounded-lg">
-                  <div className="text-lg font-semibold text-dsp-dark">
+                  <div className="text-lg font-semibold text-gray-900">
                     ¥{(competitor.avg_salary / 1000).toFixed(0)}K
                   </div>
-                  <div className="text-xs text-dsp-gray">平均薪酬</div>
+                  <div className="text-xs text-gray-600">平均薪酬</div>
                 </div>
                 
                 <div className="text-center p-3 bg-blue-50 rounded-lg">
@@ -720,7 +720,7 @@ const CompetitorsSection: React.FC<{ data: CompetitorAnalysis[] }> = ({ data }) 
 
               {/* 竞争优势 */}
               <div className="space-y-2">
-                <h4 className="font-medium text-dsp-dark">核心优势</h4>
+                <h4 className="font-medium text-gray-900">核心优势</h4>
                 <div className="flex flex-wrap gap-2">
                   {competitor.key_advantages.map((advantage) => (
                     <span key={advantage} className="px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded-full">
@@ -732,7 +732,7 @@ const CompetitorsSection: React.FC<{ data: CompetitorAnalysis[] }> = ({ data }) 
 
               {/* 薪酬趋势 */}
               <div className="flex items-center justify-between pt-3 border-t border-gray-200">
-                <span className="text-sm text-dsp-gray">薪酬趋势</span>
+                <span className="text-sm text-gray-600">薪酬趋势</span>
                 <div className="flex items-center space-x-1">
                   {competitor.salary_trend === 'up' ? (
                     <ArrowTrendingUpIcon className="w-4 h-4 text-green-600" />
@@ -781,8 +781,8 @@ const AlertsSection: React.FC<{ alerts: MarketAlert[] }> = ({ alerts }) => {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-xl font-semibold text-dsp-dark mb-2">市场预警中心</h2>
-        <p className="text-dsp-gray">实时监控市场动态，预警人才流失风险</p>
+        <h2 className="text-xl font-semibold text-gray-900 mb-2">市场预警中心</h2>
+        <p className="text-gray-600">实时监控市场动态，预警人才流失风险</p>
       </div>
 
       <div className="space-y-4">
@@ -796,8 +796,8 @@ const AlertsSection: React.FC<{ alerts: MarketAlert[] }> = ({ alerts }) => {
               <div className="flex-1 space-y-3">
                 <div className="flex items-start justify-between">
                   <div>
-                    <h3 className="font-semibold text-dsp-dark">{alert.title}</h3>
-                    <p className="text-dsp-gray mt-1">{alert.description}</p>
+                    <h3 className="font-semibold text-gray-900">{alert.title}</h3>
+                    <p className="text-gray-600 mt-1">{alert.description}</p>
                   </div>
                   
                   <div className="text-right">
@@ -814,10 +814,10 @@ const AlertsSection: React.FC<{ alerts: MarketAlert[] }> = ({ alerts }) => {
 
                 {/* 受影响岗位 */}
                 <div className="space-y-2">
-                  <div className="text-sm font-medium text-dsp-dark">受影响岗位</div>
+                  <div className="text-sm font-medium text-gray-900">受影响岗位</div>
                   <div className="flex flex-wrap gap-2">
                     {alert.affected_positions.map((position) => (
-                      <span key={position} className="px-2 py-1 bg-white text-dsp-dark text-xs rounded border">
+                      <span key={position} className="px-2 py-1 bg-white text-gray-900 text-xs rounded border">
                         {position}
                       </span>
                     ))}
@@ -826,11 +826,11 @@ const AlertsSection: React.FC<{ alerts: MarketAlert[] }> = ({ alerts }) => {
 
                 {/* 建议行动 */}
                 <div className="bg-white border border-gray-200 rounded-lg p-3">
-                  <div className="text-sm font-medium text-dsp-dark mb-1">建议行动</div>
-                  <div className="text-sm text-dsp-gray">{alert.recommended_action}</div>
+                  <div className="text-sm font-medium text-gray-900 mb-1">建议行动</div>
+                  <div className="text-sm text-gray-600">{alert.recommended_action}</div>
                 </div>
 
-                <div className="text-xs text-dsp-gray">
+                <div className="text-xs text-gray-600">
                   {new Date(alert.created_at).toLocaleString()}
                 </div>
               </div>
@@ -848,8 +848,8 @@ const AlertsSection: React.FC<{ alerts: MarketAlert[] }> = ({ alerts }) => {
               </div>
             </div>
             <div>
-              <h3 className="text-lg font-medium text-dsp-dark mb-2">暂无预警</h3>
-              <p className="text-dsp-gray">当前市场状况良好，暂无需要关注的预警信息</p>
+              <h3 className="text-lg font-medium text-gray-900 mb-2">暂无预警</h3>
+              <p className="text-gray-600">当前市场状况良好，暂无需要关注的预警信息</p>
             </div>
           </div>
         </div>

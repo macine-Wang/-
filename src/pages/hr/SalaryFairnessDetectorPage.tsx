@@ -8,16 +8,11 @@ import { deepseekApi } from '@/services/deepseekApi';
 import { 
   ScaleIcon,
   SparklesIcon,
-  ExclamationTriangleIcon,
   CheckCircleIcon,
-  XCircleIcon,
   InformationCircleIcon,
-  UserGroupIcon,
   ChartBarIcon,
   DocumentArrowUpIcon,
-  EyeIcon,
   AdjustmentsHorizontalIcon,
-  ArrowPathIcon
 } from '@heroicons/react/24/outline';
 
 interface FairnessIssue {
@@ -102,7 +97,7 @@ export const SalaryFairnessDetectorPage: React.FC = () => {
     min_sample_size: 3
   });
   const [fairnessReport, setFairnessReport] = useState<FairnessReport | null>(null);
-  const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [, setIsAnalyzing] = useState(false);
   const [uploadedFileName, setUploadedFileName] = useState<string | null>(null);
 
   // 模拟员工数据
@@ -163,7 +158,7 @@ export const SalaryFairnessDetectorPage: React.FC = () => {
       if (detectionSettings.include_position_analysis) analysisTypes.push('同工同酬检测');
 
       // 调用真实的AI API进行公平性分析
-      const response = await deepseekApi.fairnessAnalysis({
+      await deepseekApi.fairnessAnalysis({
         employees: mockEmployeeData.map(emp => ({
           position: emp.position,
           department: emp.department,
@@ -335,8 +330,8 @@ export const SalaryFairnessDetectorPage: React.FC = () => {
             <ScaleIcon className="w-8 h-8 text-indigo-600" />
           </div>
           <div>
-            <h1 className="text-3xl font-semibold text-dsp-dark">薪酬公平性检测器</h1>
-            <p className="text-dsp-gray mt-1">智能识别薪酬不公平问题，确保合规管理</p>
+            <h1 className="text-3xl font-semibold text-gray-900">薪酬公平性检测器</h1>
+            <p className="text-gray-600 mt-1">智能识别薪酬不公平问题，确保合规管理</p>
           </div>
         </div>
 
@@ -434,7 +429,7 @@ const DataUploadSection: React.FC<{
   return (
     <div className="max-w-4xl mx-auto">
       <div className="bg-white border border-gray-200 rounded-2xl p-8">
-        <h2 className="text-xl font-semibold text-dsp-dark mb-6">上传员工薪酬数据</h2>
+        <h2 className="text-xl font-semibold text-gray-900 mb-6">上传员工薪酬数据</h2>
         
         <div className="space-y-6">
           {/* 文件上传区域 */}
@@ -449,7 +444,7 @@ const DataUploadSection: React.FC<{
                   <div className="text-lg font-medium text-green-600">
                     ✓ 文件上传成功
                   </div>
-                  <div className="text-dsp-gray">{uploadedFileName}</div>
+                  <div className="text-gray-600">{uploadedFileName}</div>
                   <button
                     onClick={() => setUploadedFileName(null)}
                     className="text-sm text-dsp-red hover:underline"
@@ -460,8 +455,8 @@ const DataUploadSection: React.FC<{
               ) : (
                 <div className="space-y-4">
                   <div>
-                    <h3 className="text-lg font-medium text-dsp-dark">上传薪酬数据文件</h3>
-                    <p className="text-dsp-gray">支持 Excel (.xlsx) 和 CSV 格式</p>
+                    <h3 className="text-lg font-medium text-gray-900">上传薪酬数据文件</h3>
+                    <p className="text-gray-600">支持 Excel (.xlsx) 和 CSV 格式</p>
                   </div>
                   
                   <div>
@@ -497,7 +492,7 @@ const DataUploadSection: React.FC<{
 
           {/* 使用演示数据选项 */}
           <div className="text-center">
-            <div className="text-dsp-gray mb-4">或者</div>
+            <div className="text-gray-600 mb-4">或者</div>
             <button
               onClick={() => setUploadedFileName('演示数据.xlsx (8名员工)')}
               className="px-6 py-3 border border-indigo-600 text-indigo-600 rounded-lg hover:bg-indigo-50 transition-colors"
@@ -532,12 +527,12 @@ const DetectionSettingsSection: React.FC<{
   return (
     <div className="max-w-4xl mx-auto">
       <div className="bg-white border border-gray-200 rounded-2xl p-8">
-        <h2 className="text-xl font-semibold text-dsp-dark mb-6">配置检测参数</h2>
+        <h2 className="text-xl font-semibold text-gray-900 mb-6">配置检测参数</h2>
         
         <div className="space-y-6">
           {/* 检测维度选择 */}
           <div className="space-y-4">
-            <h3 className="font-medium text-dsp-dark">检测维度</h3>
+            <h3 className="font-medium text-gray-900">检测维度</h3>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <label className="flex items-start space-x-3 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
@@ -548,8 +543,8 @@ const DetectionSettingsSection: React.FC<{
                   className="mt-1 h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
                 />
                 <div>
-                  <div className="font-medium text-dsp-dark">性别薪酬差距</div>
-                  <div className="text-sm text-dsp-gray">检测同等条件下的性别薪酬差异</div>
+                  <div className="font-medium text-gray-900">性别薪酬差距</div>
+                  <div className="text-sm text-gray-600">检测同等条件下的性别薪酬差异</div>
                 </div>
               </label>
               
@@ -561,8 +556,8 @@ const DetectionSettingsSection: React.FC<{
                   className="mt-1 h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
                 />
                 <div>
-                  <div className="font-medium text-dsp-dark">年龄歧视检测</div>
-                  <div className="text-sm text-dsp-gray">识别可能存在的年龄歧视问题</div>
+                  <div className="font-medium text-gray-900">年龄歧视检测</div>
+                  <div className="text-sm text-gray-600">识别可能存在的年龄歧视问题</div>
                 </div>
               </label>
               
@@ -574,8 +569,8 @@ const DetectionSettingsSection: React.FC<{
                   className="mt-1 h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
                 />
                 <div>
-                  <div className="font-medium text-dsp-dark">部门薪酬平衡</div>
-                  <div className="text-sm text-dsp-gray">分析各部门薪酬水平的合理性</div>
+                  <div className="font-medium text-gray-900">部门薪酬平衡</div>
+                  <div className="text-sm text-gray-600">分析各部门薪酬水平的合理性</div>
                 </div>
               </label>
               
@@ -587,8 +582,8 @@ const DetectionSettingsSection: React.FC<{
                   className="mt-1 h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
                 />
                 <div>
-                  <div className="font-medium text-dsp-dark">同工同酬检测</div>
-                  <div className="text-sm text-dsp-gray">检查相同岗位员工的薪酬一致性</div>
+                  <div className="font-medium text-gray-900">同工同酬检测</div>
+                  <div className="text-sm text-gray-600">检查相同岗位员工的薪酬一致性</div>
                 </div>
               </label>
             </div>
@@ -597,7 +592,7 @@ const DetectionSettingsSection: React.FC<{
           {/* 检测参数 */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-medium text-dsp-dark mb-2">
+              <label className="block text-sm font-medium text-gray-900 mb-2">
                 显著性阈值 (%)
               </label>
               <input
@@ -609,13 +604,13 @@ const DetectionSettingsSection: React.FC<{
                 onChange={(e) => setSettings(prev => ({ ...prev, significance_threshold: parseFloat(e.target.value) || 5.0 }))}
                 className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
               />
-              <div className="text-xs text-dsp-gray mt-1">
+              <div className="text-xs text-gray-600 mt-1">
                 超过此百分比的差异将被标记为问题
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-dsp-dark mb-2">
+              <label className="block text-sm font-medium text-gray-900 mb-2">
                 最小样本量
               </label>
               <input
@@ -626,7 +621,7 @@ const DetectionSettingsSection: React.FC<{
                 onChange={(e) => setSettings(prev => ({ ...prev, min_sample_size: parseInt(e.target.value) || 3 }))}
                 className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
               />
-              <div className="text-xs text-dsp-gray mt-1">
+              <div className="text-xs text-gray-600 mt-1">
                 进行分析所需的最小样本数量
               </div>
             </div>
@@ -636,7 +631,7 @@ const DetectionSettingsSection: React.FC<{
           <div className="flex space-x-4 pt-6">
             <button
               onClick={onBack}
-              className="flex-1 px-6 py-3 border border-gray-300 text-dsp-gray rounded-lg hover:bg-gray-50 transition-colors"
+              className="flex-1 px-6 py-3 border border-gray-300 text-gray-600 rounded-lg hover:bg-gray-50 transition-colors"
             >
               上一步
             </button>
@@ -666,8 +661,8 @@ const AnalyzingProgress: React.FC = () => {
           </div>
           
           <div>
-            <h3 className="text-xl font-semibold text-dsp-dark mb-2">AI正在分析薪酬数据</h3>
-            <p className="text-dsp-gray">
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">AI正在分析薪酬数据</h3>
+            <p className="text-gray-600">
               正在检测潜在的薪酬不公平问题...
             </p>
           </div>
@@ -681,7 +676,7 @@ const AnalyzingProgress: React.FC = () => {
               <CheckCircleIcon className="w-4 h-4" />
               <span>统计分析完成</span>
             </div>
-            <div className="flex items-center justify-center space-x-2 text-sm text-dsp-gray">
+            <div className="flex items-center justify-center space-x-2 text-sm text-gray-600">
               <div className="animate-spin rounded-full h-4 w-4 border-2 border-indigo-600 border-t-transparent"></div>
               <span>生成公平性报告...</span>
             </div>
@@ -701,11 +696,11 @@ const FairnessResults: React.FC<{
     <div className="space-y-8">
       {/* 操作栏 */}
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-semibold text-dsp-dark">薪酬公平性检测报告</h2>
+        <h2 className="text-xl font-semibold text-gray-900">薪酬公平性检测报告</h2>
         <div className="flex space-x-3">
           <button
             onClick={onRestart}
-            className="px-4 py-2 text-dsp-gray hover:text-dsp-dark transition-colors rounded-lg hover:bg-gray-50"
+            className="px-4 py-2 text-gray-600 hover:text-gray-900 transition-colors rounded-lg hover:bg-gray-50"
           >
             重新检测
           </button>
@@ -725,7 +720,7 @@ const FairnessResults: React.FC<{
             }`}>
               {report.overall_score}
             </div>
-            <div className="text-sm text-dsp-gray">公平性评分</div>
+            <div className="text-sm text-gray-600">公平性评分</div>
             <div className={`mt-2 px-3 py-1 rounded-full text-xs font-medium ${
               report.overall_score >= 80 ? 'bg-green-100 text-green-700' :
               report.overall_score >= 60 ? 'bg-yellow-100 text-yellow-700' : 'bg-red-100 text-red-700'
@@ -738,7 +733,7 @@ const FairnessResults: React.FC<{
             <div className="text-3xl font-bold text-dsp-red mb-2">
               {report.total_issues}
             </div>
-            <div className="text-sm text-dsp-gray">发现问题</div>
+            <div className="text-sm text-gray-600">发现问题</div>
             <div className="mt-2 px-3 py-1 bg-red-100 text-red-700 rounded-full text-xs font-medium">
               {report.high_priority_issues} 高优先级
             </div>
@@ -751,14 +746,14 @@ const FairnessResults: React.FC<{
                  report.compliance_risk === 'medium' ? '中风险' : '低风险'}
               </div>
             </div>
-            <div className="text-sm text-dsp-gray">合规风险</div>
+            <div className="text-sm text-gray-600">合规风险</div>
           </div>
 
           <div className="text-center">
             <div className="text-2xl font-bold text-indigo-600 mb-2">
               ¥{(report.estimated_fix_cost / 10000).toFixed(1)}万
             </div>
-            <div className="text-sm text-dsp-gray">预估修正成本</div>
+            <div className="text-sm text-gray-600">预估修正成本</div>
             <div className="mt-2 px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs font-medium">
               年化成本
             </div>
@@ -768,38 +763,38 @@ const FairnessResults: React.FC<{
 
       {/* 关键统计指标 */}
       <div className="bg-white border border-gray-200 rounded-2xl p-6">
-        <h3 className="text-lg font-semibold text-dsp-dark mb-4">关键指标</h3>
+        <h3 className="text-lg font-semibold text-gray-900 mb-4">关键指标</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           <div className="text-center p-4 bg-gray-50 rounded-lg">
-            <div className="text-xl font-bold text-dsp-dark">
+            <div className="text-xl font-bold text-gray-900">
               {report.statistics.gender_pay_gap.toFixed(1)}%
             </div>
-            <div className="text-sm text-dsp-gray">性别薪酬差距</div>
+            <div className="text-sm text-gray-600">性别薪酬差距</div>
           </div>
           <div className="text-center p-4 bg-gray-50 rounded-lg">
-            <div className="text-xl font-bold text-dsp-dark">
+            <div className="text-xl font-bold text-gray-900">
               {report.statistics.department_variance.toFixed(1)}%
             </div>
-            <div className="text-sm text-dsp-gray">部门差异度</div>
+            <div className="text-sm text-gray-600">部门差异度</div>
           </div>
           <div className="text-center p-4 bg-gray-50 rounded-lg">
-            <div className="text-xl font-bold text-dsp-dark">
+            <div className="text-xl font-bold text-gray-900">
               {report.statistics.position_consistency.toFixed(1)}%
             </div>
-            <div className="text-sm text-dsp-gray">岗位一致性</div>
+            <div className="text-sm text-gray-600">岗位一致性</div>
           </div>
           <div className="text-center p-4 bg-gray-50 rounded-lg">
-            <div className="text-xl font-bold text-dsp-dark">
+            <div className="text-xl font-bold text-gray-900">
               {report.statistics.experience_correlation.toFixed(1)}%
             </div>
-            <div className="text-sm text-dsp-gray">经验相关性</div>
+            <div className="text-sm text-gray-600">经验相关性</div>
           </div>
         </div>
       </div>
 
       {/* 问题详情 */}
       <div className="space-y-4">
-        <h3 className="text-lg font-semibold text-dsp-dark">发现的问题</h3>
+        <h3 className="text-lg font-semibold text-gray-900">发现的问题</h3>
         
         {report.issues.length === 0 ? (
           <div className="text-center py-20">
@@ -810,8 +805,8 @@ const FairnessResults: React.FC<{
                 </div>
               </div>
               <div>
-                <h3 className="text-lg font-medium text-dsp-dark mb-2">恭喜！未发现明显的公平性问题</h3>
-                <p className="text-dsp-gray">您的薪酬体系整体上是公平和合理的</p>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">恭喜！未发现明显的公平性问题</h3>
+                <p className="text-gray-600">您的薪酬体系整体上是公平和合理的</p>
               </div>
             </div>
           </div>
@@ -822,41 +817,41 @@ const FairnessResults: React.FC<{
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex-1">
                     <div className="flex items-center space-x-3 mb-2">
-                      <h4 className="text-lg font-semibold text-dsp-dark">{issue.title}</h4>
+                      <h4 className="text-lg font-semibold text-gray-900">{issue.title}</h4>
                       <span className={`px-2 py-1 text-xs rounded-full font-medium ${getSeverityColor(issue.severity)}`}>
                         {issue.severity === 'high' ? '高优先级' :
                          issue.severity === 'medium' ? '中优先级' : '低优先级'}
                       </span>
                     </div>
-                    <p className="text-dsp-gray mb-3">{issue.description}</p>
+                    <p className="text-gray-600 mb-3">{issue.description}</p>
                   </div>
                   
                   <div className="text-right">
                     <div className="text-xl font-bold text-dsp-red">
                       {issue.percentage_difference.toFixed(1)}%
                     </div>
-                    <div className="text-sm text-dsp-gray">差异程度</div>
+                    <div className="text-sm text-gray-600">差异程度</div>
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                   <div className="text-center p-3 bg-gray-50 rounded-lg">
-                    <div className="text-lg font-semibold text-dsp-dark">
+                    <div className="text-lg font-semibold text-gray-900">
                       {issue.affected_employees}
                     </div>
-                    <div className="text-sm text-dsp-gray">受影响员工</div>
+                    <div className="text-sm text-gray-600">受影响员工</div>
                   </div>
                   <div className="text-center p-3 bg-gray-50 rounded-lg">
-                    <div className="text-lg font-semibold text-dsp-dark">
+                    <div className="text-lg font-semibold text-gray-900">
                       ¥{issue.salary_difference.toLocaleString()}
                     </div>
-                    <div className="text-sm text-dsp-gray">薪酬差异</div>
+                    <div className="text-sm text-gray-600">薪酬差异</div>
                   </div>
                   <div className="text-center p-3 bg-gray-50 rounded-lg">
                     <div className="text-lg font-semibold text-indigo-600">
                       ¥{issue.estimated_cost.toLocaleString()}
                     </div>
-                    <div className="text-sm text-dsp-gray">修正成本</div>
+                    <div className="text-sm text-gray-600">修正成本</div>
                   </div>
                 </div>
 

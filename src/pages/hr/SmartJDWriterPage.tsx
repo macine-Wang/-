@@ -21,6 +21,8 @@ import {
   TrashIcon,
   EyeIcon
 } from '@heroicons/react/24/outline';
+import { getIndustries } from '@/data/jobCategories';
+import { popularCities } from '@/data/cities';
 
 // 数据接口定义
 interface JobInfo {
@@ -86,10 +88,7 @@ export const SmartJDWriterPage: React.FC = () => {
   const templates = jdTemplates;
 
   // 行业选项
-  const industries = [
-    'IT互联网', '金融', '教育', '医疗健康', '制造业', '房地产', 
-    '零售电商', '文化娱乐', '交通物流', '能源环保', '其他'
-  ];
+  const industries = getIndustries();
 
   // 公司规模选项
   const companySizes = [
@@ -197,8 +196,8 @@ export const SmartJDWriterPage: React.FC = () => {
               <PencilSquareIcon className="w-8 h-8 text-indigo-600" />
             </div>
             <div>
-              <h1 className="text-3xl font-semibold text-dsp-dark">智能JD写作助手</h1>
-              <p className="text-dsp-gray mt-1">AI驱动的职位描述生成平台，8大核心模块助力高效招聘</p>
+              <h1 className="text-3xl font-semibold text-gray-900">智能JD写作助手</h1>
+              <p className="text-gray-600 mt-1">AI驱动的职位描述生成平台，8大核心模块助力高效招聘</p>
             </div>
           </div>
           
@@ -212,7 +211,7 @@ export const SmartJDWriterPage: React.FC = () => {
             </Link>
             <Link
               to="/hr"
-              className="px-6 py-3 border border-gray-300 text-dsp-gray rounded-lg hover:bg-gray-50 transition-colors"
+              className="px-6 py-3 border border-gray-300 text-gray-600 rounded-lg hover:bg-gray-50 transition-colors"
             >
               返回HR中心
             </Link>
@@ -243,7 +242,7 @@ export const SmartJDWriterPage: React.FC = () => {
                         ? 'bg-white text-indigo-600 shadow-sm'
                         : isCompleted
                         ? 'text-green-600 hover:bg-white'
-                        : 'text-dsp-gray hover:text-dsp-dark'
+                        : 'text-gray-600 hover:text-gray-900'
                     }`}
                   >
                     <Icon className="w-4 h-4" />
@@ -352,62 +351,68 @@ const JobInfoCollection: React.FC<{
     <div className="bg-white border border-gray-200 rounded-2xl p-8">
       <div className="flex items-center space-x-3 mb-6">
         <DocumentTextIcon className="w-6 h-6 text-indigo-600" />
-        <h2 className="text-xl font-semibold text-dsp-dark">岗位信息采集</h2>
+        <h2 className="text-xl font-semibold text-gray-900">岗位信息采集</h2>
       </div>
 
       <div className="space-y-8">
         {/* 基本信息 */}
         <div>
-          <h3 className="font-medium text-dsp-dark mb-4">基本信息</h3>
+          <h3 className="font-medium text-gray-900 mb-4">基本信息</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-medium text-dsp-dark mb-2">
+              <label className="block text-sm font-medium text-gray-900 mb-2">
                 岗位名称 *
               </label>
               <input
                 type="text"
                 value={jobInfo.position}
                 onChange={(e) => setJobInfo(prev => ({ ...prev, position: e.target.value }))}
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
+                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-gray-900 bg-white"
                 placeholder="如：高级前端工程师"
               />
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-dsp-dark mb-2">
+              <label className="block text-sm font-medium text-gray-900 mb-2">
                 所属部门 *
               </label>
               <input
                 type="text"
                 value={jobInfo.department}
                 onChange={(e) => setJobInfo(prev => ({ ...prev, department: e.target.value }))}
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
+                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-gray-900 bg-white"
                 placeholder="如：技术部"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-dsp-dark mb-2">
+              <label className="block text-sm font-medium text-gray-900 mb-2">
                 工作地点 *
               </label>
               <input
                 type="text"
                 value={jobInfo.location}
                 onChange={(e) => setJobInfo(prev => ({ ...prev, location: e.target.value }))}
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
-                placeholder="如：北京·朝阳区"
+                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-gray-900 bg-white"
+                placeholder={`如：${popularCities.slice(0, 3).join('·')}等`}
+                list="city-suggestions"
               />
+              <datalist id="city-suggestions">
+                {popularCities.map(city => (
+                  <option key={city} value={city} />
+                ))}
+              </datalist>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-dsp-dark mb-2">
+              <label className="block text-sm font-medium text-gray-900 mb-2">
                 汇报对象
               </label>
               <input
                 type="text"
                 value={jobInfo.reportTo}
                 onChange={(e) => setJobInfo(prev => ({ ...prev, reportTo: e.target.value }))}
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
+                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-gray-900 bg-white"
                 placeholder="如：技术总监"
               />
             </div>
@@ -416,16 +421,16 @@ const JobInfoCollection: React.FC<{
 
         {/* 任职要求 */}
         <div>
-          <h3 className="font-medium text-dsp-dark mb-4">任职要求</h3>
+          <h3 className="font-medium text-gray-900 mb-4">任职要求</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
-              <label className="block text-sm font-medium text-dsp-dark mb-2">
+              <label className="block text-sm font-medium text-gray-900 mb-2">
                 学历要求
               </label>
               <select
                 value={jobInfo.education}
                 onChange={(e) => setJobInfo(prev => ({ ...prev, education: e.target.value }))}
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
+                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-gray-900 bg-white"
               >
                 <option value="">请选择</option>
                 {educationLevels.map(level => (
@@ -435,13 +440,13 @@ const JobInfoCollection: React.FC<{
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-dsp-dark mb-2">
+              <label className="block text-sm font-medium text-gray-900 mb-2">
                 工作年限
               </label>
               <select
                 value={jobInfo.experience}
                 onChange={(e) => setJobInfo(prev => ({ ...prev, experience: e.target.value }))}
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
+                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-gray-900 bg-white"
               >
                 <option value="">请选择</option>
                 {experienceLevels.map(level => (
@@ -451,7 +456,7 @@ const JobInfoCollection: React.FC<{
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-dsp-dark mb-2">
+              <label className="block text-sm font-medium text-gray-900 mb-2">
                 招聘人数
               </label>
               <input
@@ -459,14 +464,14 @@ const JobInfoCollection: React.FC<{
                 min="1"
                 value={jobInfo.recruitCount}
                 onChange={(e) => setJobInfo(prev => ({ ...prev, recruitCount: parseInt(e.target.value) || 1 }))}
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
+                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-gray-900 bg-white"
               />
             </div>
           </div>
 
           {/* 技能关键词 */}
           <div className="mt-6">
-            <label className="block text-sm font-medium text-dsp-dark mb-2">
+            <label className="block text-sm font-medium text-gray-900 mb-2">
               技能关键词
             </label>
             <div className="flex space-x-2 mb-3">
@@ -475,7 +480,7 @@ const JobInfoCollection: React.FC<{
                 value={skillInput}
                 onChange={(e) => setSkillInput(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && handleSkillAdd()}
-                className="flex-1 px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
+                className="flex-1 px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-gray-900 bg-white"
                 placeholder="输入技能关键词，按回车添加"
               />
               <button
@@ -506,16 +511,16 @@ const JobInfoCollection: React.FC<{
 
         {/* 公司信息 */}
         <div>
-          <h3 className="font-medium text-dsp-dark mb-4">公司信息</h3>
+          <h3 className="font-medium text-gray-900 mb-4">公司信息</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-medium text-dsp-dark mb-2">
+              <label className="block text-sm font-medium text-gray-900 mb-2">
                 所属行业
               </label>
               <select
                 value={jobInfo.industry}
                 onChange={(e) => setJobInfo(prev => ({ ...prev, industry: e.target.value }))}
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
+                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-gray-900 bg-white"
               >
                 <option value="">请选择</option>
                 {industries.map(industry => (
@@ -525,13 +530,13 @@ const JobInfoCollection: React.FC<{
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-dsp-dark mb-2">
+              <label className="block text-sm font-medium text-gray-900 mb-2">
                 公司规模
               </label>
               <select
                 value={jobInfo.companySize}
                 onChange={(e) => setJobInfo(prev => ({ ...prev, companySize: e.target.value }))}
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
+                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-gray-900 bg-white"
               >
                 <option value="">请选择</option>
                 {companySizes.map(size => (
@@ -543,7 +548,7 @@ const JobInfoCollection: React.FC<{
 
           {/* 公司关键词 */}
           <div className="mt-6">
-            <label className="block text-sm font-medium text-dsp-dark mb-2">
+            <label className="block text-sm font-medium text-gray-900 mb-2">
               公司文化关键词
             </label>
             <div className="flex space-x-2 mb-3">
@@ -552,7 +557,7 @@ const JobInfoCollection: React.FC<{
                 value={keywordInput}
                 onChange={(e) => setKeywordInput(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && handleKeywordAdd()}
-                className="flex-1 px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
+                className="flex-1 px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-gray-900 bg-white"
                 placeholder="如：扁平化管理、技术驱动、创新文化"
               />
               <button
@@ -583,10 +588,10 @@ const JobInfoCollection: React.FC<{
 
         {/* 薪酬福利（可选） */}
         <div>
-          <h3 className="font-medium text-dsp-dark mb-4">薪酬福利（可选）</h3>
+          <h3 className="font-medium text-gray-900 mb-4">薪酬福利（可选）</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-medium text-dsp-dark mb-2">
+              <label className="block text-sm font-medium text-gray-900 mb-2">
                 薪资范围（K）
               </label>
               <div className="flex space-x-2">
@@ -602,9 +607,9 @@ const JobInfoCollection: React.FC<{
                       max: prev.salaryRange?.max || 0
                     }
                   }))}
-                  className="flex-1 px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
+                  className="flex-1 px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-gray-900 bg-white"
                 />
-                <span className="px-2 py-3 text-dsp-gray">-</span>
+                <span className="px-2 py-3 text-gray-600">-</span>
                 <input
                   type="number"
                   placeholder="最高"
@@ -616,20 +621,20 @@ const JobInfoCollection: React.FC<{
                       max: parseInt(e.target.value) || 0
                     }
                   }))}
-                  className="flex-1 px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
+                  className="flex-1 px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-gray-900 bg-white"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-dsp-dark mb-2">
+              <label className="block text-sm font-medium text-gray-900 mb-2">
                 工作时间
               </label>
               <input
                 type="text"
                 value={jobInfo.workTime || ''}
                 onChange={(e) => setJobInfo(prev => ({ ...prev, workTime: e.target.value }))}
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
+                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-gray-900 bg-white"
                 placeholder="如：9:00-18:00，双休"
               />
             </div>
@@ -672,14 +677,14 @@ const TemplateSelection: React.FC<{
     <div className="bg-white border border-gray-200 rounded-2xl p-8">
       <div className="flex items-center space-x-3 mb-6">
         <SparklesIcon className="w-6 h-6 text-indigo-600" />
-        <h2 className="text-xl font-semibold text-dsp-dark">智能模板匹配</h2>
+        <h2 className="text-xl font-semibold text-gray-900">智能模板匹配</h2>
       </div>
 
       <div className="space-y-6">
         {/* 推荐模板 */}
         {filteredTemplates.length > 0 && (
           <div>
-            <h3 className="font-medium text-dsp-dark mb-4 flex items-center">
+            <h3 className="font-medium text-gray-900 mb-4 flex items-center">
               <SparklesIcon className="w-4 h-4 text-green-600 mr-2" />
               为您推荐的模板
             </h3>
@@ -696,14 +701,14 @@ const TemplateSelection: React.FC<{
                 >
                   <div className="flex items-start justify-between mb-3">
                   <div>
-                    <h4 className="font-semibold text-dsp-dark">{template.name}</h4>
-                    <p className="text-sm text-dsp-gray">{template.industry} · {template.position} · {template.level === 'entry' ? '初级' : template.level === 'mid' ? '中级' : template.level === 'senior' ? '高级' : template.level === 'manager' ? '经理' : '总监'}</p>
+                    <h4 className="font-semibold text-gray-900">{template.name}</h4>
+                    <p className="text-sm text-gray-600">{template.industry} · {template.position} · {template.level === 'entry' ? '初级' : template.level === 'mid' ? '中级' : template.level === 'senior' ? '高级' : template.level === 'manager' ? '经理' : '总监'}</p>
                   </div>
                     {selectedTemplate?.id === template.id && (
                       <CheckCircleIcon className="w-5 h-5 text-indigo-600" />
                     )}
                   </div>
-                  <p className="text-sm text-dsp-gray mb-3">{template.description}</p>
+                  <p className="text-sm text-gray-600 mb-3">{template.description}</p>
                   <div className="text-xs text-indigo-600 bg-indigo-100 px-2 py-1 rounded-full inline-block">
                     智能推荐
                   </div>
@@ -715,7 +720,7 @@ const TemplateSelection: React.FC<{
 
         {/* 所有模板 */}
         <div>
-          <h3 className="font-medium text-dsp-dark mb-4">所有模板</h3>
+          <h3 className="font-medium text-gray-900 mb-4">所有模板</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {templates.map(template => (
               <div
@@ -728,13 +733,13 @@ const TemplateSelection: React.FC<{
                 }`}
               >
                 <div className="flex items-start justify-between mb-2">
-                  <h4 className="font-medium text-dsp-dark text-sm">{template.name}</h4>
+                  <h4 className="font-medium text-gray-900 text-sm">{template.name}</h4>
                   {selectedTemplate?.id === template.id && (
                     <CheckCircleIcon className="w-4 h-4 text-indigo-600" />
                   )}
                 </div>
-                <p className="text-xs text-dsp-gray mb-2">{template.industry}</p>
-                <p className="text-xs text-dsp-gray">{template.description}</p>
+                <p className="text-xs text-gray-600 mb-2">{template.industry}</p>
+                <p className="text-xs text-gray-600">{template.description}</p>
               </div>
             ))}
           </div>
@@ -753,8 +758,8 @@ const TemplateSelection: React.FC<{
             <div className="flex items-center space-x-3">
               <PencilSquareIcon className="w-6 h-6 text-indigo-600" />
               <div>
-                <h4 className="font-semibold text-dsp-dark">从零开始创建</h4>
-                <p className="text-sm text-dsp-gray">不使用模板，完全基于您的信息生成JD</p>
+                <h4 className="font-semibold text-gray-900">从零开始创建</h4>
+                <p className="text-sm text-gray-600">不使用模板，完全基于您的信息生成JD</p>
               </div>
               {selectedTemplate === null && (
                 <CheckCircleIcon className="w-5 h-5 text-indigo-600" />
@@ -767,7 +772,7 @@ const TemplateSelection: React.FC<{
         <div className="flex space-x-4 pt-6">
           <button
             onClick={onBack}
-            className="flex-1 px-6 py-3 border border-gray-300 text-dsp-gray rounded-lg hover:bg-gray-50 transition-colors"
+            className="flex-1 px-6 py-3 border border-gray-300 text-gray-600 rounded-lg hover:bg-gray-50 transition-colors"
           >
             上一步
           </button>
@@ -804,8 +809,8 @@ const JDGeneration: React.FC<{
           </div>
           
           <div>
-            <h3 className="text-xl font-semibold text-dsp-dark mb-2">AI正在生成职位描述</h3>
-            <p className="text-dsp-gray">
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">AI正在生成职位描述</h3>
+            <p className="text-gray-600">
               正在分析岗位信息，生成专业的JD内容...
             </p>
           </div>
@@ -819,7 +824,7 @@ const JDGeneration: React.FC<{
               <CheckCircleIcon className="w-4 h-4" />
               <span>模板匹配完成</span>
             </div>
-            <div className="flex items-center justify-center space-x-2 text-sm text-dsp-gray">
+            <div className="flex items-center justify-center space-x-2 text-sm text-gray-600">
               <div className="animate-spin rounded-full h-4 w-4 border-2 border-indigo-600 border-t-transparent"></div>
               <span>生成职位描述中...</span>
             </div>
@@ -833,13 +838,13 @@ const JDGeneration: React.FC<{
     <div className="bg-white border border-gray-200 rounded-2xl p-8">
       <div className="flex items-center space-x-3 mb-6">
         <PencilSquareIcon className="w-6 h-6 text-indigo-600" />
-        <h2 className="text-xl font-semibold text-dsp-dark">AI生成设置</h2>
+        <h2 className="text-xl font-semibold text-gray-900">AI生成设置</h2>
       </div>
 
       <div className="space-y-8">
         {/* 文风设置 */}
         <div>
-          <h3 className="font-medium text-dsp-dark mb-4">文风选择</h3>
+          <h3 className="font-medium text-gray-900 mb-4">文风选择</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
               { id: 'formal', name: '正式专业', desc: '用词严谨，适合传统企业' },
@@ -857,12 +862,12 @@ const JDGeneration: React.FC<{
                 }`}
               >
                 <div className="flex items-center justify-between mb-2">
-                  <h4 className="font-medium text-dsp-dark">{styleOption.name}</h4>
+                  <h4 className="font-medium text-gray-900">{styleOption.name}</h4>
                   {style === styleOption.id && (
                     <CheckCircleIcon className="w-4 h-4 text-indigo-600" />
                   )}
                 </div>
-                <p className="text-sm text-dsp-gray">{styleOption.desc}</p>
+                <p className="text-sm text-gray-600">{styleOption.desc}</p>
               </div>
             ))}
           </div>
@@ -870,7 +875,7 @@ const JDGeneration: React.FC<{
 
         {/* 版本选择 */}
         <div>
-          <h3 className="font-medium text-dsp-dark mb-4">版本长度</h3>
+          <h3 className="font-medium text-gray-900 mb-4">版本长度</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {[
               { id: 'long', name: '详细版本', desc: '800-1200字，适合官网展示' },
@@ -887,12 +892,12 @@ const JDGeneration: React.FC<{
                 }`}
               >
                 <div className="flex items-center justify-between mb-2">
-                  <h4 className="font-medium text-dsp-dark">{versionOption.name}</h4>
+                  <h4 className="font-medium text-gray-900">{versionOption.name}</h4>
                   {version === versionOption.id && (
                     <CheckCircleIcon className="w-4 h-4 text-indigo-600" />
                   )}
                 </div>
-                <p className="text-sm text-dsp-gray">{versionOption.desc}</p>
+                <p className="text-sm text-gray-600">{versionOption.desc}</p>
               </div>
             ))}
           </div>
@@ -900,7 +905,7 @@ const JDGeneration: React.FC<{
 
         {/* 语言选择 */}
         <div>
-          <h3 className="font-medium text-dsp-dark mb-4">语言版本</h3>
+          <h3 className="font-medium text-gray-900 mb-4">语言版本</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {[
               { id: 'chinese', name: '中文版本', desc: '纯中文职位描述' },
@@ -917,12 +922,12 @@ const JDGeneration: React.FC<{
                 }`}
               >
                 <div className="flex items-center justify-between mb-2">
-                  <h4 className="font-medium text-dsp-dark">{langOption.name}</h4>
+                  <h4 className="font-medium text-gray-900">{langOption.name}</h4>
                   {language === langOption.id && (
                     <CheckCircleIcon className="w-4 h-4 text-indigo-600" />
                   )}
                 </div>
-                <p className="text-sm text-dsp-gray">{langOption.desc}</p>
+                <p className="text-sm text-gray-600">{langOption.desc}</p>
               </div>
             ))}
           </div>
@@ -932,7 +937,7 @@ const JDGeneration: React.FC<{
         <div className="flex space-x-4 pt-6">
           <button
             onClick={onBack}
-            className="flex-1 px-6 py-3 border border-gray-300 text-dsp-gray rounded-lg hover:bg-gray-50 transition-colors"
+            className="flex-1 px-6 py-3 border border-gray-300 text-gray-600 rounded-lg hover:bg-gray-50 transition-colors"
           >
             上一步
           </button>
@@ -963,7 +968,7 @@ const JDOptimization: React.FC<{
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center space-x-3">
             <EyeIcon className="w-6 h-6 text-indigo-600" />
-            <h2 className="text-xl font-semibold text-dsp-dark">生成的职位描述</h2>
+            <h2 className="text-xl font-semibold text-gray-900">生成的职位描述</h2>
           </div>
           
           <div className="flex space-x-2">
@@ -995,7 +1000,7 @@ const JDOptimization: React.FC<{
         </div>
 
         <div className="prose max-w-none">
-          <div className="whitespace-pre-wrap text-dsp-dark leading-relaxed">
+          <div className="whitespace-pre-wrap text-gray-900 leading-relaxed">
             {generatedJD.jobDescription}
           </div>
         </div>
@@ -1005,12 +1010,12 @@ const JDOptimization: React.FC<{
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* 岗位职责 */}
         <div className="bg-white border border-gray-200 rounded-2xl p-6">
-          <h3 className="font-semibold text-dsp-dark mb-4">岗位职责</h3>
+          <h3 className="font-semibold text-gray-900 mb-4">岗位职责</h3>
           <ul className="space-y-2">
             {generatedJD.responsibilities.map((responsibility, index) => (
               <li key={index} className="flex items-start space-x-2">
                 <span className="w-2 h-2 bg-indigo-600 rounded-full mt-2 flex-shrink-0"></span>
-                <span className="text-dsp-gray">{responsibility}</span>
+                <span className="text-gray-600">{responsibility}</span>
               </li>
             ))}
           </ul>
@@ -1018,12 +1023,12 @@ const JDOptimization: React.FC<{
 
         {/* 任职要求 */}
         <div className="bg-white border border-gray-200 rounded-2xl p-6">
-          <h3 className="font-semibold text-dsp-dark mb-4">任职要求</h3>
+          <h3 className="font-semibold text-gray-900 mb-4">任职要求</h3>
           <ul className="space-y-2">
             {generatedJD.requirements.map((requirement, index) => (
               <li key={index} className="flex items-start space-x-2">
                 <span className="w-2 h-2 bg-green-600 rounded-full mt-2 flex-shrink-0"></span>
-                <span className="text-dsp-gray">{requirement}</span>
+                <span className="text-gray-600">{requirement}</span>
               </li>
             ))}
           </ul>
@@ -1031,7 +1036,7 @@ const JDOptimization: React.FC<{
 
         {/* 岗位亮点 */}
         <div className="bg-white border border-gray-200 rounded-2xl p-6">
-          <h3 className="font-semibold text-dsp-dark mb-4">岗位亮点</h3>
+          <h3 className="font-semibold text-gray-900 mb-4">岗位亮点</h3>
           <div className="flex flex-wrap gap-2">
             {generatedJD.highlights.map((highlight, index) => (
               <span
@@ -1046,7 +1051,7 @@ const JDOptimization: React.FC<{
 
         {/* SEO关键词 */}
         <div className="bg-white border border-gray-200 rounded-2xl p-6">
-          <h3 className="font-semibold text-dsp-dark mb-4">SEO关键词</h3>
+          <h3 className="font-semibold text-gray-900 mb-4">SEO关键词</h3>
           <div className="flex flex-wrap gap-2">
             {generatedJD.seoKeywords.map((keyword, index) => (
               <span
@@ -1062,7 +1067,7 @@ const JDOptimization: React.FC<{
 
       {/* 合规检查 */}
       <div className="bg-white border border-gray-200 rounded-2xl p-6">
-        <h3 className="font-semibold text-dsp-dark mb-4 flex items-center">
+        <h3 className="font-semibold text-gray-900 mb-4 flex items-center">
           {generatedJD.complianceCheck.passed ? (
             <CheckCircleIcon className="w-5 h-5 text-green-600 mr-2" />
           ) : (
@@ -1106,7 +1111,7 @@ const JDOptimization: React.FC<{
       <div className="flex space-x-4">
         <button
           onClick={onBack}
-          className="flex-1 px-6 py-3 border border-gray-300 text-dsp-gray rounded-lg hover:bg-gray-50 transition-colors"
+          className="flex-1 px-6 py-3 border border-gray-300 text-gray-600 rounded-lg hover:bg-gray-50 transition-colors"
         >
           重新生成
         </button>
@@ -1159,12 +1164,12 @@ const JDExport: React.FC<{
       <div className="bg-white border border-gray-200 rounded-2xl p-8">
         <div className="flex items-center space-x-3 mb-6">
           <ShareIcon className="w-6 h-6 text-indigo-600" />
-          <h2 className="text-xl font-semibold text-dsp-dark">最终预览</h2>
+          <h2 className="text-xl font-semibold text-gray-900">最终预览</h2>
         </div>
 
         <div className="bg-gray-50 p-6 rounded-lg">
           <div className="prose max-w-none">
-            <div className="whitespace-pre-wrap text-dsp-dark leading-relaxed">
+            <div className="whitespace-pre-wrap text-gray-900 leading-relaxed">
               {generatedJD.jobDescription}
             </div>
           </div>
@@ -1173,7 +1178,7 @@ const JDExport: React.FC<{
 
       {/* 导出选项 */}
       <div className="bg-white border border-gray-200 rounded-2xl p-8">
-        <h3 className="font-semibold text-dsp-dark mb-6">导出与发布</h3>
+        <h3 className="font-semibold text-gray-900 mb-6">导出与发布</h3>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {/* Word导出 */}
@@ -1182,8 +1187,8 @@ const JDExport: React.FC<{
             className="p-6 border border-gray-200 rounded-xl hover:border-blue-300 hover:bg-blue-50 transition-all text-center group"
           >
             <DocumentTextIcon className="w-8 h-8 text-blue-600 mx-auto mb-3 group-hover:scale-110 transition-transform" />
-            <h4 className="font-medium text-dsp-dark mb-2">导出Word</h4>
-            <p className="text-sm text-dsp-gray">生成.docx格式文档</p>
+            <h4 className="font-medium text-gray-900 mb-2">导出Word</h4>
+            <p className="text-sm text-gray-600">生成.docx格式文档</p>
           </button>
 
           {/* PDF导出 */}
@@ -1192,8 +1197,8 @@ const JDExport: React.FC<{
             className="p-6 border border-gray-200 rounded-xl hover:border-red-300 hover:bg-red-50 transition-all text-center group"
           >
             <ArrowDownTrayIcon className="w-8 h-8 text-red-600 mx-auto mb-3 group-hover:scale-110 transition-transform" />
-            <h4 className="font-medium text-dsp-dark mb-2">导出PDF</h4>
-            <p className="text-sm text-dsp-gray">生成PDF格式文档</p>
+            <h4 className="font-medium text-gray-900 mb-2">导出PDF</h4>
+            <p className="text-sm text-gray-600">生成PDF格式文档</p>
           </button>
 
           {/* Markdown导出 */}
@@ -1202,8 +1207,8 @@ const JDExport: React.FC<{
             className="p-6 border border-gray-200 rounded-xl hover:border-green-300 hover:bg-green-50 transition-all text-center group"
           >
             <DocumentTextIcon className="w-8 h-8 text-green-600 mx-auto mb-3 group-hover:scale-110 transition-transform" />
-            <h4 className="font-medium text-dsp-dark mb-2">导出Markdown</h4>
-            <p className="text-sm text-dsp-gray">生成.md格式文档</p>
+            <h4 className="font-medium text-gray-900 mb-2">导出Markdown</h4>
+            <p className="text-sm text-gray-600">生成.md格式文档</p>
           </button>
 
           {/* 发布到招聘网站 */}
@@ -1212,15 +1217,15 @@ const JDExport: React.FC<{
             className="p-6 border border-gray-200 rounded-xl hover:border-purple-300 hover:bg-purple-50 transition-all text-center group"
           >
             <GlobeAltIcon className="w-8 h-8 text-purple-600 mx-auto mb-3 group-hover:scale-110 transition-transform" />
-            <h4 className="font-medium text-dsp-dark mb-2">发布招聘</h4>
-            <p className="text-sm text-dsp-gray">推送到招聘平台</p>
+            <h4 className="font-medium text-gray-900 mb-2">发布招聘</h4>
+            <p className="text-sm text-gray-600">推送到招聘平台</p>
           </button>
         </div>
       </div>
 
       {/* 招聘网站发布 */}
       <div className="bg-white border border-gray-200 rounded-2xl p-8">
-        <h3 className="font-semibold text-dsp-dark mb-6">一键发布到招聘网站</h3>
+        <h3 className="font-semibold text-gray-900 mb-6">一键发布到招聘网站</h3>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {[
@@ -1239,7 +1244,7 @@ const JDExport: React.FC<{
                 <div className="flex items-center space-x-3">
                   <span className="text-2xl">{site.logo}</span>
                   <div>
-                    <h4 className="font-medium text-dsp-dark">{site.name}</h4>
+                    <h4 className="font-medium text-gray-900">{site.name}</h4>
                     <p className={`text-xs ${
                       site.status === '已连接' ? 'text-green-600' : 'text-gray-500'
                     }`}>
@@ -1266,7 +1271,7 @@ const JDExport: React.FC<{
       <div className="flex space-x-4">
         <button
           onClick={onBack}
-          className="flex-1 px-6 py-3 border border-gray-300 text-dsp-gray rounded-lg hover:bg-gray-50 transition-colors"
+          className="flex-1 px-6 py-3 border border-gray-300 text-gray-600 rounded-lg hover:bg-gray-50 transition-colors"
         >
           返回修改
         </button>

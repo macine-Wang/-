@@ -193,7 +193,7 @@ export const OptimizationPage: React.FC = () => {
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center space-x-3">
             <SparklesIcon className="w-8 h-8 text-dsp-red" />
-            <h1 className="text-3xl font-semibold text-dsp-dark">薪酬优化方案</h1>
+            <h1 className="text-3xl font-semibold text-gray-900">薪酬优化方案</h1>
             {hasAuditData() && (
               <span className="px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full">
                 基于审计数据
@@ -204,7 +204,7 @@ export const OptimizationPage: React.FC = () => {
           {hasAuditData() && (
             <button
               onClick={() => navigate('/hr/audit')}
-              className="flex items-center space-x-2 text-dsp-gray hover:text-dsp-dark transition-colors"
+              className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors"
             >
               <ArrowLeftIcon className="w-4 h-4" />
               <span>返回审计报告</span>
@@ -265,8 +265,8 @@ export const OptimizationPage: React.FC = () => {
             <div className="inline-flex items-center justify-center w-16 h-16 bg-dsp-red/10 rounded-full mb-6">
               <SparklesIcon className="w-8 h-8 text-dsp-red animate-pulse" />
             </div>
-            <h3 className="text-xl font-semibold text-dsp-dark mb-2">正在生成个性化优化方案</h3>
-            <p className="text-dsp-gray mb-6">基于您的薪酬审计数据，AI正在分析每位员工的具体调薪建议...</p>
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">正在生成个性化优化方案</h3>
+            <p className="text-gray-600 mb-6">基于您的薪酬审计数据，AI正在分析每位员工的具体调薪建议...</p>
             <div className="w-32 h-1 bg-gray-200 rounded-full mx-auto">
               <div className="h-1 bg-dsp-red rounded-full animate-pulse" style={{ width: '60%' }}></div>
             </div>
@@ -275,7 +275,7 @@ export const OptimizationPage: React.FC = () => {
           <div className="space-y-12">
             {/* 方案选择 */}
             <div className="bg-white border border-gray-200 rounded-2xl p-8">
-              <h2 className="text-2xl font-semibold text-dsp-dark mb-6">为您推荐的优化方案</h2>
+              <h2 className="text-2xl font-semibold text-gray-900 mb-6">为您推荐的优化方案</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {scenarios.map((scenario) => (
                   <div
@@ -288,26 +288,26 @@ export const OptimizationPage: React.FC = () => {
                     onClick={() => setSelectedScenario(scenario.id)}
                   >
                     <div className="flex items-center justify-between mb-4">
-                      <h3 className="font-semibold text-dsp-dark">{scenario.title}</h3>
+                      <h3 className="font-semibold text-gray-900">{scenario.title}</h3>
                       <span className={`px-2 py-1 rounded-full text-xs font-medium ${getRiskColor(scenario.riskLevel)}`}>
                         {getRiskText(scenario.riskLevel)}
                       </span>
                     </div>
                     
-                    <p className="text-sm text-dsp-gray mb-4">{scenario.description}</p>
+                    <p className="text-sm text-gray-600 mb-4">{scenario.description}</p>
                     
                     <div className="space-y-2">
                       <div className="flex justify-between text-sm">
-                        <span className="text-dsp-gray">成本增长</span>
-                        <span className="font-medium text-dsp-dark">+{scenario.impact.costIncrease}%</span>
+                        <span className="text-gray-600">成本增长</span>
+                        <span className="font-medium text-gray-900">+{scenario.impact.costIncrease}%</span>
                       </div>
                       <div className="flex justify-between text-sm">
-                        <span className="text-dsp-gray">影响员工</span>
-                        <span className="font-medium text-dsp-dark">{scenario.impact.affectedEmployees}人</span>
+                        <span className="text-gray-600">影响员工</span>
+                        <span className="font-medium text-gray-900">{scenario.impact.affectedEmployees}人</span>
                       </div>
                       <div className="flex justify-between text-sm">
-                        <span className="text-dsp-gray">年度成本</span>
-                        <span className="font-medium text-dsp-dark">¥{(scenario.impact.totalCost / 10000).toFixed(1)}万</span>
+                        <span className="text-gray-600">年度成本</span>
+                        <span className="font-medium text-gray-900">¥{(scenario.impact.totalCost / 10000).toFixed(1)}万</span>
                       </div>
                     </div>
                   </div>
@@ -322,17 +322,17 @@ export const OptimizationPage: React.FC = () => {
                 <>
                   <div className="bg-white border border-gray-200 rounded-2xl p-8">
                     <div className="flex items-center justify-between mb-6">
-                      <h3 className="text-xl font-semibold text-dsp-dark">{scenario.title}</h3>
+                      <h3 className="text-xl font-semibold text-gray-900">{scenario.title}</h3>
                       <div className="text-right">
-                        <div className="text-sm text-dsp-gray">预计实施周期</div>
-                        <div className="text-sm font-semibold text-dsp-dark">{scenario.timeline}</div>
+                        <div className="text-sm text-gray-600">预计实施周期</div>
+                        <div className="text-sm font-semibold text-gray-900">{scenario.timeline}</div>
                       </div>
                     </div>
 
                     <div className="space-y-4">
                       <div className="flex items-center justify-between">
-                        <h4 className="font-medium text-dsp-dark">员工调薪明细</h4>
-                        <span className="text-sm text-dsp-gray">
+                        <h4 className="font-medium text-gray-900">员工调薪明细</h4>
+                        <span className="text-sm text-gray-600">
                           {scenario.employeeAdjustments.length}人需要调薪
                         </span>
                       </div>
@@ -342,7 +342,7 @@ export const OptimizationPage: React.FC = () => {
                           <div key={empIndex} className="bg-gray-50 rounded-lg p-4 text-sm">
                             <div className="flex items-center justify-between mb-2">
                               <div className="flex items-center space-x-2">
-                                <span className="font-medium text-dsp-dark">{emp.name}</span>
+                                <span className="font-medium text-gray-900">{emp.name}</span>
                                 <span className={`px-2 py-0.5 rounded-full text-xs ${
                                   emp.priority === 'high' ? 'bg-red-100 text-red-700' :
                                   emp.priority === 'medium' ? 'bg-yellow-100 text-yellow-700' :
@@ -353,10 +353,10 @@ export const OptimizationPage: React.FC = () => {
                                 </span>
                               </div>
                               <div className="text-right">
-                                <div className="text-dsp-dark font-medium">
+                                <div className="text-gray-900 font-medium">
                                   +¥{emp.adjustment.toLocaleString()}
                                 </div>
-                                <div className="text-dsp-gray text-xs">
+                                <div className="text-gray-600 text-xs">
                                   (+{emp.adjustmentPercent.toFixed(1)}%)
                                 </div>
                               </div>
@@ -364,27 +364,27 @@ export const OptimizationPage: React.FC = () => {
                             
                             <div className="grid grid-cols-2 gap-4 mb-2">
                               <div>
-                                <span className="text-dsp-gray">职位：</span>
-                                <span className="text-dsp-dark">{emp.position}</span>
+                                <span className="text-gray-600">职位：</span>
+                                <span className="text-gray-900">{emp.position}</span>
                               </div>
                               <div>
-                                <span className="text-dsp-gray">部门：</span>
-                                <span className="text-dsp-dark">{emp.department}</span>
+                                <span className="text-gray-600">部门：</span>
+                                <span className="text-gray-900">{emp.department}</span>
                               </div>
                             </div>
                             
                             <div className="grid grid-cols-2 gap-4 mb-2">
                               <div>
-                                <span className="text-dsp-gray">当前薪酬：</span>
-                                <span className="text-dsp-dark">¥{emp.currentSalary.toLocaleString()}</span>
+                                <span className="text-gray-600">当前薪酬：</span>
+                                <span className="text-gray-900">¥{emp.currentSalary.toLocaleString()}</span>
                               </div>
                               <div>
-                                <span className="text-dsp-gray">建议薪酬：</span>
-                                <span className="text-dsp-dark font-medium">¥{emp.recommendedSalary.toLocaleString()}</span>
+                                <span className="text-gray-600">建议薪酬：</span>
+                                <span className="text-gray-900 font-medium">¥{emp.recommendedSalary.toLocaleString()}</span>
                               </div>
                             </div>
                             
-                            <div className="text-dsp-gray text-xs mt-2">
+                            <div className="text-gray-600 text-xs mt-2">
                               <span className="font-medium">调薪理由：</span>{emp.reason}
                             </div>
                           </div>
@@ -395,7 +395,7 @@ export const OptimizationPage: React.FC = () => {
 
                   {/* 影响分析 */}
                   <div className="bg-white border border-gray-200 rounded-2xl p-8">
-                    <h3 className="text-xl font-semibold text-dsp-dark mb-6 flex items-center">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-6 flex items-center">
                       <ArrowTrendingUpIcon className="w-6 h-6 text-dsp-red mr-2" />
                       影响分析
                     </h3>
@@ -457,8 +457,8 @@ export const OptimizationPage: React.FC = () => {
                     </div>
 
                     <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-                      <h4 className="font-medium text-dsp-dark mb-2">投资回报分析</h4>
-                      <p className="text-sm text-dsp-gray">
+                      <h4 className="font-medium text-gray-900 mb-2">投资回报分析</h4>
+                      <p className="text-sm text-gray-600">
                         基于{scenario.impact.retentionImprovement}%的留存率提升，预计可节省招聘成本约
                         <span className="font-semibold text-dsp-red">
                           {Math.round(scenario.impact.retentionImprovement * 0.8)}万元/年

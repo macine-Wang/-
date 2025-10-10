@@ -1,5 +1,5 @@
 /**
- * MARC 查询结果页面
+ * ISMT 查询结果页面
  * 展示薪酬分析结果，包括时序趋势分析
  */
 
@@ -19,11 +19,12 @@ import { generateSalaryTimeSeries } from '@/data/mockTimeSeriesGenerator';
 import type { SalaryTrendData } from '@/data/mockTimeSeriesGenerator';
 
 interface QueryParams {
+  industry: string;
+  category: string;
   position: string;
   location: string;
   experience: string;
   education: string;
-  industry: string;
 }
 
 export const ResultsPage: React.FC = () => {
@@ -34,11 +35,12 @@ export const ResultsPage: React.FC = () => {
   
   // 从路由状态获取查询参数
   const queryParams = location.state as QueryParams || {
-    position: '高级前端工程师',
+    industry: '互联网/AI',
+    category: '前端/移动开发',
+    position: '前端开发工程师',
     location: '北京',
     experience: '3-5年',
-    education: '本科',
-    industry: '互联网'
+    education: '本科'
   };
 
   // 生成趋势数据

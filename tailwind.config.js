@@ -43,9 +43,29 @@ export default {
         'dsp-gray': '#707070',
       },
       fontFamily: {
-        // DSP 字体系统
-        sans: ['Platypi', 'system-ui', 'sans-serif'],
-        display: ['Platypi', 'system-ui', 'sans-serif'],
+        // DSP 字体系统 - 支持中英文
+        sans: [
+          'Inter', 
+          'Noto Sans SC', 
+          'PingFang SC', 
+          'Hiragino Sans GB', 
+          'Microsoft YaHei', 
+          '微软雅黑', 
+          'SimSun', 
+          '宋体',
+          'system-ui', 
+          'sans-serif'
+        ],
+        display: [
+          'Platypi', 
+          'Noto Sans SC', 
+          'PingFang SC', 
+          'Hiragino Sans GB', 
+          'Microsoft YaHei', 
+          '微软雅黑',
+          'system-ui', 
+          'sans-serif'
+        ],
         mono: ['JetBrains Mono', 'Consolas', 'monospace']
       },
       animation: {

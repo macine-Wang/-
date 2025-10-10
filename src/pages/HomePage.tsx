@@ -45,19 +45,31 @@ export const HomePage: React.FC = () => {
               为求职者和HR提供精准的薪酬洞察与决策支持
             </p>
 
-            <div className="flex items-center justify-center space-x-8 pt-4">
-              <div className="flex items-center space-x-2 text-sm text-dsp-gray">
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <span>已接入DeepSeek AI</span>
+            <div className="flex flex-col items-center space-y-6 pt-4">
+              <div className="flex items-center justify-center space-x-8">
+                <div className="flex items-center space-x-2 text-sm text-dsp-gray">
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                  <span>已接入DeepSeek AI</span>
+                </div>
+                <div className="flex items-center space-x-2 text-sm text-dsp-gray">
+                  <ChartBarIcon className="w-4 h-4 text-blue-600" />
+                  <span>海量真实数据</span>
+                </div>
+                <div className="flex items-center space-x-2 text-sm text-dsp-gray">
+                  <SparklesIcon className="w-4 h-4 text-purple-600" />
+                  <span>15+AI功能</span>
+                </div>
               </div>
-              <div className="flex items-center space-x-2 text-sm text-dsp-gray">
-                <ChartBarIcon className="w-4 h-4 text-blue-600" />
-                <span>7亿+真实数据</span>
-              </div>
-              <div className="flex items-center space-x-2 text-sm text-dsp-gray">
-                <SparklesIcon className="w-4 h-4 text-purple-600" />
-                <span>15+AI功能</span>
-              </div>
+              
+              {/* 技术架构按钮 */}
+              <Link
+                to="/tech-architecture"
+                className="inline-flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              >
+                <SparklesIcon className="w-5 h-5" />
+                <span>查看技术架构</span>
+                <ArrowRightIcon className="w-4 h-4 ml-1" />
+              </Link>
             </div>
           </div>
 
@@ -65,80 +77,97 @@ export const HomePage: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
             {/* 求职者中心 */}
             <div className="group relative">
-              <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-cyan-400 rounded-3xl blur-lg opacity-0 group-hover:opacity-25 transition duration-500"></div>
-              <div className="relative bg-white border border-blue-100 group-hover:border-blue-200 rounded-3xl overflow-hidden transition-all duration-300 hover:shadow-2xl">
+              <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-cyan-400 rounded-3xl blur-lg opacity-0 group-hover:opacity-30 transition duration-500"></div>
+              <div className="relative bg-gradient-to-br from-white to-blue-50/30 border-2 border-blue-200 group-hover:border-blue-300 rounded-3xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/20">
+                {/* 背景装饰 */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-blue-400/20 to-transparent rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-cyan-400/15 to-transparent rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
                 {/* 头部 */}
-                <div className="bg-gradient-to-r from-blue-50 to-cyan-50 p-8 border-b border-blue-100">
+                <div className="relative bg-gradient-to-r from-blue-50/80 via-white to-cyan-50/80 p-8 border-b border-blue-200">
                   <div className="flex items-center space-x-4 mb-4">
-                    <div className="p-3 bg-blue-600 rounded-2xl">
-                      <UserIcon className="w-8 h-8 text-white" />
+                    <div className="relative">
+                      <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-2xl blur-xl opacity-30"></div>
+                      <div className="relative p-3 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-2xl group-hover:scale-110 transition-transform duration-500">
+                        <UserIcon className="w-8 h-8 text-white" />
+                      </div>
                     </div>
                     <div>
-                      <h2 className="text-2xl font-bold text-dsp-dark">求职者中心</h2>
-                      <p className="text-blue-600 font-medium">个人职业发展AI助手</p>
+                      <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">求职者中心</h2>
+                      <p className="text-blue-600 font-semibold">个人职业发展AI助手</p>
                     </div>
                   </div>
-                  <p className="text-dsp-gray leading-relaxed">
+                  <p className="text-slate-600 leading-relaxed">
                     AI驱动的个人职业发展平台，提供薪酬查询、市场洞察、职业规划等全方位服务
                   </p>
                 </div>
 
                 {/* 功能列表 */}
-                <div className="p-8">
-                  <div className="grid grid-cols-1 gap-4 mb-8">
-                    <div className="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
-                      <AcademicCapIcon className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                <div className="relative p-8">
+                  <div className="grid grid-cols-1 gap-3 mb-8">
+                    <div className="flex items-center space-x-3 p-4 bg-gradient-to-r from-blue-50/80 to-white rounded-xl hover:from-blue-100/80 hover:to-blue-50/80 transition-all duration-300 border border-blue-100 hover:border-blue-200">
+                      <div className="p-1.5 bg-blue-500 rounded-lg">
+                        <AcademicCapIcon className="w-4 h-4 text-white" />
+                      </div>
                       <div>
-                        <div className="font-medium text-dsp-dark">职业规划助手</div>
-                        <div className="text-sm text-dsp-gray">AI分析个人背景，制定职业发展路径</div>
+                        <div className="font-semibold text-slate-800">职业规划助手</div>
+                        <div className="text-sm text-slate-600">AI分析个人背景，制定职业发展路径</div>
                       </div>
                     </div>
                     
-                    <div className="flex items-center space-x-3 p-3 bg-green-50 rounded-lg hover:bg-green-100 transition-colors">
-                      <EyeIcon className="w-5 h-5 text-green-600 flex-shrink-0" />
+                    <div className="flex items-center space-x-3 p-4 bg-gradient-to-r from-green-50/80 to-white rounded-xl hover:from-green-100/80 hover:to-green-50/80 transition-all duration-300 border border-green-100 hover:border-green-200">
+                      <div className="p-1.5 bg-green-500 rounded-lg">
+                        <EyeIcon className="w-4 h-4 text-white" />
+                      </div>
                       <div>
-                        <div className="font-medium text-dsp-dark">市场洞察报告</div>
-                        <div className="text-sm text-dsp-gray">实时行业趋势、热门岗位、技能需求分析</div>
+                        <div className="font-semibold text-slate-800">市场洞察报告</div>
+                        <div className="text-sm text-slate-600">实时行业趋势、热门岗位、技能需求分析</div>
                       </div>
                     </div>
                     
-                    <div className="flex items-center space-x-3 p-3 bg-purple-50 rounded-lg hover:bg-purple-100 transition-colors">
-                      <CurrencyDollarIcon className="w-5 h-5 text-purple-600 flex-shrink-0" />
+                    <div className="flex items-center space-x-3 p-4 bg-gradient-to-r from-purple-50/80 to-white rounded-xl hover:from-purple-100/80 hover:to-purple-50/80 transition-all duration-300 border border-purple-100 hover:border-purple-200">
+                      <div className="p-1.5 bg-purple-500 rounded-lg">
+                        <CurrencyDollarIcon className="w-4 h-4 text-white" />
+                      </div>
                       <div>
-                        <div className="font-medium text-dsp-dark">智能薪酬计算器</div>
-                        <div className="text-sm text-dsp-gray">基于个人条件计算市场薪酬水平</div>
+                        <div className="font-semibold text-slate-800">智能薪酬计算器</div>
+                        <div className="text-sm text-slate-600">基于个人条件计算市场薪酬水平</div>
                       </div>
                     </div>
                     
-                    <div className="flex items-center space-x-3 p-3 bg-orange-50 rounded-lg hover:bg-orange-100 transition-colors">
-                      <ChatBubbleLeftRightIcon className="w-5 h-5 text-orange-600 flex-shrink-0" />
+                    <div className="flex items-center space-x-3 p-4 bg-gradient-to-r from-orange-50/80 to-white rounded-xl hover:from-orange-100/80 hover:to-orange-50/80 transition-all duration-300 border border-orange-100 hover:border-orange-200">
+                      <div className="p-1.5 bg-orange-500 rounded-lg">
+                        <ChatBubbleLeftRightIcon className="w-4 h-4 text-white" />
+                      </div>
                       <div>
-                        <div className="font-medium text-dsp-dark">面试薪酬谈判</div>
-                        <div className="text-sm text-dsp-gray">AI模拟面试，提供谈判策略和话术</div>
+                        <div className="font-semibold text-slate-800">面试薪酬谈判</div>
+                        <div className="text-sm text-slate-600">AI模拟面试，提供谈判策略和话术</div>
                       </div>
                     </div>
                     
-                    <div className="flex items-center space-x-3 p-3 bg-red-50 rounded-lg hover:bg-red-100 transition-colors">
-                      <ClockIcon className="w-5 h-5 text-red-600 flex-shrink-0" />
+                    <div className="flex items-center space-x-3 p-4 bg-gradient-to-r from-red-50/80 to-white rounded-xl hover:from-red-100/80 hover:to-red-50/80 transition-all duration-300 border border-red-100 hover:border-red-200">
+                      <div className="p-1.5 bg-red-500 rounded-lg">
+                        <ClockIcon className="w-4 h-4 text-white" />
+                      </div>
                       <div>
-                        <div className="font-medium text-dsp-dark">薪酬监控提醒</div>
-                        <div className="text-sm text-dsp-gray">设置薪酬变化提醒，把握涨薪时机</div>
+                        <div className="font-semibold text-slate-800">薪酬监控提醒</div>
+                        <div className="text-sm text-slate-600">设置薪酬变化提醒，把握涨薪时机</div>
                       </div>
                     </div>
                   </div>
 
-                  <div className="space-y-3">
+                  <div className="space-y-4">
                     <Link
                       to="/jobseeker"
-                      className="w-full inline-flex items-center justify-center px-6 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-semibold rounded-xl transition-all duration-300 group shadow-lg"
+                      className="w-full inline-flex items-center justify-center px-6 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-bold rounded-2xl transition-all duration-300 group shadow-xl hover:shadow-2xl transform hover:scale-105"
                     >
                       <span>进入求职者中心</span>
-                      <ArrowRightIcon className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                      <ArrowRightIcon className="ml-2 w-5 h-5 group-hover:translate-x-2 transition-transform" />
                     </Link>
                     
                     <Link
                       to="/query"
-                      className="w-full inline-flex items-center justify-center px-6 py-3 text-blue-600 hover:text-blue-700 font-medium transition-colors border border-blue-200 rounded-xl hover:bg-blue-50"
+                      className="w-full inline-flex items-center justify-center px-6 py-3 text-blue-600 hover:text-blue-700 font-semibold transition-all duration-300 border-2 border-blue-200 rounded-2xl hover:bg-blue-50 hover:border-blue-300"
                     >
                       快速薪酬查询
                     </Link>
@@ -149,80 +178,97 @@ export const HomePage: React.FC = () => {
 
             {/* HR中心 */}
             <div className="group relative">
-              <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-orange-400 rounded-3xl blur-lg opacity-0 group-hover:opacity-25 transition duration-500"></div>
-              <div className="relative bg-white border border-red-100 group-hover:border-red-200 rounded-3xl overflow-hidden transition-all duration-300 hover:shadow-2xl">
+              <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-orange-400 rounded-3xl blur-lg opacity-0 group-hover:opacity-30 transition duration-500"></div>
+              <div className="relative bg-gradient-to-br from-white to-red-50/30 border-2 border-red-200 group-hover:border-red-300 rounded-3xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-red-500/20">
+                {/* 背景装饰 */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-red-400/20 to-transparent rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-orange-400/15 to-transparent rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
                 {/* 头部 */}
-                <div className="bg-gradient-to-r from-red-50 to-orange-50 p-8 border-b border-red-100">
+                <div className="relative bg-gradient-to-r from-red-50/80 via-white to-orange-50/80 p-8 border-b border-red-200">
                   <div className="flex items-center space-x-4 mb-4">
-                    <div className="p-3 bg-red-600 rounded-2xl">
-                      <BriefcaseIcon className="w-8 h-8 text-white" />
+                    <div className="relative">
+                      <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-orange-500 rounded-2xl blur-xl opacity-30"></div>
+                      <div className="relative p-3 bg-gradient-to-r from-red-600 to-orange-500 rounded-2xl group-hover:scale-110 transition-transform duration-500">
+                        <BriefcaseIcon className="w-8 h-8 text-white" />
+                      </div>
                     </div>
                     <div>
-                      <h2 className="text-2xl font-bold text-dsp-dark">HR中心</h2>
-                      <p className="text-red-600 font-medium">企业薪酬管理专家</p>
+                      <h2 className="text-2xl font-bold bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">HR中心</h2>
+                      <p className="text-red-600 font-semibold">企业薪酬管理专家</p>
                     </div>
                   </div>
-                  <p className="text-dsp-gray leading-relaxed">
+                  <p className="text-slate-600 leading-relaxed">
                     AI驱动的企业薪酬管理平台，提供招聘、诊断、优化、决策等全流程HR解决方案
                   </p>
                 </div>
 
                 {/* 功能列表 */}
-                <div className="p-8">
-                  <div className="grid grid-cols-1 gap-4 mb-8">
-                    <div className="flex items-center space-x-3 p-3 bg-purple-50 rounded-lg hover:bg-purple-100 transition-colors">
-                      <ChartBarIcon className="w-5 h-5 text-purple-600 flex-shrink-0" />
+                <div className="relative p-8">
+                  <div className="grid grid-cols-1 gap-3 mb-8">
+                    <div className="flex items-center space-x-3 p-4 bg-gradient-to-r from-purple-50/80 to-white rounded-xl hover:from-purple-100/80 hover:to-purple-50/80 transition-all duration-300 border border-purple-100 hover:border-purple-200">
+                      <div className="p-1.5 bg-purple-500 rounded-lg">
+                        <ChartBarIcon className="w-4 h-4 text-white" />
+                      </div>
                       <div>
-                        <div className="font-medium text-dsp-dark">智能薪酬诊断中心</div>
-                        <div className="text-sm text-dsp-gray">一键诊断薪酬健康度，AI生成优化建议</div>
+                        <div className="font-semibold text-slate-800">智能薪酬诊断中心</div>
+                        <div className="text-sm text-slate-600">一键诊断薪酬健康度，AI生成优化建议</div>
                       </div>
                     </div>
                     
-                    <div className="flex items-center space-x-3 p-3 bg-green-50 rounded-lg hover:bg-green-100 transition-colors">
-                      <CurrencyDollarIcon className="w-5 h-5 text-green-600 flex-shrink-0" />
+                    <div className="flex items-center space-x-3 p-4 bg-gradient-to-r from-green-50/80 to-white rounded-xl hover:from-green-100/80 hover:to-green-50/80 transition-all duration-300 border border-green-100 hover:border-green-200">
+                      <div className="p-1.5 bg-green-500 rounded-lg">
+                        <CurrencyDollarIcon className="w-4 h-4 text-white" />
+                      </div>
                       <div>
-                        <div className="font-medium text-dsp-dark">动态调薪决策引擎</div>
-                        <div className="text-sm text-dsp-gray">AI智能分配调薪预算，预测影响效果</div>
+                        <div className="font-semibold text-slate-800">动态调薪决策引擎</div>
+                        <div className="text-sm text-slate-600">AI智能分配调薪预算，预测影响效果</div>
                       </div>
                     </div>
                     
-                    <div className="flex items-center space-x-3 p-3 bg-indigo-50 rounded-lg hover:bg-indigo-100 transition-colors">
-                      <PencilSquareIcon className="w-5 h-5 text-indigo-600 flex-shrink-0" />
+                    <div className="flex items-center space-x-3 p-4 bg-gradient-to-r from-indigo-50/80 to-white rounded-xl hover:from-indigo-100/80 hover:to-indigo-50/80 transition-all duration-300 border border-indigo-100 hover:border-indigo-200">
+                      <div className="p-1.5 bg-indigo-500 rounded-lg">
+                        <PencilSquareIcon className="w-4 h-4 text-white" />
+                      </div>
                       <div>
-                        <div className="font-medium text-dsp-dark">智能JD写作助手</div>
-                        <div className="text-sm text-dsp-gray">AI生成职位描述，支持批量处理和多语言</div>
+                        <div className="font-semibold text-slate-800">智能JD写作助手</div>
+                        <div className="text-sm text-slate-600">AI生成职位描述，支持批量处理和多语言</div>
                       </div>
                     </div>
                     
-                    <div className="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
-                      <AdjustmentsHorizontalIcon className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                    <div className="flex items-center space-x-3 p-4 bg-gradient-to-r from-blue-50/80 to-white rounded-xl hover:from-blue-100/80 hover:to-blue-50/80 transition-all duration-300 border border-blue-100 hover:border-blue-200">
+                      <div className="p-1.5 bg-blue-500 rounded-lg">
+                        <AdjustmentsHorizontalIcon className="w-4 h-4 text-white" />
+                      </div>
                       <div>
-                        <div className="font-medium text-dsp-dark">薪酬竞争力雷达</div>
-                        <div className="text-sm text-dsp-gray">实时对标市场，监控关键岗位竞争力</div>
+                        <div className="font-semibold text-slate-800">薪酬竞争力雷达</div>
+                        <div className="text-sm text-slate-600">实时对标市场，监控关键岗位竞争力</div>
                       </div>
                     </div>
                     
-                    <div className="flex items-center space-x-3 p-3 bg-yellow-50 rounded-lg hover:bg-yellow-100 transition-colors">
-                      <ScaleIcon className="w-5 h-5 text-yellow-600 flex-shrink-0" />
+                    <div className="flex items-center space-x-3 p-4 bg-gradient-to-r from-yellow-50/80 to-white rounded-xl hover:from-yellow-100/80 hover:to-yellow-50/80 transition-all duration-300 border border-yellow-100 hover:border-yellow-200">
+                      <div className="p-1.5 bg-yellow-500 rounded-lg">
+                        <ScaleIcon className="w-4 h-4 text-white" />
+                      </div>
                       <div>
-                        <div className="font-medium text-dsp-dark">薪酬公平性检测器</div>
-                        <div className="text-sm text-dsp-gray">AI扫描薪酬不公平问题，确保合规管理</div>
+                        <div className="font-semibold text-slate-800">薪酬公平性检测器</div>
+                        <div className="text-sm text-slate-600">AI扫描薪酬不公平问题，确保合规管理</div>
                       </div>
                     </div>
                   </div>
 
-                  <div className="space-y-3">
+                  <div className="space-y-4">
                     <Link
                       to="/hr"
-                      className="w-full inline-flex items-center justify-center px-6 py-4 bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white font-semibold rounded-xl transition-all duration-300 group shadow-lg"
+                      className="w-full inline-flex items-center justify-center px-6 py-4 bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white font-bold rounded-2xl transition-all duration-300 group shadow-xl hover:shadow-2xl transform hover:scale-105"
                     >
                       <span>进入HR中心</span>
-                      <ArrowRightIcon className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                      <ArrowRightIcon className="ml-2 w-5 h-5 group-hover:translate-x-2 transition-transform" />
                     </Link>
                     
                     <Link
                       to="/hr/smart-jd-writer"
-                      className="w-full inline-flex items-center justify-center px-6 py-3 text-red-600 hover:text-red-700 font-medium transition-colors border border-red-200 rounded-xl hover:bg-red-50"
+                      className="w-full inline-flex items-center justify-center px-6 py-3 text-red-600 hover:text-red-700 font-semibold transition-all duration-300 border-2 border-red-200 rounded-2xl hover:bg-red-50 hover:border-red-300"
                     >
                       体验JD写作助手
                     </Link>
@@ -253,9 +299,9 @@ export const HomePage: React.FC = () => {
               <div className="text-sm text-dsp-gray/70 mt-1">涵盖求职到HR全流程</div>
             </div>
             <div className="text-center p-6 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow">
-              <div className="text-4xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent mb-3">7亿+</div>
+              <div className="text-4xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent mb-3">海量</div>
               <div className="text-dsp-gray font-medium">真实数据支撑</div>
-              <div className="text-sm text-dsp-gray/70 mt-1">覆盖全行业全地区</div>
+              <div className="text-sm text-dsp-gray/70 mt-1">覆盖多行业多地区</div>
             </div>
             <div className="text-center p-6 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow">
               <div className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-red-600 bg-clip-text text-transparent mb-3">实时</div>
@@ -287,7 +333,7 @@ export const HomePage: React.FC = () => {
               </div>
               <h4 className="text-xl font-semibold text-dsp-dark mb-4">数据精准可靠</h4>
               <p className="text-dsp-gray leading-relaxed">
-                基于7亿+真实招聘数据，覆盖7000+职业类别和300+主要城市，确保分析结果的准确性和时效性
+                基于海量真实招聘数据，覆盖多种职业类别和主要城市，确保分析结果的准确性和时效性
               </p>
             </div>
             
@@ -320,10 +366,10 @@ export const HomePage: React.FC = () => {
                   </div>
                 </div>
                 <Link
-                  to="/api-demo"
+                  to="/tech-architecture"
                   className="px-8 py-4 bg-white text-purple-600 rounded-2xl hover:bg-gray-50 transition-colors font-semibold shadow-lg"
                 >
-                  体验AI演示
+                  查看技术架构
                 </Link>
               </div>
             </div>
@@ -384,50 +430,6 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* 快速开始 */}
-      <section className="py-20">
-        <div className="container max-w-6xl">
-          <div className="text-center mb-16">
-            <h3 className="text-3xl font-bold text-dsp-dark mb-6">
-              立即开始您的智能薪酬之旅
-            </h3>
-            <p className="text-xl text-dsp-gray max-w-2xl mx-auto">
-              无论您是寻求职业发展的个人，还是需要优化薪酬管理的企业，ISMT都能为您提供专业的AI解决方案
-            </p>
-          </div>
-          
-          <div className="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-6 mb-12">
-            <Link
-              to="/jobseeker"
-              className="group flex items-center space-x-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-semibold rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl"
-            >
-              <UserIcon className="w-6 h-6" />
-              <span>我是求职者</span>
-              <ArrowRightIcon className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Link>
-            
-            <div className="text-dsp-gray font-medium">或</div>
-            
-            <Link
-              to="/hr"
-              className="group flex items-center space-x-3 px-8 py-4 bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white font-semibold rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl"
-            >
-              <BriefcaseIcon className="w-6 h-6" />
-              <span>我是HR</span>
-              <ArrowRightIcon className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </div>
-
-          <div className="text-center">
-            <Link
-              to="/api-demo"
-              className="inline-flex items-center space-x-2 px-6 py-3 text-purple-600 hover:text-purple-700 font-medium transition-colors border border-purple-200 rounded-xl hover:bg-purple-50"
-            >
-              <SparklesIcon className="w-5 h-5" />
-              <span>先看看AI演示</span>
-            </Link>
-          </div>
-        </div>
-      </section>
     </div>
   );
 };

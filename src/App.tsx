@@ -6,7 +6,9 @@
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { HomePage } from '@/pages/HomePage';
-import { QueryPage } from '@/pages/QueryPage';
+import { SalaryQueryPage } from '@/pages/jobseeker/SalaryQueryPage';
+import { SalaryAnalysisResultPage } from '@/pages/jobseeker/SalaryAnalysisResultPage';
+import { NotificationContainer } from '@/components/Notification';
 import { ResultsPage } from '@/pages/ResultsPage';
 import { HRDashboard } from '@/pages/hr/HRDashboard';
 import { RecruitmentPage } from '@/pages/hr/RecruitmentPage';
@@ -19,28 +21,39 @@ import { AISalaryAdvisorPage } from '@/pages/hr/AISalaryAdvisorPage';
 import { SalaryFairnessDetectorPage } from '@/pages/hr/SalaryFairnessDetectorPage';
 import { SmartJDWriterPage } from '@/pages/hr/SmartJDWriterPage';
 import { BatchJDGeneratorPage } from '@/pages/hr/BatchJDGeneratorPage';
-import { ApiDemoPage } from '@/pages/ApiDemoPage';
+import RetentionRiskSystemPage from '@/pages/hr/RetentionRiskSystemPage';
+import TechArchitecture from '@/pages/TechArchitecture';
+import EncodingTest from '@/components/test/EncodingTest';
 import { JobseekerCenter } from '@/pages/JobseekerCenter';
 import { CareerPlanningPage } from '@/pages/jobseeker/CareerPlanningPage';
 import { MarketInsightsPage } from '@/pages/jobseeker/MarketInsightsPage';
 import { SalaryCalculatorPage } from '@/pages/jobseeker/SalaryCalculatorPage';
 import { InterviewNegotiationPage } from '@/pages/jobseeker/InterviewNegotiationPage';
 import { SalaryMonitoringPage } from '@/pages/jobseeker/SalaryMonitoringPage';
+import ResumeOptimizerPage from '@/pages/jobseeker/ResumeOptimizerPage';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
+import { AIAssistantTrigger } from '@/components/AIAssistantTrigger';
 import './styles/globals.css';
 
 function App() {
   return (
-    <Router basename={process.env.NODE_ENV === 'production' ? '/ismt.github.io' : '/'}>
+    <Router 
+      basename={process.env.NODE_ENV === 'production' ? '/ismt.github.io' : '/'}
+      future={{
+        v7_relativeSplatPath: true,
+        v7_startTransition: true
+      }}
+    >
       <div className="min-h-screen bg-white flex flex-col">
-        <Navbar />
+          <Navbar />
         
         <main className="flex-1">
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/query" element={<QueryPage />} />
-            <Route path="/results" element={<ResultsPage />} />
+            <Route path="/query" element={<SalaryQueryPage />} />
+            <Route path="/results" element={<SalaryAnalysisResultPage />} />
+            <Route path="/old-results" element={<ResultsPage />} />
             
             {/* 求职者模块路由 */}
             <Route path="/jobseeker" element={<JobseekerCenter />} />
@@ -49,6 +62,7 @@ function App() {
             <Route path="/salary-calculator" element={<SalaryCalculatorPage />} />
             <Route path="/interview-prep" element={<InterviewNegotiationPage />} />
             <Route path="/salary-alerts" element={<SalaryMonitoringPage />} />
+            <Route path="/resume-optimizer" element={<ResumeOptimizerPage />} />
             
             {/* HR模块路由 */}
             <Route path="/hr" element={<HRDashboard />} />
@@ -62,13 +76,21 @@ function App() {
                 <Route path="/hr/fairness-detector" element={<SalaryFairnessDetectorPage />} />
                 <Route path="/hr/smart-jd-writer" element={<SmartJDWriterPage />} />
                 <Route path="/hr/batch-jd-generator" element={<BatchJDGeneratorPage />} />
+                <Route path="/hr/retention-risk" element={<RetentionRiskSystemPage />} />
                 
-                {/* API演示页面 */}
-                <Route path="/api-demo" element={<ApiDemoPage />} />
+                {/* 技术架构页面 */}
+                <Route path="/tech-architecture" element={<TechArchitecture />} />
+                <Route path="/encoding-test" element={<EncodingTest />} />
           </Routes>
         </main>
         
         <Footer />
+        
+        {/* AI智能助手 */}
+        <AIAssistantTrigger />
+        
+        {/* 全局通知容器 */}
+        <NotificationContainer />
       </div>
     </Router>
   );

@@ -303,7 +303,7 @@ export const OptimizationPage: React.FC = () => {
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center space-x-3">
             <SparklesIcon className="w-8 h-8 text-dsp-red" />
-            <h1 className="text-3xl font-semibold text-dsp-dark">薪酬优化方案</h1>
+            <h1 className="text-3xl font-semibold text-gray-900">薪酬优化方案</h1>
             {hasAuditData() && (
               <span className="px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full">
                 基于审计数据
@@ -314,7 +314,7 @@ export const OptimizationPage: React.FC = () => {
           {hasAuditData() && (
             <button
               onClick={() => navigate('/hr/audit')}
-              className="flex items-center space-x-2 text-dsp-gray hover:text-dsp-dark transition-colors"
+              className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors"
             >
               <ArrowLeftIcon className="w-4 h-4" />
               <span>返回审计报告</span>
@@ -375,8 +375,8 @@ export const OptimizationPage: React.FC = () => {
             <div className="inline-flex items-center justify-center w-16 h-16 bg-dsp-red/10 rounded-full mb-6">
               <SparklesIcon className="w-8 h-8 text-dsp-red animate-pulse" />
             </div>
-            <h3 className="text-xl font-semibold text-dsp-dark mb-2">正在生成个性化优化方案</h3>
-            <p className="text-dsp-gray mb-6">基于您的薪酬审计数据，AI正在分析每位员工的具体调薪建议...</p>
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">正在生成个性化优化方案</h3>
+            <p className="text-gray-600 mb-6">基于您的薪酬审计数据，AI正在分析每位员工的具体调薪建议...</p>
             <div className="w-32 h-1 bg-gray-200 rounded-full mx-auto">
               <div className="h-1 bg-dsp-red rounded-full animate-pulse" style={{ width: '60%' }}></div>
             </div>
@@ -386,12 +386,12 @@ export const OptimizationPage: React.FC = () => {
             {/* 方案选择 */}
             <div className="space-y-8">
               <div className="bg-white border border-gray-200 rounded-2xl p-8">
-                <h2 className="text-xl font-semibold text-dsp-dark mb-6">企业基本信息</h2>
+                <h2 className="text-xl font-semibold text-gray-900 mb-6">企业基本信息</h2>
                 
                 <div className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-dsp-dark mb-2">
+                      <label className="block text-sm font-medium text-gray-900 mb-2">
                         所属行业 *
                       </label>
                       <select
@@ -411,7 +411,7 @@ export const OptimizationPage: React.FC = () => {
                     </div>
                     
                     <div>
-                      <label className="block text-sm font-medium text-dsp-dark mb-2">
+                      <label className="block text-sm font-medium text-gray-900 mb-2">
                         企业规模 *
                       </label>
                       <select
@@ -429,7 +429,7 @@ export const OptimizationPage: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-dsp-dark mb-2">
+                    <label className="block text-sm font-medium text-gray-900 mb-2">
                       年度薪酬预算增长 (%)
                     </label>
                     <input
@@ -444,7 +444,7 @@ export const OptimizationPage: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-dsp-dark mb-3">
+                    <label className="block text-sm font-medium text-gray-900 mb-3">
                       薪酬管理优先级 (可多选)
                     </label>
                     <div className="grid grid-cols-2 gap-3">
@@ -455,7 +455,7 @@ export const OptimizationPage: React.FC = () => {
                           className={`p-3 rounded-lg text-sm font-medium border transition-colors ${
                             companyProfile.priorities.includes(priority)
                               ? 'bg-dsp-red text-white border-dsp-red'
-                              : 'bg-white text-dsp-gray border-gray-200 hover:border-dsp-red/50'
+                              : 'bg-white text-gray-600 border-gray-200 hover:border-dsp-red/50'
                           }`}
                         >
                           {priority}
@@ -489,8 +489,8 @@ export const OptimizationPage: React.FC = () => {
             {/* 右侧：功能说明 */}
             <div className="space-y-8">
               <div className="bg-gradient-to-r from-dsp-red/5 to-transparent rounded-2xl p-8">
-                <h3 className="text-xl font-semibold text-dsp-dark mb-4">智能薪酬优化</h3>
-                <p className="text-dsp-gray mb-6 leading-relaxed">
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">智能薪酬优化</h3>
+                <p className="text-gray-600 mb-6 leading-relaxed">
                   基于您的企业特点和薪酬目标，AI将为您生成个性化的薪酬优化方案，
                   包括成本分析、实施建议和风险评估。
                 </p>
@@ -498,52 +498,52 @@ export const OptimizationPage: React.FC = () => {
                 <div className="grid grid-cols-2 gap-4">
                   <div className="flex items-center space-x-3">
                     <LightBulbIcon className="w-5 h-5 text-dsp-red" />
-                    <span className="text-sm text-dsp-gray">智能方案生成</span>
+                    <span className="text-sm text-gray-600">智能方案生成</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <CalculatorIcon className="w-5 h-5 text-dsp-red" />
-                    <span className="text-sm text-dsp-gray">成本效益分析</span>
+                    <span className="text-sm text-gray-600">成本效益分析</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <ChartBarIcon className="w-5 h-5 text-dsp-red" />
-                    <span className="text-sm text-dsp-gray">竞争力评估</span>
+                    <span className="text-sm text-gray-600">竞争力评估</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <ShieldCheckIcon className="w-5 h-5 text-dsp-red" />
-                    <span className="text-sm text-dsp-gray">风险评估</span>
+                    <span className="text-sm text-gray-600">风险评估</span>
                   </div>
                 </div>
               </div>
 
               <div className="bg-white border border-gray-200 rounded-2xl p-8">
-                <h4 className="font-semibold text-dsp-dark mb-4">优化方案包含</h4>
+                <h4 className="font-semibold text-gray-900 mb-4">优化方案包含</h4>
                 <div className="space-y-3">
                   <div className="flex items-start space-x-3">
                     <div className="w-2 h-2 bg-dsp-red rounded-full mt-2"></div>
                     <div>
-                      <div className="font-medium text-dsp-dark">成本影响分析</div>
-                      <div className="text-sm text-dsp-gray">预估薪酬调整对总成本的影响</div>
+                      <div className="font-medium text-gray-900">成本影响分析</div>
+                      <div className="text-sm text-gray-600">预估薪酬调整对总成本的影响</div>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
                     <div className="w-2 h-2 bg-dsp-red rounded-full mt-2"></div>
                     <div>
-                      <div className="font-medium text-dsp-dark">员工留存改善</div>
-                      <div className="text-sm text-dsp-gray">预测薪酬优化对员工满意度的提升</div>
+                      <div className="font-medium text-gray-900">员工留存改善</div>
+                      <div className="text-sm text-gray-600">预测薪酬优化对员工满意度的提升</div>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
                     <div className="w-2 h-2 bg-dsp-red rounded-full mt-2"></div>
                     <div>
-                      <div className="font-medium text-dsp-dark">具体实施步骤</div>
-                      <div className="text-sm text-dsp-gray">详细的实施计划和时间安排</div>
+                      <div className="font-medium text-gray-900">具体实施步骤</div>
+                      <div className="text-sm text-gray-600">详细的实施计划和时间安排</div>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
                     <div className="w-2 h-2 bg-dsp-red rounded-full mt-2"></div>
                     <div>
-                      <div className="font-medium text-dsp-dark">风险控制建议</div>
-                      <div className="text-sm text-dsp-gray">识别潜在风险并提供应对策略</div>
+                      <div className="font-medium text-gray-900">风险控制建议</div>
+                      <div className="text-sm text-gray-600">识别潜在风险并提供应对策略</div>
                     </div>
                   </div>
                 </div>
@@ -555,7 +555,7 @@ export const OptimizationPage: React.FC = () => {
           <div className="space-y-8">
             {/* 方案概览 */}
             <div className="bg-white border border-gray-200 rounded-2xl p-8">
-              <h2 className="text-2xl font-semibold text-dsp-dark mb-6">为您推荐的优化方案</h2>
+              <h2 className="text-2xl font-semibold text-gray-900 mb-6">为您推荐的优化方案</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {scenarios.map((scenario) => (
                   <div
@@ -568,27 +568,27 @@ export const OptimizationPage: React.FC = () => {
                     onClick={() => setSelectedScenario(scenario.id)}
                   >
                     <div className="flex items-center justify-between mb-4">
-                      <h3 className="font-semibold text-dsp-dark">{scenario.title}</h3>
+                      <h3 className="font-semibold text-gray-900">{scenario.title}</h3>
                       <span className={`px-2 py-1 rounded-full text-xs font-medium ${getRiskColor(scenario.riskLevel)}`}>
                         {getRiskText(scenario.riskLevel)}
                       </span>
                     </div>
                     
-                    <p className="text-sm text-dsp-gray mb-4 leading-relaxed">
+                    <p className="text-sm text-gray-600 mb-4 leading-relaxed">
                       {scenario.description}
                     </p>
                     
                     <div className="space-y-2">
                       <div className="flex justify-between">
-                        <span className="text-xs text-dsp-gray">成本增长</span>
-                        <span className="text-xs font-medium text-dsp-dark">+{scenario.impact.costIncrease}%</span>
+                        <span className="text-xs text-gray-600">成本增长</span>
+                        <span className="text-xs font-medium text-gray-900">+{scenario.impact.costIncrease}%</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-xs text-dsp-gray">留存改善</span>
+                        <span className="text-xs text-gray-600">留存改善</span>
                         <span className="text-xs font-medium text-green-600">+{scenario.impact.retentionImprovement}%</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-xs text-dsp-gray">竞争力评分</span>
+                        <span className="text-xs text-gray-600">竞争力评分</span>
                         <span className="text-xs font-medium text-dsp-red">{scenario.impact.competitivenessScore}/100</span>
                       </div>
                     </div>
@@ -606,22 +606,22 @@ export const OptimizationPage: React.FC = () => {
                     <>
                       {/* 实施计划 */}
                       <div className="bg-white border border-gray-200 rounded-2xl p-8">
-                        <h3 className="text-xl font-semibold text-dsp-dark mb-6 flex items-center">
+                        <h3 className="text-xl font-semibold text-gray-900 mb-6 flex items-center">
                           <DocumentTextIcon className="w-6 h-6 text-dsp-red mr-2" />
                           实施计划
                         </h3>
                         
                         <div className="mb-6">
                           <div className="flex items-center justify-between mb-2">
-                            <span className="text-sm font-medium text-dsp-gray">预计实施周期</span>
-                            <span className="text-sm font-semibold text-dsp-dark">{scenario.timeline}</span>
+                            <span className="text-sm font-medium text-gray-600">预计实施周期</span>
+                            <span className="text-sm font-semibold text-gray-900">{scenario.timeline}</span>
                           </div>
                         </div>
 
                         <div className="space-y-4">
                           <div className="flex items-center justify-between">
-                            <h4 className="font-medium text-dsp-dark">员工调薪明细</h4>
-                            <span className="text-sm text-dsp-gray">
+                            <h4 className="font-medium text-gray-900">员工调薪明细</h4>
+                            <span className="text-sm text-gray-600">
                               {scenario.employeeAdjustments.length}人需要调薪
                             </span>
                           </div>
@@ -631,7 +631,7 @@ export const OptimizationPage: React.FC = () => {
                               <div key={empIndex} className="bg-gray-50 rounded-lg p-4 text-sm">
                                 <div className="flex items-center justify-between mb-2">
                                   <div className="flex items-center space-x-2">
-                                    <span className="font-medium text-dsp-dark">{emp.name}</span>
+                                    <span className="font-medium text-gray-900">{emp.name}</span>
                                     <span className={`px-2 py-0.5 rounded-full text-xs ${
                                       emp.priority === 'high' ? 'bg-red-100 text-red-700' :
                                       emp.priority === 'medium' ? 'bg-yellow-100 text-yellow-700' :
@@ -642,10 +642,10 @@ export const OptimizationPage: React.FC = () => {
                                     </span>
                                   </div>
                                   <div className="text-right">
-                                    <div className="text-dsp-dark font-medium">
+                                    <div className="text-gray-900 font-medium">
                                       +¥{emp.adjustment.toLocaleString()}
                                     </div>
-                                    <div className="text-dsp-gray text-xs">
+                                    <div className="text-gray-600 text-xs">
                                       (+{emp.adjustmentPercent.toFixed(1)}%)
                                     </div>
                                   </div>
@@ -653,27 +653,27 @@ export const OptimizationPage: React.FC = () => {
                                 
                                 <div className="grid grid-cols-2 gap-4 mb-2">
                                   <div>
-                                    <span className="text-dsp-gray">职位：</span>
-                                    <span className="text-dsp-dark">{emp.position}</span>
+                                    <span className="text-gray-600">职位：</span>
+                                    <span className="text-gray-900">{emp.position}</span>
                                   </div>
                                   <div>
-                                    <span className="text-dsp-gray">部门：</span>
-                                    <span className="text-dsp-dark">{emp.department}</span>
+                                    <span className="text-gray-600">部门：</span>
+                                    <span className="text-gray-900">{emp.department}</span>
                                   </div>
                                 </div>
                                 
                                 <div className="grid grid-cols-2 gap-4 mb-2">
                                   <div>
-                                    <span className="text-dsp-gray">当前薪酬：</span>
-                                    <span className="text-dsp-dark">¥{emp.currentSalary.toLocaleString()}</span>
+                                    <span className="text-gray-600">当前薪酬：</span>
+                                    <span className="text-gray-900">¥{emp.currentSalary.toLocaleString()}</span>
                                   </div>
                                   <div>
-                                    <span className="text-dsp-gray">建议薪酬：</span>
-                                    <span className="text-dsp-dark font-medium">¥{emp.recommendedSalary.toLocaleString()}</span>
+                                    <span className="text-gray-600">建议薪酬：</span>
+                                    <span className="text-gray-900 font-medium">¥{emp.recommendedSalary.toLocaleString()}</span>
                                   </div>
                                 </div>
                                 
-                                <div className="text-dsp-gray text-xs mt-2">
+                                <div className="text-gray-600 text-xs mt-2">
                                   <span className="font-medium">调薪理由：</span>{emp.reason}
                                 </div>
                               </div>
@@ -684,7 +684,7 @@ export const OptimizationPage: React.FC = () => {
 
                       {/* 影响分析 */}
                       <div className="bg-white border border-gray-200 rounded-2xl p-8">
-                        <h3 className="text-xl font-semibold text-dsp-dark mb-6 flex items-center">
+                        <h3 className="text-xl font-semibold text-gray-900 mb-6 flex items-center">
                           <ArrowTrendingUpIcon className="w-6 h-6 text-dsp-red mr-2" />
                           影响分析
                         </h3>
@@ -746,8 +746,8 @@ export const OptimizationPage: React.FC = () => {
                         </div>
 
                         <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-                          <h4 className="font-medium text-dsp-dark mb-2">投资回报分析</h4>
-                          <p className="text-sm text-dsp-gray">
+                          <h4 className="font-medium text-gray-900 mb-2">投资回报分析</h4>
+                          <p className="text-sm text-gray-600">
                             基于{scenario.impact.retentionImprovement}%的留存率提升，预计可节省招聘成本约
                             <span className="font-semibold text-dsp-red">
                               {Math.round(scenario.impact.retentionImprovement * 0.8)}万元/年
