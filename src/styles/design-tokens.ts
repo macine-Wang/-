@@ -240,9 +240,9 @@ export const themes = {
   light: {
     background: colors.neutral[50],
     foreground: colors.neutral[900],
-    card: colors.neutral[0],
+    card: '#ffffff',
     cardForeground: colors.neutral[950],
-    popover: colors.neutral[0],
+    popover: '#ffffff',
     popoverForeground: colors.neutral[950],
     primary: colors.primary[500],
     primaryForeground: colors.neutral[50],

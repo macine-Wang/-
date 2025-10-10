@@ -708,7 +708,7 @@ export class SalaryAnalysisEngine {
     estimatedSalary: number, 
     marketData: MarketSalaryData
   ): 'below_market' | 'market_average' | 'above_market' {
-    const { median, p25, p75 } = marketData.salaryRange;
+    const { p25, p75 } = marketData.salaryRange;
     
     if (estimatedSalary < p25) {
       return 'below_market';
@@ -780,7 +780,7 @@ export class SalaryAnalysisEngine {
     return industryTrends.find(trend => trend.industry === industry) || null;
   }
   
-  private static analyzeTrends(industry: string, trend: IndustryTrend | null) {
+  private static analyzeTrends(_industry: string, trend: IndustryTrend | null) {
     if (!trend) {
       return {
         shortTerm: '暂无明确趋势数据',

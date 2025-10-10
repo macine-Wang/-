@@ -7,15 +7,11 @@ import React, { useState, useEffect } from 'react';
 import { deepseekApi } from '@/services/deepseekApi';
 import { 
   ChartBarIcon,
-  SparklesIcon,
   ExclamationTriangleIcon,
   ArrowTrendingUpIcon,
   ArrowTrendingDownIcon,
-  EyeIcon,
-  MapPinIcon,
   BriefcaseIcon,
   BuildingOfficeIcon,
-  UserGroupIcon,
   CurrencyDollarIcon,
   InformationCircleIcon
 } from '@heroicons/react/24/outline';
@@ -61,7 +57,7 @@ interface MarketAlert {
 export const SalaryCompetitivenessRadarPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'overview' | 'positions' | 'competitors' | 'alerts'>('overview');
   const [selectedTimeRange, setSelectedTimeRange] = useState<'1M' | '3M' | '6M' | '1Y'>('3M');
-  const [isLoading, setIsLoading] = useState(false);
+  const [, setIsLoading] = useState(false);
   const [aiAnalysisResults, setAiAnalysisResults] = useState<Map<string, any>>(new Map());
 
   // 模拟薪酬竞争力数据
@@ -227,22 +223,7 @@ export const SalaryCompetitivenessRadarPage: React.FC = () => {
     { id: 'alerts', label: '市场预警', icon: ExclamationTriangleIcon }
   ];
 
-  const getCompetitivenessLevel = (score: number) => {
-    if (score >= 90) return { level: '优秀', color: 'text-green-600 bg-green-100' };
-    if (score >= 80) return { level: '良好', color: 'text-blue-600 bg-blue-100' };
-    if (score >= 70) return { level: '一般', color: 'text-yellow-600 bg-yellow-100' };
-    return { level: '较差', color: 'text-red-600 bg-red-100' };
-  };
-
-  const getRiskLevelColor = (risk: string) => {
-    switch (risk) {
-      case 'critical': return 'text-red-600 bg-red-100';
-      case 'high': return 'text-orange-600 bg-orange-100';
-      case 'medium': return 'text-yellow-600 bg-yellow-100';
-      case 'low': return 'text-green-600 bg-green-100';
-      default: return 'text-gray-600 bg-gray-100';
-    }
-  };
+  // 移除未使用的函数
 
   // AI竞争力分析
   const analyzeCompetitiveness = async (positionData: CompetitivenessData) => {
