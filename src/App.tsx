@@ -39,7 +39,7 @@ import './styles/globals.css';
 function App() {
   return (
     <Router 
-      basename={process.env.NODE_ENV === 'production' ? '/ismt.github.io' : '/'}
+      basename="/"
       future={{
         v7_relativeSplatPath: true,
         v7_startTransition: true
