@@ -20,6 +20,26 @@ import {
 export const HRDashboard: React.FC = () => {
   const features = [
     {
+      id: 'recruitment',
+      title: '智能招聘助手',
+      description: '基于市场数据的岗位需求分析和薪酬推荐，支持一键发布到多个招聘平台',
+      icon: BriefcaseIcon,
+      link: '/hr/recruitment',
+      color: 'bg-orange-50 text-orange-600',
+      highlights: ['薪酬推荐', '市场分析', '多平台发布'],
+      featured: true
+    },
+    {
+      id: 'smart_jd_writer',
+      title: '智能JD写作助手',
+      description: 'AI驱动的职位描述生成平台，8大核心模块助力高效招聘',
+      icon: PencilSquareIcon,
+      link: '/hr/smart-jd-writer',
+      color: 'bg-indigo-50 text-indigo-600',
+      highlights: ['智能生成', '多语言支持', '合规检查', '一键发布'],
+      featured: true
+    },
+    {
       id: 'diagnosis',
       title: '智能薪酬诊断中心',
       description: '一键上传企业薪酬数据，AI秒出诊断报告，提供薪酬健康度评分和优化建议',
@@ -27,16 +47,6 @@ export const HRDashboard: React.FC = () => {
       link: '/hr/diagnosis',
       color: 'bg-purple-50 text-purple-600',
       highlights: ['健康度评分', '问题识别', 'AI建议', '可视化分析'],
-      featured: true
-    },
-    {
-      id: 'dynamic_adjustment',
-      title: '动态调薪决策引擎',
-      description: '输入调薪预算，AI智能分配到每个员工，生成多种调薪方案并预测影响',
-      icon: CurrencyDollarIcon,
-      link: '/hr/dynamic-adjustment',
-      color: 'bg-green-50 text-green-600',
-      highlights: ['智能分配', '方案对比', '影响预测', '预算优化'],
       featured: true
     },
     {
@@ -67,25 +77,6 @@ export const HRDashboard: React.FC = () => {
       highlights: ['同工同酬检测', '性别差距分析', '部门平衡评估', '修正建议']
     },
     {
-      id: 'smart_jd_writer',
-      title: '智能JD写作助手',
-      description: 'AI驱动的职位描述生成平台，8大核心模块助力高效招聘',
-      icon: PencilSquareIcon,
-      link: '/hr/smart-jd-writer',
-      color: 'bg-indigo-50 text-indigo-600',
-      highlights: ['智能生成', '多语言支持', '合规检查', '一键发布'],
-      featured: true
-    },
-    {
-      id: 'recruitment',
-      title: '智能招聘助手',
-      description: '基于市场数据的岗位需求分析和薪酬推荐，支持一键发布到多个招聘平台',
-      icon: BriefcaseIcon,
-      link: '/hr/recruitment',
-      color: 'bg-orange-50 text-orange-600',
-      highlights: ['薪酬推荐', '市场分析', '多平台发布']
-    },
-    {
       id: 'audit',
       title: '薪酬体系评估',
       description: '导入工资单数据，与市场薪酬对标，生成诊断报告和个性化优化方案',
@@ -102,6 +93,15 @@ export const HRDashboard: React.FC = () => {
       link: '/hr/retention-risk',
       color: 'bg-red-50 text-red-600',
       highlights: ['风险预测', '保留策略', '人才预警', '主动管理']
+    },
+    {
+      id: 'dynamic_adjustment',
+      title: '动态调薪决策引擎',
+      description: '输入调薪预算，AI智能分配到每个员工，生成多种调薪方案并预测影响',
+      icon: CurrencyDollarIcon,
+      link: '/hr/dynamic-adjustment',
+      color: 'bg-green-50 text-green-600',
+      highlights: ['智能分配', '方案对比', '影响预测', '预算优化']
     }
   ];
 
@@ -165,19 +165,26 @@ export const HRDashboard: React.FC = () => {
               const Icon = feature.icon;
               const getGradientColors = (id: string) => {
                 switch(id) {
-                  case 'diagnosis': return {
-                    bg: 'from-purple-50/80 via-white to-blue-50/80',
-                    border: 'border-purple-200 group-hover:border-purple-300',
-                    icon: 'from-purple-600 to-blue-500',
-                    badge: 'from-purple-600 to-blue-500',
-                    hover: 'group-hover:text-purple-600'
+                  case 'recruitment': return {
+                    bg: 'from-orange-50/80 via-white to-red-50/80',
+                    border: 'border-orange-200 group-hover:border-orange-300',
+                    icon: 'from-orange-600 to-red-500',
+                    badge: 'from-orange-600 to-red-500',
+                    hover: 'group-hover:text-orange-600'
                   };
-                  case 'dynamic_adjustment': return {
-                    bg: 'from-green-50/80 via-white to-emerald-50/80',
-                    border: 'border-green-200 group-hover:border-green-300',
-                    icon: 'from-green-600 to-emerald-500',
-                    badge: 'from-green-600 to-emerald-500',
-                    hover: 'group-hover:text-green-600'
+                  case 'smart_jd_writer': return {
+                    bg: 'from-indigo-50/80 via-white to-blue-50/80',
+                    border: 'border-indigo-200 group-hover:border-indigo-300',
+                    icon: 'from-indigo-600 to-blue-500',
+                    badge: 'from-indigo-600 to-blue-500',
+                    hover: 'group-hover:text-indigo-600'
+                  };
+                  case 'diagnosis': return {
+                    bg: 'from-purple-50/80 via-white to-pink-50/80',
+                    border: 'border-purple-200 group-hover:border-purple-300',
+                    icon: 'from-purple-600 to-pink-500',
+                    badge: 'from-purple-600 to-pink-500',
+                    hover: 'group-hover:text-purple-600'
                   };
                   default: return {
                     bg: 'from-red-50/80 via-white to-orange-50/80',
@@ -238,8 +245,9 @@ export const HRDashboard: React.FC = () => {
                             <span
                               key={highlight}
                               className={`px-4 py-2 bg-white/80 text-sm font-semibold rounded-xl border transition-all duration-300 shadow-sm ${
+                                feature.id === 'recruitment' ? 'text-orange-700 border-orange-200 group-hover:bg-orange-50 group-hover:border-orange-300' : 
+                                feature.id === 'smart_jd_writer' ? 'text-indigo-700 border-indigo-200 group-hover:bg-indigo-50 group-hover:border-indigo-300' :
                                 feature.id === 'diagnosis' ? 'text-purple-700 border-purple-200 group-hover:bg-purple-50 group-hover:border-purple-300' : 
-                                feature.id === 'dynamic_adjustment' ? 'text-green-700 border-green-200 group-hover:bg-green-50 group-hover:border-green-300' : 
                                 'text-red-700 border-red-200 group-hover:bg-red-50 group-hover:border-red-300'
                               }`}
                               style={{ animationDelay: `${index * 100}ms` }}

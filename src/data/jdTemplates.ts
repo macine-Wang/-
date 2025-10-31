@@ -10,6 +10,15 @@ export interface JDTemplate {
   position: string;
   level: 'entry' | 'mid' | 'senior' | 'manager' | 'director';
   description: string;
+  // 新增匹配字段，用于智能推荐
+  matchCriteria?: {
+    keywords?: string[];           // 职位关键词（如：实施、顾问、开发等）
+    skills?: string[];              // 相关技能关键词
+    clientTypes?: string[];         // 客户类型（央国企、外企等）
+    preferredIndustries?: string[]; // 优先行业
+    projectScale?: string[];        // 项目规模
+    certifications?: string[];      // 相关认证
+  };
   template: {
     responsibilities: string[];
     requirements: string[];
@@ -417,6 +426,387 @@ export const jdTemplates: JDTemplate[] = [
       ],
       keywords: ['内容创作', '新媒体', '文案写作', '社交媒体', '创意策划', '传播效果', '热点营销']
     }
+  },
+  
+  // ========== 新增：咨询与实施类模板（基于用户提供的JD样本）==========
+  
+  // 财务实施顾问类
+  {
+    id: 'consulting_finance_implementation_junior',
+    name: '财务实施初级顾问模板',
+    industry: '咨询/IT服务',
+    position: '财务实施顾问',
+    level: 'entry',
+    description: '适用于财务系统实施、运维等初级岗位，面向央国企项目',
+    matchCriteria: {
+      keywords: ['财务', '实施', '顾问', '运维', 'SAP', 'ERP', 'FICO', '共享'],
+      skills: ['SAP', 'ERP', '财务系统', '数据分析', 'Office', 'WPS'],
+      clientTypes: ['央国企'],
+      preferredIndustries: ['能源', '石油/石化', '电力/热力/燃气/水利']
+    },
+    template: {
+      responsibilities: [
+        '依据项目整体安排开展项目交付工作，完成运维支持、完成上线数据收集及上线支持工作',
+        '承担财务共享平台项目实施工作，系统功能测试以及上线运维支持等工作',
+        '开展客户关系管理，建立良好的客户关系，帮助客户解决平台应用过程中的各类问题',
+        '为客户提供驻场运维服务，完成共享推广实施工作',
+        '独立完成系统运维服务工作，包括数据导入、审批流绘制等工作'
+      ],
+      requirements: [
+        '财务、计算机相关专业本科及以上学历，应届硕士生优先',
+        '具备共享平台项目、财务信息化实施经验或SAP-FICO模块实施经验优先',
+        '了解人工智能相关产品',
+        '熟练掌握Office、WPS等办公智能化工具',
+        '吃苦耐劳，能够适应加班'
+      ],
+      highlights: [
+        '央国企大型项目经验',
+        '专业的实施培训体系',
+        '职业发展空间广阔',
+        '稳定的工作环境'
+      ],
+      keywords: ['财务实施', 'SAP', 'ERP', 'FICO', '财务共享', '运维', '央国企', '驻场']
+    }
+  },
+  
+  // 初级咨询顾问
+  {
+    id: 'consulting_junior_advisor',
+    name: '初级咨询顾问模板',
+    industry: '咨询/IT服务',
+    position: '咨询顾问',
+    level: 'entry',
+    description: '适用于咨询公司初级顾问岗位，国际咨询背景，面向央国企客户',
+    matchCriteria: {
+      keywords: ['咨询', '顾问', '财务', '数字化转型', '企业架构', '数据架构'],
+      skills: ['财务', '会计', '软件技术', '数字化转型', '企业架构设计', '数据架构设计'],
+      clientTypes: ['央国企', '外企'],
+      preferredIndustries: ['能源', '石油/石化', '电力/热力/燃气/水利']
+    },
+    template: {
+      responsibilities: [
+        '按照项目组和Coach指导完成相关工作',
+        '参与财务数字化转型、企业架构设计、数据架构设计项目',
+        '协助高级顾问进行项目调研和分析',
+        '撰写项目报告和方案文档',
+        '参与客户沟通和需求分析'
+      ],
+      requirements: [
+        '本科及以上学历',
+        '财务、会计、软件技术等相关专业',
+        '2年以上国际公司工作经验',
+        '财务数字化转型、企业架构设计、数据架构设计项目经验优先',
+        '具备石油/石化、电力/热力/燃气/水利等行业经验优先'
+      ],
+      highlights: [
+        '国际咨询公司大牛带队',
+        '服务央国企，报效国家',
+        '汇集国际一流咨询公司管理理念',
+        '高成长机会，股权激励'
+      ],
+      keywords: ['咨询顾问', '财务转型', '企业架构', '数据架构', '国际咨询', '央国企']
+    }
+  },
+  
+  // 数据治理顾问
+  {
+    id: 'consulting_data_governance',
+    name: '数据治理顾问模板',
+    industry: '咨询/IT服务',
+    position: '数据治理顾问',
+    level: 'mid',
+    description: '适用于数据治理、数据中台相关咨询和实施岗位，面向央国企项目',
+    matchCriteria: {
+      keywords: ['数据治理', '数据中台', '数据分析', 'DAMA', '数据管理'],
+      skills: ['数据治理', '数据中台', '数据分析', '数据仓库', '数据集成', '数据质量', 'DAMA', 'ISO数据管理'],
+      clientTypes: ['央国企'],
+      preferredIndustries: ['能源', '制造', '金融'],
+      projectScale: ['百万级项目'],
+      certifications: ['DAMA']
+    },
+    template: {
+      responsibilities: [
+        '独立完成交付中小型项目的数据治理、数据类咨询和实施项目工作',
+        '与客户密切沟通，积极响应客户需求，建立客户信任',
+        '配合项目经理、团队成员按期完成项目交付',
+        '设计数据治理框架和实施方案',
+        '建立数据管理标准和规范'
+      ],
+      requirements: [
+        '至少3年以上的数据治理、数据中台或相关领域的工作经验',
+        '2个以上百万级数据项目经验，有AI相关产品经验',
+        '熟悉数据治理框架，如DAMA或ISO数据管理标准',
+        '出色的沟通和人际交往能力，能够与所有级别的团队成员合作',
+        '熟悉数据隐私和安全法规',
+        '熟悉数据中台、数字化转型咨询和实施经验',
+        '可出差、可加班，可以快速适应新的业务方向和项目'
+      ],
+      highlights: [
+        '具备四大或咨询行业经验优先',
+        '持有数据治理专业认证优先',
+        '有能源行业、制造行业、金融行业经验优先',
+        '熟悉数据仓库、数据分析、数据集成和数据质量工具'
+      ],
+      keywords: ['数据治理', '数据中台', 'DAMA', '数据分析', '数据仓库', '央国企', '百万级项目']
+    }
+  },
+  
+  // PMO顾问
+  {
+    id: 'consulting_pmo_advisor',
+    name: 'PMO顾问模板',
+    industry: '咨询/IT服务',
+    position: 'PMO顾问',
+    level: 'mid',
+    description: '适用于项目管理办公室顾问岗位，支持ERP、SAP等大型系统实施',
+    matchCriteria: {
+      keywords: ['PMO', '项目管理', 'PMP', 'ERP', 'SAP', '实施', '交付'],
+      skills: ['项目管理', 'PMP', 'ERP', 'SAP', '实施交付', '风险管理', '质量管理'],
+      clientTypes: ['央国企'],
+      preferredIndustries: ['能源', '石油/石化'],
+      projectScale: ['集团级项目', '大型项目'],
+      certifications: ['PMP', '高级项目经理']
+    },
+    template: {
+      responsibilities: [
+        '制定并完善项目管理制度、流程及模板，包括项目计划管理、质量管理、风险管理、变更管理等核心环节',
+        '主导PMO日常工作，监控项目进度、成本、质量及风险，确保项目符合既定目标与合规要求',
+        '协助项目经理制定项目计划，明确里程碑、资源分配及关键路径，并动态跟踪调整',
+        '识别项目风险，制定应对策略，定期输出风险报告，推动问题闭环解决',
+        '作为项目与业务部门、外部供应商的桥梁，确保信息透明与高效沟通',
+        '组织项目会议（如启动会、评审会、复盘会），推动决策落地与问题解决',
+        '建立项目质量评估标准，定期开展质量检查与审计，确保交付物符合要求',
+        '结合石油行业特点，提供定制化项目管理解决方案，支持ERP、SAP等大型系统实施'
+      ],
+      requirements: [
+        '本科及以上学历，项目管理、信息技术、工程管理或相关专业优先',
+        '3年以上信息化项目实施经验，至少1年PMO管理经验',
+        '具备石油行业工作或咨询实施背景，熟悉ERP、咨询、集成类项目者优先',
+        '有集团级大型SAP咨询项目PMO经验者优先',
+        '精通项目管理全流程，包括计划、质量、风险、变更管理',
+        '出色的组织协调与沟通能力，能高效对接多方利益相关者',
+        '具备数据分析能力，能通过数据驱动项目决策'
+      ],
+      highlights: [
+        '持有国家认可的高级项目经理认证或PMP认证者优先',
+        '具备石油行业项目管理经验，熟悉行业特性与合规要求',
+        '参与过ERP、SAP等大型系统实施项目',
+        '具备跨文化项目管理经验，支持全球化项目运作'
+      ],
+      keywords: ['PMO', '项目管理', 'PMP', 'ERP', 'SAP', '石油', '集团级项目', '实施交付']
+    }
+  },
+  
+  // 业务顾问（中级）
+  {
+    id: 'consulting_business_advisor_mid',
+    name: '业务顾问（中级）模板',
+    industry: '咨询/IT服务',
+    position: '业务顾问',
+    level: 'mid',
+    description: '适用于ERP业务顾问岗位，负责业务需求分析和功能设计',
+    matchCriteria: {
+      keywords: ['业务顾问', 'ERP', '功能设计', '实施', '业务沟通'],
+      skills: ['ERP', '业务分析', '功能设计', '需求分析', '系统测试', '实施'],
+      clientTypes: ['央国企'],
+      preferredIndustries: ['能源']
+    },
+    template: {
+      responsibilities: [
+        '能够根据业务需求及蓝图设计，编制功能详细设计方案',
+        '与研发团队进行设计交底及业务沟通对接',
+        '支持系统功能测试及实施工作',
+        '了解工程项目管理或采购管理、合同管理相关业务',
+        '独立与客户开展业务沟通工作'
+      ],
+      requirements: [
+        '能够独立完成系统功能详细设计文档编制',
+        '能够独立开展系统功能测试及实施工作',
+        '能够独立与内部研发进行设计交底及对接',
+        '能够独立与客户开展业务沟通工作',
+        '具有5年以上工作经验，思维逻辑清晰，协作能力强，沟通表达能力强'
+      ],
+      highlights: [
+        '参与核心ERP项目实施',
+        '专业的业务咨询培训',
+        '与央国企客户深度合作',
+        '职业发展空间广阔'
+      ],
+      keywords: ['业务顾问', 'ERP', '功能设计', '业务分析', '实施', '央国企']
+    }
+  },
+  
+  // 销售代表（行业销售）
+  {
+    id: 'sales_industry_representative',
+    name: '行业销售代表模板',
+    industry: '咨询/IT服务',
+    position: '销售代表',
+    level: 'mid',
+    description: '适用于行业销售岗位，面向特定行业（如水利、水电）',
+    matchCriteria: {
+      keywords: ['销售', '客户', '项目', '行业'],
+      skills: ['销售技巧', '客户沟通', '项目管理', '商务谈判'],
+      preferredIndustries: ['水利', '水电', '电力/热力/燃气/水利'],
+      workIntensity: ['可出差', '可应酬']
+    },
+    template: {
+      responsibilities: [
+        '负责与客户沟通，确保信息的准确传达',
+        '跟进项目流程及进度，确保项目按时完成',
+        '能够适应出差，根据工作需要适当应酬',
+        '熟悉水利、水电行业，根据市场动态调整销售策略，持续提高销售业绩',
+        '独立处理和解决销售过程中的问题'
+      ],
+      requirements: [
+        '本科及以上学历，具备良好的沟通能力和团队合作精神',
+        '5年以上水利、水电行业销售工作经验',
+        '能够接受出差，具备良好的时间管理和项目跟进能力',
+        '有适当应酬的能力，能够根据客户需求调整自己的工作方式'
+      ],
+      highlights: [
+        '深耕行业，建立稳固客户关系',
+        '丰厚的销售提成和业绩奖金',
+        '完善的销售培训体系',
+        '快速成长的销售职业路径'
+      ],
+      keywords: ['销售', '客户沟通', '项目跟进', '水利', '水电', '出差', '应酬']
+    }
+  },
+  
+  // 智能体开发工程师
+  {
+    id: 'tech_ai_agent_developer',
+    name: '智能体开发工程师模板',
+    industry: 'IT互联网',
+    position: 'AI开发工程师',
+    level: 'mid',
+    description: '适用于大模型智能体开发岗位，面向G端和大型B端企业',
+    matchCriteria: {
+      keywords: ['智能体', 'AI', '大模型', 'Dify', 'Coze', 'LangChain', 'RAG'],
+      skills: ['Python', 'Dify', 'Coze', 'LangChain', 'RAG', '大模型', '智能体', 'Ollama', 'vllm', 'OCR', '向量库', 'Neo4j'],
+      clientTypes: ['央国企', '政府机构'],
+      preferredIndustries: ['能源', '制造']
+    },
+    template: {
+      responsibilities: [
+        '大模型智能体系统研发：负责基于通用大语言模型（如 Qwen、GPT-4、Claude 等）构建具备多轮对话、工具调用、上下文记忆能力的智能体',
+        '智能体能力编排与调优：设计和实现高效的 Prompt 模板、思维链（CoT）、多 Agent 协同等机制，提升智能体在垂直任务中的表现',
+        '快速 Demo 验证：根据业务或产品需求，快速构建端到端可交互的智能体原型系统（支持基础交互 UI）',
+        '工具调用与插件集成：支持模型调用搜索、函数执行、数据库查询、文件处理等外部工具，提升智能体执行力',
+        '跨团队协作：与产品、后端、前端同事协作，推动智能体能力实际落地应用'
+      ],
+      requirements: [
+        '有3年以上G端、大型B端企业项目经验，具备良好的客户沟通和需求分析能力',
+        '熟练掌握Python 编程。熟悉至少一种大语言模型智能体开发工具或框架，如 Dify、Coze、LangChain、RAG等',
+        '理解大模型原理、上下文机制、Token 预算、提示词工程等核心要素',
+        '具备智能体 Agent 项目落地经验',
+        '有快速 Demo 落地能力，能产出简单交互界面或配合前端完成可用展示页面',
+        '满足以下技术栈3-5项：Python，langchain，langgraph，RAG技术，Ollama，vllm，LLM模型原理，微调，OCR，向量库，图数据库neo4j'
+      ],
+      highlights: [
+        '有智能助手、AI中控、AI客服、多智能体协作等相关项目经验优先',
+        '有大模型微调、RAG 检索增强、思维链优化等经验优先',
+        '前沿AI技术，参与创新项目',
+        '与央国企深度合作'
+      ],
+      keywords: ['智能体', 'AI', '大模型', 'Dify', 'Coze', 'LangChain', 'RAG', 'Python', '央国企']
+    }
+  },
+  
+  // 财务咨询高级顾问
+  {
+    id: 'consulting_finance_senior',
+    name: '财务咨询高级顾问模板',
+    industry: '咨询/IT服务',
+    position: '财务咨询顾问',
+    level: 'senior',
+    description: '适用于财务咨询高级岗位，CPA优先，面向大中型企业',
+    matchCriteria: {
+      keywords: ['财务咨询', 'CPA', '投融资', '财务顾问', '尽职调查'],
+      skills: ['财务分析', '投融资', '尽职调查', '估值', '商业计划书', '财务报表分析'],
+      certifications: ['CPA', 'ACCA', '会计中级'],
+      preferredIndustries: ['金融', '能源', '制造']
+    },
+    template: {
+      responsibilities: [
+        '带领团队完成财务咨询项目的调研、分析、设计、实施及后期评估工作',
+        '提供企业财务诊断、优化方案及财务战略规划建议，帮助企业解决财务管理中的复杂问题',
+        '有效维护客户关系，定期与客户沟通项目进展，确保客户满意度',
+        '协助销售团队进行项目收款、促单等工作，提升项目成功率',
+        '负责境内外项目投资的财务顾问工作，包括尽职调查、估值咨询及交易管理',
+        '协助企业进行融资方案设计，编制商业计划书，参与路演及与资金方的沟通工作',
+        '指导助理顾问及团队成员开展特定行业及资本市场研究，提升团队专业能力',
+        '撰写项目报告、财务分析报告及投资建议书等，确保报告内容的准确性和专业性'
+      ],
+      requirements: [
+        '本科及以上学历，会计、财务、金融、经济等相关专业毕业',
+        '拥有CPA、ACCA等财务相关证书者优先考虑',
+        '至少5年以上财务咨询、会计师事务所或企业财务管理相关工作经验',
+        '有成功带领团队完成大型财务咨询项目的经验者优先考虑',
+        '具备扎实的财务理论基础和丰富的实践经验，熟悉企业财务管理流程及政策法规',
+        '精通财务报表分析、财务预测及风险管理等技能',
+        '具备较强的逻辑思维能力和数据分析能力，能够独立完成复杂的财务分析报告',
+        '具备良好的沟通能力和团队协作精神，能够适应高强度的工作压力',
+        '愿意接受境内外出差，能够适应不同地区的工作环境'
+      ],
+      highlights: [
+        '根据应聘者的能力和经验，提供具有竞争力的薪资待遇',
+        '提供广阔的职业发展空间和晋升机会，支持员工参加各类培训和进修课程',
+        '包括五险一金、带薪年假、节日福利、团队建设活动等完善的福利体系',
+        '参与大型财务咨询项目，积累丰富经验'
+      ],
+      keywords: ['财务咨询', 'CPA', '投融资', '尽职调查', '估值', '财务管理', '高级顾问']
+    }
+  },
+  
+  // 电力行业资产及设备管理实施经理
+  {
+    id: 'energy_asset_equipment_manager',
+    name: '电力行业资产设备管理实施经理模板',
+    industry: '能源/电力',
+    position: '实施经理',
+    level: 'manager',
+    description: '适用于电力行业ERP资产设备管理实施岗位，面向发电企业',
+    matchCriteria: {
+      keywords: ['资产', '设备管理', '电力', 'ERP', '实施', '竣工决算', 'KKS编码'],
+      skills: ['ERP', '资产设备管理', '固定资产', '竣工决算', 'KKS编码', '维修工单', 'SAP', 'ORACLE', '用友', '金蝶', '浪潮'],
+      clientTypes: ['央国企'],
+      preferredIndustries: ['电力/热力/燃气/水利'],
+      projectScale: ['大型项目', '集团级项目']
+    },
+    template: {
+      responsibilities: [
+        '负责资产及设备管理产品规划设计，重点包括固定资产竣工决算、资产盘点及实物管理',
+        '对电力行业设备全生命周期管理有丰富经验，包括功能位置、设备KKS编码、维修项目、维修工单、两票等',
+        '与财务、工程成本、物资进行集成设计',
+        '对资产及设备管理模块进行3-5年长期规划及1年以内产品发展详细规划',
+        '负责编写资产及设备管理模块产品需求设计文档，进行产品功能设计',
+        '与客户、项目经理、技术、测试等角色进行明确有效的需求沟通并做出有效输出',
+        '设计测试用例，配合完成产品的测试、功能验证、产品演示及发版等工作',
+        '参与模块和流程管理相关的用户培训、手册编写，宣导等工作',
+        '支持重大项目的实施交付工作'
+      ],
+      requirements: [
+        '计算机、信息系统或其他相关专业本科以上学历',
+        '有大型咨询公司售前或实施项目经验，具有丰富的资产及设备管理全过程规划设计经验',
+        '熟悉发电行业固定资产及设备管理要求优先',
+        '具有5年以上资产及设备管理实施或研发项目经验，至少做过2个以上大型集团公司项目',
+        '具备SAP、ORACLE、用友、金蝶、浪潮相关资产及设备管理模块知识及实施经验为佳',
+        '熟悉资产及设备管理模块的核心业务流程及理论知识，掌握软件需求分析技术和管理方法',
+        '在ERP软件研发企业工作过的优先',
+        '可以独立完成与业务的沟通，并转化为符合业务的功能清单、需求文档',
+        '善于发现问题、分析问题并跟进解决问题并能独立完成产品功能设计',
+        '熟练使用Axure、思维导图等流程设计工具及Office软件（PPT、Word、Excel）'
+      ],
+      highlights: [
+        '良好的沟通能力和团队合作精神',
+        '负责任的工作态度和高度的敬业精神',
+        '参与电力行业核心系统建设',
+        '职业发展前景广阔'
+      ],
+      keywords: ['资产设备管理', '电力', 'ERP', '实施', '竣工决算', 'KKS编码', 'SAP', 'ORACLE']
+    }
   }
 ];
 
@@ -446,4 +836,113 @@ export const getAllIndustries = (): string[] => {
 // 获取所有岗位级别
 export const getAllLevels = (): string[] => {
   return ['entry', 'mid', 'senior', 'manager', 'director'];
+};
+
+/**
+ * 智能模板匹配算法
+ * 根据用户填写的岗位信息，智能推荐最匹配的模板
+ */
+export const smartMatchTemplates = (jobInfo: {
+  position: string;
+  industry: string;
+  skills: string[];
+  clientType?: string[];
+  preferredIndustry?: string[];
+  projectScale?: string;
+  certifications?: string[];
+  workIntensity?: string[];
+}): JDTemplate[] => {
+  const scoredTemplates = jdTemplates.map(template => {
+    let score = 0;
+    const reasons: string[] = [];
+    
+    // 1. 行业匹配（权重：30）
+    if (template.industry === jobInfo.industry) {
+      score += 30;
+      reasons.push('行业匹配');
+    }
+    
+    // 2. 职位关键词匹配（权重：25）
+    if (template.matchCriteria?.keywords) {
+      const positionLower = jobInfo.position.toLowerCase();
+      const matchedKeywords = template.matchCriteria.keywords.filter(keyword => 
+        positionLower.includes(keyword.toLowerCase())
+      );
+      if (matchedKeywords.length > 0) {
+        score += 25 * (matchedKeywords.length / template.matchCriteria.keywords.length);
+        reasons.push(`职位关键词匹配(${matchedKeywords.length}个)`);
+      }
+    }
+    
+    // 3. 技能匹配（权重：20）
+    if (template.matchCriteria?.skills && jobInfo.skills.length > 0) {
+      const matchedSkills = template.matchCriteria.skills.filter(skill =>
+        jobInfo.skills.some(userSkill => 
+          userSkill.toLowerCase().includes(skill.toLowerCase()) ||
+          skill.toLowerCase().includes(userSkill.toLowerCase())
+        )
+      );
+      if (matchedSkills.length > 0) {
+        score += 20 * (matchedSkills.length / template.matchCriteria.skills.length);
+        reasons.push(`技能匹配(${matchedSkills.length}个)`);
+      }
+    }
+    
+    // 4. 客户类型匹配（权重：15）
+    if (template.matchCriteria?.clientTypes && jobInfo.clientType && jobInfo.clientType.length > 0) {
+      const matchedClientTypes = template.matchCriteria.clientTypes.filter(clientType =>
+        jobInfo.clientType!.some(userType => userType === clientType)
+      );
+      if (matchedClientTypes.length > 0) {
+        score += 15;
+        reasons.push(`客户类型匹配`);
+      }
+    }
+    
+    // 5. 优先行业匹配（权重：10）
+    if (template.matchCriteria?.preferredIndustries && jobInfo.preferredIndustry && jobInfo.preferredIndustry.length > 0) {
+      const matchedIndustries = template.matchCriteria.preferredIndustries.filter(industry =>
+        jobInfo.preferredIndustry!.some(userIndustry => userIndustry === industry)
+      );
+      if (matchedIndustries.length > 0) {
+        score += 10;
+        reasons.push(`优先行业匹配`);
+      }
+    }
+    
+    // 6. 项目规模匹配（权重：5）
+    if (template.matchCriteria?.projectScale && jobInfo.projectScale) {
+      const matchedScale = template.matchCriteria.projectScale.some(scale =>
+        jobInfo.projectScale!.includes(scale) || scale.includes(jobInfo.projectScale!)
+      );
+      if (matchedScale) {
+        score += 5;
+        reasons.push(`项目规模匹配`);
+      }
+    }
+    
+    // 7. 认证匹配（权重：5）
+    if (template.matchCriteria?.certifications && jobInfo.certifications && jobInfo.certifications.length > 0) {
+      const matchedCerts = template.matchCriteria.certifications.filter(cert =>
+        jobInfo.certifications!.some(userCert => userCert === cert)
+      );
+      if (matchedCerts.length > 0) {
+        score += 5;
+        reasons.push(`认证匹配`);
+      }
+    }
+    
+    return {
+      template,
+      score,
+      reasons
+    };
+  });
+  
+  // 按分数排序，返回前10个最匹配的模板
+  return scoredTemplates
+    .filter(item => item.score > 0) // 只返回有匹配度的模板
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 10)
+    .map(item => item.template);
 };

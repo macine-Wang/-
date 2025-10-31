@@ -364,9 +364,9 @@ ${employeeData}
    */
   async generateJobDescription(data: {
     position: string;
-    department: string;
+    department?: string;
     location: string;
-    reportTo: string;
+    reportTo?: string;
     skills: string[];
     education: string;
     experience: string;
@@ -380,6 +380,13 @@ ${employeeData}
     };
     workTime?: string;
     benefits?: string[];
+    preferredIndustry?: string;
+    projectExperience?: string;
+    projectScale?: string;
+    certifications?: string;
+    additionalRequirements?: string;
+    workIntensity?: string;
+    clientType?: string;
     style: 'formal' | 'casual' | 'innovative' | 'international';
     version: 'long' | 'short' | 'brief';
     language: 'chinese' | 'english' | 'bilingual';
@@ -395,16 +402,25 @@ ${employeeData}
       suggestions: string[];
     };
   }> {
-    const systemPrompt = `你是一位专业的HR招聘专家和文案写手，擅长创作优秀的职位描述(JD)。
+    const systemPrompt = `你是一位专业的HR招聘专家和文案写手，擅长创作优秀的职位描述(JD)。请参考以下专业JD的写作风格和结构：
+
+**优秀JD的结构特点：**
+1. **岗位概述**（可选）：简要说明岗位定位、核心价值和在组织中的作用
+2. **核心职责**：清晰分点列出，使用数字编号，每条职责具体可执行
+3. **任职要求**：分为基本要求和加分项，结构清晰
+   - 基本要求：学历、经验、技能等硬性要求
+   - 优先条件/加分项：行业经验、认证、特殊技能等
+4. **岗位亮点**：突出岗位优势、发展机会、公司特色等
 
 请根据提供的岗位信息生成专业、吸引人的职位描述，需要：
 
-1. **内容结构完整**：包含岗位职责、任职要求、岗位亮点
+1. **内容结构完整**：包含岗位概述（可选）、核心职责、任职要求、加分项、岗位亮点
 2. **语言风格适配**：${this.getStyleDescription(data.style)}
 3. **版本长度控制**：${this.getVersionDescription(data.version)}
 4. **SEO优化**：突出关键技能词，提高搜索排名
 5. **合规检查**：避免歧视性词汇，确保合规
 6. **公司文化融入**：自然嵌入公司特色和卖点
+7. **专业表达**：使用行业术语，体现专业性
 
 请用${data.language === 'english' ? '英文' : data.language === 'bilingual' ? '中英双语' : '中文'}回复。`;
 
@@ -412,32 +428,48 @@ ${employeeData}
 
 **基本信息：**
 - 岗位名称：${data.position}
-- 所属部门：${data.department}
+${data.department ? `- 所属部门：${data.department}` : ''}
 - 工作地点：${data.location}
-- 汇报对象：${data.reportTo}
+${data.reportTo ? `- 汇报对象：${data.reportTo}` : ''}
 - 招聘人数：${data.recruitCount}人
 
-**任职要求：**
+**基本任职要求：**
 - 核心技能：${data.skills.join('、')}
 - 学历要求：${data.education}
 - 工作经验：${data.experience}
 
+**专业要求（如提供）：**
+${data.preferredIndustry ? `- 优先行业经验：${data.preferredIndustry}` : ''}
+${data.projectExperience ? `- 项目经验要求：${data.projectExperience}` : ''}
+${data.projectScale ? `- 项目规模要求：${data.projectScale}` : ''}
+${data.certifications ? `- 专业认证要求：${data.certifications}` : ''}
+${data.clientType ? `- 客户类型：${data.clientType}` : ''}
+${data.workIntensity ? `- 工作强度要求：${data.workIntensity}` : ''}
+${data.additionalRequirements ? `- 加分项/优先条件：${data.additionalRequirements}` : ''}
+
 **公司信息：**
 - 所属行业：${data.industry}
 - 公司规模：${data.companySize}
-- 公司特色：${data.companyKeywords.join('、')}
+${data.companyKeywords.length ? `- 公司特色：${data.companyKeywords.join('、')}` : ''}
 
 **薪酬福利：**
 ${data.salaryRange ? `- 薪资范围：${data.salaryRange.min}-${data.salaryRange.max}K` : ''}
 ${data.workTime ? `- 工作时间：${data.workTime}` : ''}
 ${data.benefits?.length ? `- 福利待遇：${data.benefits.join('、')}` : ''}
 
-**要求：**
+**生成要求：**
 - 文风：${this.getStyleDescription(data.style)}
 - 版本：${this.getVersionDescription(data.version)}
 - 语言：${data.language === 'english' ? '英文' : data.language === 'bilingual' ? '中英双语对照' : '中文'}
 
-请生成完整的职位描述，包含岗位职责、任职要求、岗位亮点等内容。`;
+**重要提示：**
+1. 岗位职责要具体、可执行，使用数字编号清晰列出
+2. 任职要求分为"基本要求"和"优先条件/加分项"两部分
+3. 如果有专业认证、行业经验、项目经验等加分项，请在"优先条件"中突出显示
+4. 工作强度要求（如出差、加班等）要明确但不强制，以吸引合适候选人为主
+5. 岗位亮点要突出发展机会、公司优势等吸引力要素
+
+请生成完整的职位描述，包含岗位概述（如适用）、核心职责、任职要求（含基本要求和加分项）、岗位亮点等内容。`;
 
     const messages: DeepSeekMessage[] = [
       { role: 'system', content: systemPrompt },
