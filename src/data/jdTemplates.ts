@@ -647,8 +647,7 @@ export const jdTemplates: JDTemplate[] = [
     matchCriteria: {
       keywords: ['销售', '客户', '项目', '行业'],
       skills: ['销售技巧', '客户沟通', '项目管理', '商务谈判'],
-      preferredIndustries: ['水利', '水电', '电力/热力/燃气/水利'],
-      workIntensity: ['可出差', '可应酬']
+      preferredIndustries: ['水利', '水电', '电力/热力/燃气/水利']
     },
     template: {
       responsibilities: [
